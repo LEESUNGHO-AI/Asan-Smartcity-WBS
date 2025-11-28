@@ -1,6 +1,6 @@
-# 🌆 아산시 스마트시티 프로젝트 대시보드
+# 🌆 아산시 강소형 스마트시티 프로젝트 WBS 대시보드
 
-> 아산시 강소형 스마트시티 조성사업 프로젝트 현황 대시보드
+> 아산시 강소형 스마트시티 조성사업 프로젝트 현황 WBS 대시보드
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success)](https://leesungho-ai.github.io/Asan-smartcity-budget/)
 [![Last Updated](https://img.shields.io/badge/Updated-2025--11--28-blue)]()
