@@ -1,0 +1,6 @@
+title: 아산시 스마트시티 대시보드
+description: 아산시 강소형 스마트시티 조성사업 프로젝트 현황 대시보드
+theme: null
+include:
+  - index.html
+  - asan-smartcity-dashboard.html
