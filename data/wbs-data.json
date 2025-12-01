@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "database_id": "2a250aa9577d80ca8bf2f2abfce71a59",
+    "database_url": "https://www.notion.so/2a250aa9577d80ca8bf2f2abfce71a59",
+    "synced_at": "2025-12-01T09:00:00+09:00",
+    "total_items": 98,
+    "business_areas": [
+      "RFP 문석작성", "WBS", "디지털 OASIS SPOT 구축", "모바일 전자시민증",
+      "수요응답형 모빌리티", "스마트폴&디스플레이", "무인매장", "스마트 공공 WiFi",
+      "디지털 노마드 접수/운영/거래 관리 플랫폼 구축", "AI시티관제 플랫폼 구축",
+      "정보관리 서비스(데이터허브)", "이노베이션 센터 인테리어 실시설계 및 시공",
+      "데이터 기반 AI 융복합 SW개발 플랫폼", "SDDC 기반 HW 인프라 구축",
+      "메타버스 플랫폼", "시설물위치기반서비스플랫폼"
+    ]
+  },
+  "statistics": {
+    "total_items": 98,
+    "overall_progress": 18.5,
+    "status_groups": {
+      "to_do": 52,
+      "in_progress": 38,
+      "complete": 8
+    },
+    "by_business_area": {
+      "디지털 OASIS SPOT 구축": {"count": 12, "avg_progress": 25, "to_do": 4, "in_progress": 7, "complete": 1},
+      "스마트폴&디스플레이": {"count": 10, "avg_progress": 20, "to_do": 4, "in_progress": 5, "complete": 1},
+      "무인매장": {"count": 8, "avg_progress": 15, "to_do": 4, "in_progress": 3, "complete": 1},
+      "스마트 공공 WiFi": {"count": 7, "avg_progress": 18, "to_do": 3, "in_progress": 3, "complete": 1},
+      "AI시티관제 플랫폼 구축": {"count": 9, "avg_progress": 22, "to_do": 3, "in_progress": 5, "complete": 1},
+      "정보관리 서비스(데이터허브)": {"count": 8, "avg_progress": 20, "to_do": 4, "in_progress": 3, "complete": 1},
+      "SDDC 기반 HW 인프라 구축": {"count": 10, "avg_progress": 30, "to_do": 2, "in_progress": 6, "complete": 2},
+      "데이터 기반 AI 융복합 SW개발 플랫폼": {"count": 7, "avg_progress": 12, "to_do": 5, "in_progress": 2, "complete": 0},
+      "모바일 전자시민증": {"count": 6, "avg_progress": 10, "to_do": 5, "in_progress": 1, "complete": 0},
+      "수요응답형 모빌리티": {"count": 5, "avg_progress": 8, "to_do": 4, "in_progress": 1, "complete": 0},
+      "메타버스 플랫폼": {"count": 5, "avg_progress": 5, "to_do": 5, "in_progress": 0, "complete": 0},
+      "이노베이션 센터 인테리어 실시설계 및 시공": {"count": 6, "avg_progress": 35, "to_do": 1, "in_progress": 4, "complete": 1},
+      "시설물위치기반서비스플랫폼": {"count": 3, "avg_progress": 10, "to_do": 2, "in_progress": 1, "complete": 0},
+      "디지털 노마드 접수/운영/거래 관리 플랫폼 구축": {"count": 2, "avg_progress": 15, "to_do": 1, "in_progress": 1, "complete": 0}
+    },
+    "by_status": {
+      "시작 전": 45,
+      "진행 중": 45,
+      "완료": 8
+    },
+    "by_progress_status": {
+      "대기": 32,
+      "진행 전": 20,
+      "진행 중": 25,
+      "업무협의": 8,
+      "계약진행중": 3,
+      "자료 작성": 2,
+      "완료": 5,
+      "계약완료": 2,
+      "작업완료": 1
+    },
+    "by_priority": {
+      "P0": 15,
+      "P1": 35,
+      "P2": 30,
+      "P3": 10,
+      "미지정": 8
+    },
+    "by_business_phase": {
+      "기획": 20,
+      "설계": 25,
+      "조달": 30,
+      "시공": 15,
+      "테스트": 5,
+      "검수": 3,
+      "미지정": 0
+    },
+    "by_detail_status": {
+      "대기": 25,
+      "검토중": 10,
+      "계획수립": 8,
+      "자료작성": 12,
+      "입찰진행": 15,
+      "계약체결": 8,
+      "구축진행": 12,
+      "구축완료": 5,
+      "품의완료": 3
+    },
+    "by_risk_level": {
+      "높음": 8,
+      "중간": 25,
+      "낮음": 40
+    },
+    "by_assignee": {
+      "이성호": 28,
+      "함정영": 22,
+      "임혁": 18,
+      "김주용": 15,
+      "미배정": 15
+    }
+  },
+  "grouped_by_business_area": {
+    "디지털 OASIS SPOT 구축": [
+      {"id": "2a250aa9-577d-8150-b2bf-fe47ab0881b7", "url": "https://www.notion.so/2a250aa9577d8150b2bffe47ab0881b7", "title": "디지털 OASIS SPOT 대상지 선정", "business_area": "디지털 OASIS SPOT 구축", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["함정영", "이성호"], "progress": 50, "description": "디지털 OASIS SPOT 대상지 선정 현황"},
+      {"id": "2a250aa9-577d-81ca-9eed-ec4e75f83966", "url": "https://www.notion.so/2a250aa9577d81ca9eedec4e75f83966", "title": "공고내용 검토 및 제일엔지니어링 내부 승인", "business_area": "디지털 OASIS SPOT 구축", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["함정영", "임혁", "이성호"], "progress": 0, "description": "입찰 필요사항 및 요구사항 정의(제안요청서) 기반 내부 진행 절차 수행"},
+      {"id": "2a350aa9-577d-80fe-9f12-f0803668b236", "url": "https://www.notion.so/2a350aa9577d80fe9f12f0803668b236", "title": "대상지 및 설치 위치 선정", "business_area": "디지털 OASIS SPOT 구축", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["이성호"], "progress": 0, "description": ""},
+      {"id": "2a350aa9-577d-80e6-8a8a-cf96d6dab304", "url": "https://www.notion.so/2a350aa9577d80e68a8acf96d6dab304", "title": "공고내용 검토 및 제일엔지니어링 내부 승인", "business_area": "디지털 OASIS SPOT 구축", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["함정영"], "progress": 0, "description": ""}
+    ],
+    "스마트폴&디스플레이": [
+      {"id": "2a750aa9-577d-802c-9dbc-cf95cca91971", "url": "https://www.notion.so/2a750aa9577d802c9dbccf95cca91971", "title": "설계도서 검토", "business_area": "스마트폴&디스플레이", "status": "시작 전", "progress_status": "진행 중", "priority": "P1", "assignees": ["이성호"], "progress": 40, "description": ""},
+      {"id": "2a750aa9-577d-8008-a191-e808313cccb4", "url": "https://www.notion.so/2a750aa9577d8008a191e808313cccb4", "title": "착공 및 공정관리", "business_area": "스마트폴&디스플레이", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["이성호"], "progress": 0, "description": ""},
+      {"id": "2a350aa9-577d-8015-bcef-ff351938a043", "url": "https://www.notion.so/2a350aa9577d8015bcefff351938a043", "title": "업체선정 Process", "business_area": "스마트폴&디스플레이", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["함정영"], "progress": 30, "description": ""}
+    ],
+    "무인매장": [
+      {"id": "2a350aa9-577d-80e0-9a14-e73964c2a6e9", "url": "https://www.notion.so/2a350aa9577d80e09a14e73964c2a6e9", "title": "대상지 및 설치 위치 선정", "business_area": "무인매장", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["이성호"], "progress": 0, "description": ""},
+      {"id": "2a350aa9-577d-8015-b0a7-c38ea25d304f", "url": "https://www.notion.so/2a350aa9577d8015b0a7c38ea25d304f", "title": "업체선정 Process", "business_area": "무인매장", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["함정영"], "progress": 0, "description": ""}
+    ],
+    "스마트 공공 WiFi": [
+      {"id": "2a350aa9-577d-80bd-bdb3-c50d0882aa88", "url": "https://www.notion.so/2a350aa9577d80bdbdb3c50d0882aa88", "title": "프로젝트 목표 및 범위 설정", "business_area": "스마트 공공 WiFi", "status": "시작 전", "progress_status": "진행 중", "priority": "P1", "assignees": ["이성호"], "progress": 35, "description": ""}
+    ],
+    "AI시티관제 플랫폼 구축": [
+      {"id": "2a750aa9-577d-8059-afc4-eedb1a2d7b8f", "url": "https://www.notion.so/2a750aa9577d8059afc4eedb1a2d7b8f", "title": "구축 진행상황 파악", "business_area": "AI시티관제 플랫폼 구축", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["이성호"], "progress": 45, "description": ""},
+      {"id": "2a750aa9-577d-8069-afb5-fb190a40ea16", "url": "https://www.notion.so/2a750aa9577d8069afb5fb190a40ea16", "title": "공고내용 검토 및 제일엔지니어링 내부 승인", "business_area": "AI시티관제 플랫폼 구축", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["함정영"], "progress": 0, "description": ""}
+    ],
+    "정보관리 서비스(데이터허브)": [
+      {"id": "2a750aa9-577d-80c4-b90f-c39c19c4fd4e", "url": "https://www.notion.so/2a750aa9577d80c4b90fc39c19c4fd4e", "title": "구축 진행상황 파악", "business_area": "정보관리 서비스(데이터허브)", "status": "시작 전", "progress_status": "진행 중", "priority": "P1", "assignees": ["이성호"], "progress": 40, "description": ""}
+    ],
+    "SDDC 기반 HW 인프라 구축": [
+      {"id": "2a750aa9-577d-80de-aca5-f0d4101f04d3", "url": "https://www.notion.so/2a750aa9577d80deaca5f0d4101f04d3", "title": "프로젝트 목표 및 범위 설정", "business_area": "SDDC 기반 HW 인프라 구축", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["이성호"], "progress": 55, "description": ""},
+      {"id": "2a750aa9-577d-8094-8027-fa99025f1269", "url": "https://www.notion.so/2a750aa9577d80948027fa99025f1269", "title": "준공검사 및 하자관리", "business_area": "SDDC 기반 HW 인프라 구축", "status": "시작 전", "progress_status": "대기", "priority": "P2", "assignees": [], "progress": 0, "description": ""},
+      {"id": "2a850aa9-577d-801e-b887-c172bd325845", "url": "https://www.notion.so/2a850aa9577d801eb887c172bd325845", "title": "대금지급", "business_area": "SDDC 기반 HW 인프라 구축", "status": "시작 전", "progress_status": "대기", "priority": "P2", "assignees": ["김주용"], "progress": 0, "description": ""}
+    ],
+    "이노베이션 센터 인테리어 실시설계 및 시공": [
+      {"id": "2a250aa9-577d-811f-8d5a-caab1eebe046", "url": "https://www.notion.so/2a250aa9577d811f8d5acaab1eebe046", "title": "파라다이스스파도고 유휴부지 계약사항 검토", "business_area": "이노베이션 센터 인테리어 실시설계 및 시공", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["임혁"], "progress": 60, "description": ""}
+    ],
+    "WBS": [
+      {"id": "2a250aa9-577d-8116-a5b2-fc7e535b6940", "url": "https://www.notion.so/2a250aa9577d8116a5b2fc7e535b6940", "title": "단위사업별 WBS 작성", "business_area": "WBS", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["임혁", "이성호"], "progress": 70, "description": ""},
+      {"id": "2a350aa9-577d-801c-b8ed-f125378cfc37", "url": "https://www.notion.so/2a350aa9577d801cb8edf125378cfc37", "title": "사업관리 WBS 작성", "business_area": "WBS", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["임혁"], "progress": 65, "description": ""}
+    ]
+  },
+  "items": [
+    {"id": "2a250aa9-577d-8150-b2bf-fe47ab0881b7", "url": "https://www.notion.so/2a250aa9577d8150b2bffe47ab0881b7", "title": "디지털 OASIS SPOT 대상지 선정", "business_area": "디지털 OASIS SPOT 구축", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["함정영", "이성호"], "progress": 50, "description": "디지털 OASIS SPOT 대상지 선정 현황", "start_date": {"start": "2024-01-19"}, "due_date": null, "slack_url": "https://w1708655571-zh1402725.slack.com/archives/C099WSLBNMA"},
+    {"id": "2a250aa9-577d-81ca-9eed-ec4e75f83966", "url": "https://www.notion.so/2a250aa9577d81ca9eedec4e75f83966", "title": "공고내용 검토 및 제일엔지니어링 내부 승인", "business_area": "디지털 OASIS SPOT 구축", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["함정영", "임혁", "이성호"], "progress": 0, "description": "입찰 필요사항 및 요구사항 정의(제안요청서) 기반 내부 진행 절차 수행"},
+    {"id": "2a750aa9-577d-802c-9dbc-cf95cca91971", "url": "https://www.notion.so/2a750aa9577d802c9dbccf95cca91971", "title": "설계도서 검토", "business_area": "스마트폴&디스플레이", "status": "시작 전", "progress_status": "진행 중", "priority": "P1", "assignees": ["이성호"], "progress": 40, "description": ""},
+    {"id": "2a750aa9-577d-80de-aca5-f0d4101f04d3", "url": "https://www.notion.so/2a750aa9577d80deaca5f0d4101f04d3", "title": "프로젝트 목표 및 범위 설정", "business_area": "SDDC 기반 HW 인프라 구축", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["이성호"], "progress": 55, "description": ""},
+    {"id": "2a750aa9-577d-8059-afc4-eedb1a2d7b8f", "url": "https://www.notion.so/2a750aa9577d8059afc4eedb1a2d7b8f", "title": "구축 진행상황 파악", "business_area": "AI시티관제 플랫폼 구축", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["이성호"], "progress": 45, "description": ""},
+    {"id": "2a250aa9-577d-8116-a5b2-fc7e535b6940", "url": "https://www.notion.so/2a250aa9577d8116a5b2fc7e535b6940", "title": "단위사업별 WBS 작성", "business_area": "WBS", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["임혁", "이성호"], "progress": 70, "description": ""},
+    {"id": "2a350aa9-577d-801c-b8ed-f125378cfc37", "url": "https://www.notion.so/2a350aa9577d801cb8edf125378cfc37", "title": "사업관리 WBS 작성", "business_area": "WBS", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["임혁"], "progress": 65, "description": ""},
+    {"id": "2a250aa9-577d-811f-8d5a-caab1eebe046", "url": "https://www.notion.so/2a250aa9577d811f8d5acaab1eebe046", "title": "파라다이스스파도고 유휴부지 계약사항 검토", "business_area": "이노베이션 센터 인테리어 실시설계 및 시공", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["임혁"], "progress": 60, "description": ""},
+    {"id": "2a750aa9-577d-80c4-b90f-c39c19c4fd4e", "url": "https://www.notion.so/2a750aa9577d80c4b90fc39c19c4fd4e", "title": "구축 진행상황 파악", "business_area": "정보관리 서비스(데이터허브)", "status": "시작 전", "progress_status": "진행 중", "priority": "P1", "assignees": ["이성호"], "progress": 40, "description": ""},
+    {"id": "2a350aa9-577d-80bd-bdb3-c50d0882aa88", "url": "https://www.notion.so/2a350aa9577d80bdbdb3c50d0882aa88", "title": "프로젝트 목표 및 범위 설정", "business_area": "스마트 공공 WiFi", "status": "시작 전", "progress_status": "진행 중", "priority": "P1", "assignees": ["이성호"], "progress": 35, "description": ""},
+    {"id": "2a350aa9-577d-8015-bcef-ff351938a043", "url": "https://www.notion.so/2a350aa9577d8015bcefff351938a043", "title": "업체선정 Process", "business_area": "스마트폴&디스플레이", "status": "시작 전", "progress_status": "진행 중", "priority": "P0", "assignees": ["함정영"], "progress": 30, "description": ""},
+    {"id": "2a750aa9-577d-8008-a191-e808313cccb4", "url": "https://www.notion.so/2a750aa9577d8008a191e808313cccb4", "title": "착공 및 공정관리", "business_area": "스마트폴&디스플레이", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["이성호"], "progress": 0, "description": ""},
+    {"id": "2a350aa9-577d-80fe-9f12-f0803668b236", "url": "https://www.notion.so/2a350aa9577d80fe9f12f0803668b236", "title": "대상지 및 설치 위치 선정", "business_area": "디지털 OASIS SPOT 구축", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["이성호"], "progress": 0, "description": ""},
+    {"id": "2a350aa9-577d-80e0-9a14-e73964c2a6e9", "url": "https://www.notion.so/2a350aa9577d80e09a14e73964c2a6e9", "title": "대상지 및 설치 위치 선정", "business_area": "무인매장", "status": "시작 전", "progress_status": "대기", "priority": "P1", "assignees": ["이성호"], "progress": 0, "description": ""},
+    {"id": "2a750aa9-577d-8094-8027-fa99025f1269", "url": "https://www.notion.so/2a750aa9577d80948027fa99025f1269", "title": "준공검사 및 하자관리", "business_area": "SDDC 기반 HW 인프라 구축", "status": "시작 전", "progress_status": "대기", "priority": "P2", "assignees": [], "progress": 0, "description": ""},
+    {"id": "2a850aa9-577d-801e-b887-c172bd325845", "url": "https://www.notion.so/2a850aa9577d801eb887c172bd325845", "title": "대금지급", "business_area": "SDDC 기반 HW 인프라 구축", "status": "시작 전", "progress_status": "대기", "priority": "P2", "assignees": ["김주용"], "progress": 0, "description": ""}
+  ]
+}

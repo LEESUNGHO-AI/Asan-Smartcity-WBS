@@ -1,0 +1,56 @@
+name: Sync Notion WBS Data
+
+on:
+  schedule:
+    # 매일 한국 시간 오전 9시 (UTC 00:00)에 실행
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # 수동 실행 가능
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          pip install requests
+          
+      - name: Sync Notion WBS data
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+        run: |
+          python sync_notion.py
+          
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet data/wbs-data.json || echo "changes=true" >> $GITHUB_OUTPUT
+          
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/wbs-data.json
+          git commit -m "🔄 Auto-sync: Update WBS data from Notion [$(date +'%Y-%m-%d %H:%M:%S KST')]"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages

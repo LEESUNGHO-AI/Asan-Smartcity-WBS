@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아산 스마트시티 WBS 통합 대시보드</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #3d5a80;
+            --accent: #ee6c4d;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: var(--gray-100);
+            min-height: 100vh;
+            color: var(--gray-800);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .header-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .badge a { color: white; text-decoration: none; }
+        
+        .sync-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .kpi-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .kpi-card.primary { border-left-color: var(--primary); }
+        .kpi-card.info { border-left-color: var(--info); }
+        .kpi-card.success { border-left-color: var(--success); }
+        .kpi-card.warning { border-left-color: var(--warning); }
+        .kpi-card.danger { border-left-color: var(--danger); }
+        
+        .kpi-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .kpi-value { font-size: 2rem; font-weight: 800; color: var(--primary); }
+        .kpi-label { color: var(--gray-600); font-size: 0.875rem; margin-top: 0.25rem; }
+        
+        /* Charts Section */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chart-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .chart-container { height: 280px; position: relative; }
+        
+        /* Section */
+        .section {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--gray-200);
+            background: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            width: 250px;
+            font-size: 0.875rem;
+        }
+        
+        .search-input:focus { outline: none; border-color: var(--primary); }
+        
+        /* Business Area Cards */
+        .area-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+        
+        .area-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: all 0.2s;
+        }
+        
+        .area-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(30,58,95,0.1);
+        }
+        
+        .area-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .area-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+        
+        .area-count {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .progress-bar-bg {
+            background: var(--gray-200);
+            border-radius: 0.5rem;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 0.5rem;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-low { background: linear-gradient(90deg, #ef4444, #dc2626); }
+        .progress-mid { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .progress-high { background: linear-gradient(90deg, #10b981, #059669); }
+        
+        .area-stats {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .stat-todo { background: #fef3c7; color: #92400e; }
+        .stat-progress { background: #dbeafe; color: #1e40af; }
+        .stat-complete { background: #d1fae5; color: #065f46; }
+        
+        /* Table */
+        .table-wrapper { overflow-x: auto; }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+        }
+        
+        .data-table tbody tr:hover { background: var(--gray-50); }
+        
+        .task-title {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .status-대기, .status-진행\ 전 { background: #fef3c7; color: #92400e; }
+        .status-진행\ 중, .status-업무협의, .status-계약진행중, .status-자료\ 작성, 
+        .status-자료\ 대응, .status-용역발주, .status-계약, .status-구축, 
+        .status-대금\ 집행, .status-테스트중 { background: #dbeafe; color: #1e40af; }
+        .status-완료, .status-계약완료, .status-작성완료, .status-품의완료, 
+        .status-작업완료, .status-종료 { background: #d1fae5; color: #065f46; }
+        .status-중단 { background: #fee2e2; color: #991b1b; }
+        
+        .priority-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        
+        .priority-P0 { background: #fee2e2; color: #991b1b; }
+        .priority-P1 { background: #fef3c7; color: #92400e; }
+        .priority-P2 { background: #d1fae5; color: #065f46; }
+        .priority-P3 { background: #e5e7eb; color: #374151; }
+        
+        .notion-link {
+            color: var(--info);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .notion-link:hover { text-decoration: underline; }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        .footer a { color: var(--primary); text-decoration: none; }
+        
+        /* Loading */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            color: var(--gray-600);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.25rem; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .charts-grid { grid-template-columns: 1fr; }
+            .area-grid { grid-template-columns: 1fr; }
+            .search-input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>🏙️ 아산 스마트시티 WBS 통합 대시보드</h1>
+            <div class="header-info">
+                <div class="badge">
+                    <div class="sync-dot"></div>
+                    <span>실시간 동기화</span>
+                </div>
+                <div class="badge">📅 <span id="syncTime">-</span></div>
+                <div class="badge">
+                    <a href="https://www.notion.so/2a250aa9577d80ca8bf2f2abfce71a59" target="_blank">📝 Notion 원본</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="loadingState" class="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 1rem;">데이터를 불러오는 중...</p>
+        </div>
+        
+        <div id="dashboard" style="display: none;">
+            <!-- KPI Cards -->
+            <section class="kpi-grid" id="kpiSection"></section>
+
+            <!-- Charts -->
+            <section class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-title">📊 진행현황 분포</div>
+                    <div class="chart-container"><canvas id="statusChart"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">🎯 우선순위별 현황</div>
+                    <div class="chart-container"><canvas id="priorityChart"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">👤 담당자별 업무</div>
+                    <div class="chart-container"><canvas id="assigneeChart"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">📈 업무영역별 진척률</div>
+                    <div class="chart-container"><canvas id="progressChart"></canvas></div>
+                </div>
+            </section>
+
+            <!-- Business Areas -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-title">🎯 단위사업별 WBS 현황</div>
+                    <div class="filters">
+                        <input type="text" class="search-input" id="areaSearch" placeholder="🔍 단위사업 검색...">
+                    </div>
+                </div>
+                <div class="area-grid" id="areaGrid"></div>
+            </section>
+
+            <!-- Tasks Table -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-title">📋 WBS 상세 목록</div>
+                    <div class="filters">
+                        <input type="text" class="search-input" id="taskSearch" placeholder="🔍 작업 검색...">
+                        <button class="filter-btn active" data-filter="all">전체</button>
+                        <button class="filter-btn" data-filter="in_progress">진행중</button>
+                        <button class="filter-btn" data-filter="to_do">대기</button>
+                        <button class="filter-btn" data-filter="complete">완료</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>업무 항목</th>
+                                <th>업무 영역</th>
+                                <th>담당자</th>
+                                <th>우선순위</th>
+                                <th>진행현황</th>
+                                <th>진척률</th>
+                                <th>Notion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="taskTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>🏛️ 아산 컴팩트 스마트시티 조성사업 | 제일엔지니어링 PMO</p>
+        <p>GitHub Pages 자동 배포 | 데이터 출처: <a href="https://www.notion.so/2a250aa9577d80ca8bf2f2abfce71a59" target="_blank">Notion WBS Database</a></p>
+    </footer>
+
+    <script>
+        let wbsData = null;
+        let charts = {};
+
+        const STATUS_GROUPS = {
+            to_do: ['진행 전', '대기'],
+            in_progress: ['진행 중', '업무협의', '계약진행중', '자료 작성', '자료 대응', '용역발주', '계약', '구축', '대금 집행', '테스트중'],
+            complete: ['완료', '계약완료', '작성완료', '품의완료', '작업완료', '종료', '중단']
+        };
+
+        function classifyStatus(status) {
+            for (const [group, statuses] of Object.entries(STATUS_GROUPS)) {
+                if (statuses.includes(status)) return group;
+            }
+            return 'to_do';
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch('data/wbs-data.json');
+                if (!response.ok) throw new Error('데이터 파일을 찾을 수 없습니다.');
+                wbsData = await response.json();
+                renderDashboard();
+            } catch (error) {
+                console.error('데이터 로드 실패:', error);
+                document.getElementById('loadingState').innerHTML = `
+                    <div style="text-align: center; color: #ef4444;">
+                        <p style="font-size: 1.5rem; margin-bottom: 1rem;">⚠️ 데이터 로드 실패</p>
+                        <p>GitHub Actions를 통해 데이터를 동기화해주세요.</p>
+                        <p style="margin-top: 1rem; color: #6b7280;">오류: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderDashboard() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+
+            const { statistics, metadata } = wbsData;
+            
+            // Sync time
+            const syncDate = new Date(metadata.synced_at);
+            document.getElementById('syncTime').textContent = `동기화: ${syncDate.toLocaleString('ko-KR')}`;
+
+            // KPI Cards
+            renderKPIs(statistics);
+            
+            // Charts
+            renderCharts(statistics);
+            
+            // Area Cards
+            renderAreaCards();
+            
+            // Task Table
+            renderTaskTable();
+            
+            // Event Listeners
+            setupEventListeners();
+        }
+
+        function renderKPIs(stats) {
+            const kpis = [
+                { icon: '📋', value: stats.total_items, label: '총 작업 항목', type: 'primary' },
+                { icon: '⚡', value: stats.status_groups.in_progress, label: '진행중', type: 'info' },
+                { icon: '✅', value: stats.status_groups.complete, label: '완료', type: 'success' },
+                { icon: '⏳', value: stats.status_groups.to_do, label: '대기', type: 'warning' },
+                { icon: '📊', value: `${stats.overall_progress}%`, label: '평균 진척률', type: 'primary' },
+                { icon: '🎯', value: Object.keys(stats.by_business_area).length, label: '단위사업', type: 'info' }
+            ];
+
+            document.getElementById('kpiSection').innerHTML = kpis.map(kpi => `
+                <div class="kpi-card ${kpi.type}">
+                    <div class="kpi-icon">${kpi.icon}</div>
+                    <div class="kpi-value">${kpi.value}</div>
+                    <div class="kpi-label">${kpi.label}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderCharts(stats) {
+            // Status Chart (Doughnut)
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            charts.status = new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['대기', '진행중', '완료'],
+                    datasets: [{
+                        data: [stats.status_groups.to_do, stats.status_groups.in_progress, stats.status_groups.complete],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#10b981'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+
+            // Priority Chart
+            const priorityData = stats.by_priority;
+            const priorityCtx = document.getElementById('priorityChart').getContext('2d');
+            charts.priority = new Chart(priorityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['P0 (필수)', 'P1 (중요)', 'P2 (선택)', 'P3 (낮음)'],
+                    datasets: [{
+                        label: '작업 수',
+                        data: [priorityData['P0'] || 0, priorityData['P1'] || 0, priorityData['P2'] || 0, priorityData['P3'] || 0],
+                        backgroundColor: ['#ef4444', '#f59e0b', '#10b981', '#6b7280'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            // Assignee Chart
+            const assigneeData = Object.entries(stats.by_assignee || {})
+                .filter(([k]) => k !== '미배정')
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 6);
+            const assigneeCtx = document.getElementById('assigneeChart').getContext('2d');
+            charts.assignee = new Chart(assigneeCtx, {
+                type: 'bar',
+                data: {
+                    labels: assigneeData.map(([k]) => k),
+                    datasets: [{
+                        label: '담당 업무 수',
+                        data: assigneeData.map(([, v]) => v),
+                        backgroundColor: '#3d5a80',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Progress Chart
+            const areaProgress = Object.entries(stats.by_business_area || {})
+                .map(([k, v]) => ({ name: k, progress: v.avg_progress || 0 }))
+                .sort((a, b) => b.progress - a.progress)
+                .slice(0, 8);
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            charts.progress = new Chart(progressCtx, {
+                type: 'bar',
+                data: {
+                    labels: areaProgress.map(a => a.name.length > 15 ? a.name.slice(0, 15) + '...' : a.name),
+                    datasets: [{
+                        label: '평균 진척률 (%)',
+                        data: areaProgress.map(a => a.progress),
+                        backgroundColor: areaProgress.map(a => 
+                            a.progress >= 70 ? '#10b981' : a.progress >= 30 ? '#f59e0b' : '#ef4444'
+                        ),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, max: 100 } }
+                }
+            });
+        }
+
+        function renderAreaCards(filter = '') {
+            const grouped = wbsData.grouped_by_business_area;
+            const stats = wbsData.statistics.by_business_area;
+            
+            const areas = Object.entries(grouped)
+                .filter(([name]) => name.toLowerCase().includes(filter.toLowerCase()))
+                .sort((a, b) => b[1].length - a[1].length);
+
+            document.getElementById('areaGrid').innerHTML = areas.map(([name, items]) => {
+                const areaStats = stats[name] || { count: items.length, avg_progress: 0, to_do: 0, in_progress: 0, complete: 0 };
+                const progress = areaStats.avg_progress || 0;
+                const progressClass = progress >= 70 ? 'progress-high' : progress >= 30 ? 'progress-mid' : 'progress-low';
+                
+                return `
+                    <div class="area-card" data-area="${name}">
+                        <div class="area-header">
+                            <div class="area-name">${name}</div>
+                            <div class="area-count">${items.length}개</div>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill ${progressClass}" style="width: ${progress}%"></div>
+                        </div>
+                        <div style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem;">
+                            평균 진척률: <strong>${progress}%</strong>
+                        </div>
+                        <div class="area-stats">
+                            ${areaStats.to_do ? `<span class="stat-badge stat-todo">대기 ${areaStats.to_do}</span>` : ''}
+                            ${areaStats.in_progress ? `<span class="stat-badge stat-progress">진행 ${areaStats.in_progress}</span>` : ''}
+                            ${areaStats.complete ? `<span class="stat-badge stat-complete">완료 ${areaStats.complete}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderTaskTable(statusFilter = 'all', searchFilter = '') {
+            let items = wbsData.items;
+            
+            if (statusFilter !== 'all') {
+                items = items.filter(item => classifyStatus(item.progress_status) === statusFilter);
+            }
+            
+            if (searchFilter) {
+                const term = searchFilter.toLowerCase();
+                items = items.filter(item => 
+                    (item.title || '').toLowerCase().includes(term) ||
+                    (item.business_area || '').toLowerCase().includes(term) ||
+                    (item.assignees || []).join(' ').toLowerCase().includes(term)
+                );
+            }
+
+            document.getElementById('taskTableBody').innerHTML = items.slice(0, 100).map(item => {
+                const statusClass = `status-${(item.progress_status || '').replace(/ /g, '\\ ')}`;
+                const priorityClass = `priority-${item.priority || ''}`;
+                const progress = item.progress || 0;
+                const progressClass = progress >= 70 ? 'progress-high' : progress >= 30 ? 'progress-mid' : 'progress-low';
+
+                return `
+                    <tr>
+                        <td class="task-title" title="${item.title}">${item.title}</td>
+                        <td>${item.business_area || '-'}</td>
+                        <td>${(item.assignees || []).join(', ') || '-'}</td>
+                        <td><span class="priority-badge ${priorityClass}">${item.priority || '-'}</span></td>
+                        <td><span class="status-badge ${statusClass}">${item.progress_status || '-'}</span></td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div class="progress-bar-bg" style="width: 60px; height: 6px;">
+                                    <div class="progress-bar-fill ${progressClass}" style="width: ${progress}%"></div>
+                                </div>
+                                <span style="font-size: 0.75rem;">${progress}%</span>
+                            </div>
+                        </td>
+                        <td>
+                            ${item.url ? `<a href="${item.url}" target="_blank" class="notion-link">📝 열기</a>` : '-'}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function setupEventListeners() {
+            // Area Search
+            document.getElementById('areaSearch').addEventListener('input', (e) => {
+                renderAreaCards(e.target.value);
+            });
+
+            // Task Search
+            document.getElementById('taskSearch').addEventListener('input', (e) => {
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                renderTaskTable(activeFilter, e.target.value);
+            });
+
+            // Filter Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const searchTerm = document.getElementById('taskSearch').value;
+                    renderTaskTable(btn.dataset.filter, searchTerm);
+                });
+            });
+        }
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
