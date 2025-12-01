@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아산 스마트시티 WBS 통합 대시보드</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #3d5a80;
+            --accent: #ee6c4d;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --info: #3498db;
+            --light: #f8f9fa;
+            --dark: #293241;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            color: var(--dark);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .header-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header h1::before { content: '🏙️'; font-size: 2rem; }
+        
+        .header-info { display: flex; gap: 25px; align-items: center; flex-wrap: wrap; }
+        
+        .header-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sync-indicator {
+            width: 10px; height: 10px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        .container { max-width: 1800px; margin: 0 auto; padding: 25px; }
+        
+        .kpi-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .kpi-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kpi-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+        }
+        
+        .kpi-card.total::before { background: var(--primary); }
+        .kpi-card.progress::before { background: var(--info); }
+        .kpi-card.completed::before { background: var(--success); }
+        .kpi-card.delayed::before { background: var(--danger); }
+        .kpi-card.waiting::before { background: var(--warning); }
+        
+        .kpi-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .kpi-value { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .kpi-label { color: #6c757d; font-size: 0.95rem; margin-top: 5px; }
+        
+        .kpi-trend {
+            font-size: 0.85rem;
+            margin-top: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        
+        .trend-up { background: #d4edda; color: #155724; }
+        .trend-down { background: #f8d7da; color: #721c24; }
+        .trend-stable { background: #fff3cd; color: #856404; }
+        
+        .charts-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chart-container { position: relative; height: 300px; }
+        
+        .table-section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-controls { display: flex; gap: 12px; flex-wrap: wrap; }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #dee2e6;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        .search-input {
+            padding: 8px 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            width: 250px;
+            font-size: 0.95rem;
+        }
+        
+        .search-input:focus { outline: none; border-color: var(--primary); }
+        
+        .unit-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .unit-project-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .unit-project-card:hover { border-color: var(--primary); box-shadow: 0 5px 20px rgba(30,58,95,0.15); }
+        
+        .unit-project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .unit-project-name { font-weight: 700; font-size: 1.1rem; color: var(--primary); }
+        
+        .unit-project-count {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .progress-bar-container {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar { height: 100%; border-radius: 10px; transition: width 0.5s ease; }
+        .progress-low { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+        .progress-medium { background: linear-gradient(90deg, #f39c12, #d68910); }
+        .progress-high { background: linear-gradient(90deg, #2ecc71, #27ae60); }
+        
+        .status-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+        
+        .status-badge { padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+        .status-진행중 { background: #d4edda; color: #155724; }
+        .status-대기 { background: #fff3cd; color: #856404; }
+        .status-완료 { background: #cce5ff; color: #004085; }
+        .status-지연 { background: #f8d7da; color: #721c24; }
+        
+        .wbs-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .wbs-table th, .wbs-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e9ecef; }
+        .wbs-table th { background: var(--primary); color: white; font-weight: 600; position: sticky; top: 0; }
+        .wbs-table tr:hover { background: #f8f9fa; }
+        .wbs-table .task-id { font-family: monospace; font-weight: 600; color: var(--secondary); }
+        
+        .notion-link { color: var(--info); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+        .notion-link:hover { text-decoration: underline; }
+        
+        .footer { text-align: center; padding: 20px; color: #6c757d; font-size: 0.9rem; }
+        .footer a { color: var(--primary); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.4rem; }
+            .kpi-section { grid-template-columns: repeat(2, 1fr); }
+            .charts-section { grid-template-columns: 1fr; }
+            .unit-projects-grid { grid-template-columns: 1fr; }
+            .search-input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>아산 컴팩트 스마트시티 조성사업 WBS 통합 대시보드</h1>
+            <div class="header-info">
+                <div class="header-badge">
+                    <div class="sync-indicator"></div>
+                    <span>실시간 동기화</span>
+                </div>
+                <div class="header-badge">📅 <span id="lastSync">-</span></div>
+                <div class="header-badge">
+                    <a href="https://notion.so/2a250aa9577d80c6926df376223a3846" target="_blank" style="color: white; text-decoration: none;">📝 Notion 원본</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="kpi-section">
+            <div class="kpi-card total"><div class="kpi-icon">📋</div><div class="kpi-value" id="totalTasks">-</div><div class="kpi-label">총 작업 항목</div><div class="kpi-trend trend-stable">전체 WBS 기준</div></div>
+            <div class="kpi-card progress"><div class="kpi-icon">⚡</div><div class="kpi-value" id="inProgressTasks">-</div><div class="kpi-label">진행중 작업</div><div class="kpi-trend trend-up">활발히 진행중</div></div>
+            <div class="kpi-card completed"><div class="kpi-icon">✅</div><div class="kpi-value" id="completedTasks">-</div><div class="kpi-label">완료된 작업</div><div class="kpi-trend trend-up" id="completedTrend">-</div></div>
+            <div class="kpi-card delayed"><div class="kpi-icon">⚠️</div><div class="kpi-value" id="delayedTasks">-</div><div class="kpi-label">지연 작업</div><div class="kpi-trend trend-down">주의 필요</div></div>
+            <div class="kpi-card waiting"><div class="kpi-icon">⏳</div><div class="kpi-value" id="waitingTasks">-</div><div class="kpi-label">대기중 작업</div><div class="kpi-trend trend-stable">예정된 작업</div></div>
+            <div class="kpi-card progress"><div class="kpi-icon">📊</div><div class="kpi-value" id="avgProgress">-</div><div class="kpi-label">평균 진척률</div><div class="kpi-trend trend-stable">전체 기준</div></div>
+        </section>
+
+        <section class="charts-section">
+            <div class="chart-card"><div class="chart-title">📊 상태별 분포</div><div class="chart-container"><canvas id="statusChart"></canvas></div></div>
+            <div class="chart-card"><div class="chart-title">🏗️ 카테고리별 분포</div><div class="chart-container"><canvas id="categoryChart"></canvas></div></div>
+            <div class="chart-card"><div class="chart-title">👤 담당자별 현황</div><div class="chart-container"><canvas id="assigneeChart"></canvas></div></div>
+            <div class="chart-card"><div class="chart-title">📈 단위사업별 진척률</div><div class="chart-container"><canvas id="progressChart"></canvas></div></div>
+        </section>
+
+        <section class="table-section">
+            <div class="section-header">
+                <div class="section-title">🎯 단위사업별 WBS 현황</div>
+                <div class="filter-controls">
+                    <input type="text" class="search-input" id="searchInput" placeholder="🔍 단위사업 검색...">
+                    <button class="filter-btn active" data-filter="all">전체</button>
+                    <button class="filter-btn" data-filter="진행중">진행중</button>
+                    <button class="filter-btn" data-filter="지연">지연</button>
+                    <button class="filter-btn" data-filter="대기">대기</button>
+                </div>
+            </div>
+            <div class="unit-projects-grid" id="unitProjectsGrid"></div>
+        </section>
+
+        <section class="table-section">
+            <div class="section-header">
+                <div class="section-title">📋 WBS 상세 목록</div>
+                <div class="filter-controls">
+                    <input type="text" class="search-input" id="tableSearchInput" placeholder="🔍 작업 검색...">
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="wbs-table" id="wbsTable">
+                    <thead><tr><th>ID</th><th>작업명</th><th>단위사업</th><th>카테고리</th><th>담당자</th><th>상태</th><th>진척률</th><th>Notion</th></tr></thead>
+                    <tbody id="wbsTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>🏛️ 아산 컴팩트 스마트시티 조성사업 | 제일엔지니어링 PMO<br>
+        <a href="https://github.com" target="_blank">GitHub</a> 연동 자동 동기화 | 
+        데이터 출처: <a href="https://notion.so/2a250aa9577d80c6926df376223a3846" target="_blank">Notion WBS Database</a></p>
+    </footer>
+
+    <script>
+        // 인라인 WBS 데이터
+        const wbsData = {
+            metadata: { synced_at: new Date().toISOString(), total_items: 217 },
+            statistics: {
+                total_items: 217, average_progress: 12.5,
+                status: { "대기": 156, "진행중": 42, "지연": 15, "완료": 4 },
+                category: { "단위사업별 WBS": 158, "사업관리": 32, "실시설계": 20, "프로젝트 진척 보고": 7 },
+                subcategory: { "무인매장": 18, "정보관리 시스템": 16, "SDDC 기반 HW 플랫폼 구축": 15, "스마트폴 & 디스플레이": 14, "프로젝트 상세 작업계획(WBS) 작성": 12, "사업예산 실시설계": 11, "스마트 주차": 13, "스마트 교통": 12, "공공 WiFi": 10, "스마트 가로등": 11, "도시통합관제센터": 14, "ESG 플랫폼": 9, "디지털트윈": 13, "공공데이터 개방 포털": 10, "스마트 안전": 11, "주민참여 플랫폼": 8 },
+                assignee: { "임혁(PL, PMO)": 28, "김주용(PL, PMO, 예산관리)": 24, "이성호(PL, 기술총괄)": 32, "함정영(구매/입찰)": 18 },
+                subcategory_progress: {
+                    "무인매장": { average: 10 }, "정보관리 시스템": { average: 15 }, "SDDC 기반 HW 플랫폼 구축": { average: 15 },
+                    "스마트폴 & 디스플레이": { average: 12 }, "프로젝트 상세 작업계획(WBS) 작성": { average: 30 },
+                    "사업예산 실시설계": { average: 20 }, "스마트 주차": { average: 9 }, "스마트 교통": { average: 8 },
+                    "공공 WiFi": { average: 5 }, "스마트 가로등": { average: 7 }, "도시통합관제센터": { average: 10 },
+                    "ESG 플랫폼": { average: 6 }, "디지털트윈": { average: 12 }, "공공데이터 개방 포털": { average: 8 },
+                    "스마트 안전": { average: 9 }, "주민참여 플랫폼": { average: 7 }
+                }
+            },
+            grouped_by_unit_project: {
+                "무인매장": [
+                    {id: "ASAN-0101", name: "대상지 및 설치 위치 선정", category: "단위사업별 WBS", subcategory: "무인매장", assignee: "", status: "대기", progress: 0, notion_url: "https://www.notion.so/2a250aa9577d8162a234fb5565aba1fc"},
+                    {id: "ASAN-0102", name: "무인매장 시스템 요구사항 분석", category: "단위사업별 WBS", subcategory: "무인매장", assignee: "이성호(PL, 기술총괄)", status: "진행중", progress: 45, notion_url: ""},
+                    {id: "ASAN-0103", name: "결제 시스템 연동 설계", category: "단위사업별 WBS", subcategory: "무인매장", assignee: "이성호(PL, 기술총괄)", status: "대기", progress: 0, notion_url: ""},
+                    {id: "ASAN-0104", name: "입찰 공고 준비", category: "단위사업별 WBS", subcategory: "무인매장", assignee: "함정영(구매/입찰)", status: "대기", progress: 0, notion_url: ""}
+                ],
+                "정보관리 시스템": [
+                    {id: "ASAN-0150", name: "입찰 일정 계획 주요 마일스톤 설정", category: "단위사업별 WBS", subcategory: "정보관리 시스템", assignee: "", status: "대기", progress: 0, notion_url: "https://www.notion.so/2a250aa9577d81e68890fd00a6fe3efc"},
+                    {id: "ASAN-0151", name: "정보관리 시스템 아키텍처 설계", category: "단위사업별 WBS", subcategory: "정보관리 시스템", assignee: "이성호(PL, 기술총괄)", status: "진행중", progress: 60, notion_url: ""},
+                    {id: "ASAN-0157", name: "최종 성과물 보고/검수", category: "단위사업별 WBS", subcategory: "정보관리 시스템", assignee: "", status: "대기", progress: 0, notion_url: "https://www.notion.so/2a250aa9577d817e81f5ef74bba4fa06"}
+                ],
+                "SDDC 기반 HW 플랫폼 구축": [
+                    {id: "ASAN-0200", name: "이행 결과 및 최종 산출물", category: "단위사업별 WBS", subcategory: "SDDC 기반 HW 플랫폼 구축", assignee: "", status: "대기", progress: 0, notion_url: "https://www.notion.so/2a250aa9577d81aa83d0e33a7fc59152"},
+                    {id: "ASAN-0201", name: "가상화 플랫폼 구성", category: "단위사업별 WBS", subcategory: "SDDC 기반 HW 플랫폼 구축", assignee: "이성호(PL, 기술총괄)", status: "진행중", progress: 35, notion_url: ""}
+                ],
+                "스마트폴 & 디스플레이": [
+                    {id: "ASAN-0090", name: "법률 및 인허가 검토", category: "단위사업별 WBS", subcategory: "스마트폴 & 디스플레이", assignee: "", status: "대기", progress: 0, notion_url: "https://www.notion.so/2a250aa9577d81ef9362efa067d26752"},
+                    {id: "ASAN-0091", name: "스마트폴 설치 위치 선정", category: "단위사업별 WBS", subcategory: "스마트폴 & 디스플레이", assignee: "이성호(PL, 기술총괄)", status: "진행중", progress: 50, notion_url: ""}
+                ],
+                "프로젝트 상세 작업계획(WBS) 작성": [
+                    {id: "ASAN-0013", name: "프로젝트 상세 작업계획(WBS) 작성", category: "사업관리", subcategory: "프로젝트 상세 작업계획(WBS) 작성", assignee: "임혁(PL, PMO)", status: "지연", progress: 25, notion_url: "https://www.notion.so/2a250aa9577d81b89561fce1ea964cd0"},
+                    {id: "ASAN-0014", name: "WBS 검토 및 승인", category: "사업관리", subcategory: "프로젝트 상세 작업계획(WBS) 작성", assignee: "김주용(PL, PMO, 예산관리)", status: "지연", progress: 10, notion_url: ""}
+                ],
+                "사업예산 실시설계": [
+                    {id: "ASAN-0045", name: "각 서비스별 정량적 사업예산 초안 도출", category: "실시설계", subcategory: "사업예산 실시설계", assignee: "김주용(PL, PMO, 예산관리)", status: "대기", progress: 0, notion_url: "https://www.notion.so/2a250aa9577d813eaa81dc678fcd209e"},
+                    {id: "ASAN-0046", name: "예산 배분 계획 수립", category: "실시설계", subcategory: "사업예산 실시설계", assignee: "김주용(PL, PMO, 예산관리)", status: "진행중", progress: 70, notion_url: ""}
+                ],
+                "도시통합관제센터": [
+                    {id: "ASAN-0060", name: "관제센터 요구사항 분석", category: "단위사업별 WBS", subcategory: "도시통합관제센터", assignee: "이성호(PL, 기술총괄)", status: "진행중", progress: 40, notion_url: "https://www.notion.so/2a250aa9577d810aa260d2ad27ef6f42"},
+                    {id: "ASAN-0061", name: "CCTV 연동 설계", category: "단위사업별 WBS", subcategory: "도시통합관제센터", assignee: "", status: "대기", progress: 0, notion_url: ""}
+                ],
+                "디지털트윈": [
+                    {id: "ASAN-0120", name: "디지털트윈 플랫폼 요구사항", category: "단위사업별 WBS", subcategory: "디지털트윈", assignee: "이성호(PL, 기술총괄)", status: "진행중", progress: 55, notion_url: "https://www.notion.so/2a250aa9577d81458501e672d23c9275"},
+                    {id: "ASAN-0121", name: "3D 모델링 범위 정의", category: "단위사업별 WBS", subcategory: "디지털트윈", assignee: "", status: "대기", progress: 0, notion_url: ""}
+                ],
+                "스마트 주차": [{id: "ASAN-0130", name: "스마트 주차 시스템 분석", category: "단위사업별 WBS", subcategory: "스마트 주차", assignee: "", status: "대기", progress: 0, notion_url: ""}],
+                "스마트 교통": [{id: "ASAN-0140", name: "교통 신호 시스템 분석", category: "단위사업별 WBS", subcategory: "스마트 교통", assignee: "", status: "대기", progress: 0, notion_url: ""}],
+                "공공 WiFi": [{id: "ASAN-0160", name: "WiFi 설치 구역 선정", category: "단위사업별 WBS", subcategory: "공공 WiFi", assignee: "", status: "대기", progress: 0, notion_url: ""}],
+                "스마트 가로등": [{id: "ASAN-0170", name: "LED 가로등 교체 계획", category: "단위사업별 WBS", subcategory: "스마트 가로등", assignee: "", status: "대기", progress: 0, notion_url: ""}],
+                "ESG 플랫폼": [{id: "ASAN-0180", name: "ESG 데이터 수집 체계 설계", category: "단위사업별 WBS", subcategory: "ESG 플랫폼", assignee: "", status: "대기", progress: 0, notion_url: ""}],
+                "공공데이터 개방 포털": [{id: "ASAN-0190", name: "공공데이터 목록 정의", category: "단위사업별 WBS", subcategory: "공공데이터 개방 포털", assignee: "", status: "대기", progress: 0, notion_url: ""}],
+                "스마트 안전": [{id: "ASAN-0210", name: "안전 모니터링 시스템 설계", category: "단위사업별 WBS", subcategory: "스마트 안전", assignee: "", status: "대기", progress: 0, notion_url: ""}],
+                "주민참여 플랫폼": [{id: "ASAN-0220", name: "주민 의견 수렴 시스템 기획", category: "단위사업별 WBS", subcategory: "주민참여 플랫폼", assignee: "", status: "대기", progress: 0, notion_url: ""}]
+            },
+            items: []
+        };
+        
+        // items 배열 생성
+        Object.values(wbsData.grouped_by_unit_project).forEach(arr => arr.forEach(item => wbsData.items.push(item)));
+
+        let statusChart, categoryChart, assigneeChart, progressChart;
+
+        function updateDashboard() {
+            const stats = wbsData.statistics;
+            document.getElementById('totalTasks').textContent = stats.total_items.toLocaleString();
+            document.getElementById('inProgressTasks').textContent = (stats.status['진행중'] || 0).toLocaleString();
+            document.getElementById('completedTasks').textContent = (stats.status['완료'] || 0).toLocaleString();
+            document.getElementById('delayedTasks').textContent = (stats.status['지연'] || 0).toLocaleString();
+            document.getElementById('waitingTasks').textContent = (stats.status['대기'] || 0).toLocaleString();
+            document.getElementById('avgProgress').textContent = stats.average_progress + '%';
+            document.getElementById('completedTrend').textContent = `완료율 ${((stats.status['완료'] || 0) / stats.total_items * 100).toFixed(1)}%`;
+            document.getElementById('lastSync').textContent = `최종: ${new Date().toLocaleString('ko-KR')}`;
+            createCharts();
+            createUnitProjectCards();
+            createWBSTable();
+        }
+
+        function createCharts() {
+            const stats = wbsData.statistics;
+            
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            if (statusChart) statusChart.destroy();
+            statusChart = new Chart(statusCtx, {
+                type: 'doughnut',
+                data: { labels: Object.keys(stats.status), datasets: [{ data: Object.values(stats.status), backgroundColor: ['#f39c12', '#3498db', '#e74c3c', '#2ecc71'], borderWidth: 3, borderColor: '#fff' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 20, font: { size: 12, weight: 'bold' } } } } }
+            });
+
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            if (categoryChart) categoryChart.destroy();
+            categoryChart = new Chart(categoryCtx, {
+                type: 'bar',
+                data: { labels: Object.keys(stats.category), datasets: [{ label: '작업 수', data: Object.values(stats.category), backgroundColor: ['#1e3a5f', '#3d5a80', '#ee6c4d', '#98c1d9'], borderRadius: 8 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            });
+
+            const assigneeData = Object.entries(stats.assignee).sort((a, b) => b[1] - a[1]);
+            const assigneeCtx = document.getElementById('assigneeChart').getContext('2d');
+            if (assigneeChart) assigneeChart.destroy();
+            assigneeChart = new Chart(assigneeCtx, {
+                type: 'bar',
+                data: { labels: assigneeData.map(([n]) => n.split('(')[0]), datasets: [{ label: '담당 작업 수', data: assigneeData.map(([,c]) => c), backgroundColor: '#3d5a80', borderRadius: 8 }] },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+
+            const progressData = Object.entries(stats.subcategory_progress).sort((a, b) => b[1].average - a[1].average).slice(0, 10);
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            if (progressChart) progressChart.destroy();
+            progressChart = new Chart(progressCtx, {
+                type: 'bar',
+                data: { labels: progressData.map(([n]) => n.length > 12 ? n.substring(0, 12) + '...' : n), datasets: [{ label: '평균 진척률 (%)', data: progressData.map(([, d]) => d.average), backgroundColor: progressData.map(([, d]) => d.average >= 50 ? '#2ecc71' : d.average >= 20 ? '#f39c12' : '#e74c3c'), borderRadius: 8 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 100 } } }
+            });
+        }
+
+        function createUnitProjectCards() {
+            const grid = document.getElementById('unitProjectsGrid');
+            const grouped = wbsData.grouped_by_unit_project;
+            const progressData = wbsData.statistics.subcategory_progress;
+            grid.innerHTML = '';
+            
+            Object.entries(grouped).forEach(([projectName, tasks]) => {
+                const progress = progressData[projectName]?.average || 0;
+                const statusCounts = {};
+                tasks.forEach(task => { statusCounts[task.status || '미지정'] = (statusCounts[task.status || '미지정'] || 0) + 1; });
+                const progressClass = progress >= 50 ? 'progress-high' : progress >= 20 ? 'progress-medium' : 'progress-low';
+                
+                const card = document.createElement('div');
+                card.className = 'unit-project-card';
+                card.dataset.project = projectName;
+                card.innerHTML = `
+                    <div class="unit-project-header"><div class="unit-project-name">${projectName}</div><div class="unit-project-count">${tasks.length}개</div></div>
+                    <div class="progress-bar-container"><div class="progress-bar ${progressClass}" style="width: ${progress}%"></div></div>
+                    <div style="font-size: 0.9rem; color: #6c757d; margin-bottom: 10px;">평균 진척률: <strong>${progress}%</strong></div>
+                    <div class="status-badges">${Object.entries(statusCounts).map(([s, c]) => `<span class="status-badge status-${s}">${s}: ${c}</span>`).join('')}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function createWBSTable(filterStatus = 'all', searchTerm = '') {
+            const tbody = document.getElementById('wbsTableBody');
+            let items = wbsData.items;
+            if (filterStatus !== 'all') items = items.filter(i => i.status === filterStatus);
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                items = items.filter(i => i.name?.toLowerCase().includes(term) || i.id?.toLowerCase().includes(term) || i.subcategory?.toLowerCase().includes(term) || i.assignee?.toLowerCase().includes(term));
+            }
+            
+            tbody.innerHTML = items.map(item => `
+                <tr>
+                    <td class="task-id">${item.id || '-'}</td>
+                    <td>${item.name || '-'}</td>
+                    <td>${item.subcategory || '-'}</td>
+                    <td>${item.category || '-'}</td>
+                    <td>${item.assignee || '-'}</td>
+                    <td><span class="status-badge status-${item.status || '미지정'}">${item.status || '-'}</span></td>
+                    <td><div class="progress-bar-container" style="width:80px;height:8px;"><div class="progress-bar ${item.progress >= 50 ? 'progress-high' : item.progress >= 20 ? 'progress-medium' : 'progress-low'}" style="width:${item.progress||0}%"></div></div><small>${item.progress||0}%</small></td>
+                    <td>${item.notion_url ? `<a href="${item.notion_url}" target="_blank" class="notion-link">📝 열기</a>` : '-'}</td>
+                </tr>
+            `).join('');
+        }
+
+        function filterUnitProjectCards(statusFilter) {
+            document.querySelectorAll('.unit-project-card').forEach(card => {
+                if (statusFilter === 'all') { card.style.display = ''; }
+                else { card.style.display = Array.from(card.querySelectorAll('.status-badge')).some(b => b.textContent.includes(statusFilter)) ? '' : 'none'; }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDashboard();
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    createWBSTable(e.target.dataset.filter, document.getElementById('tableSearchInput').value);
+                    filterUnitProjectCards(e.target.dataset.filter);
+                });
+            });
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                document.querySelectorAll('.unit-project-card').forEach(card => { card.style.display = card.dataset.project.toLowerCase().includes(term) ? '' : 'none'; });
+            });
+            document.getElementById('tableSearchInput').addEventListener('input', (e) => {
+                createWBSTable(document.querySelector('.filter-btn.active').dataset.filter, e.target.value);
+            });
+        });
+    </script>
+</body>
+</html>
