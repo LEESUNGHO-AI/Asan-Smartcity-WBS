@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
 """
-아산 스마트시티 통합 WBS 동기화 스크립트
+아산 스마트시티 통합 WBS 자동 동기화 스크립트
 - 단위사업별 WBS + 사업관리 WBS 통합 동기화
-- GitHub Actions에서 실행
+- 변경사항 감지 및 스마트 업데이트
+- GitHub Actions에서 자동 실행
 """
 
 import os
+import sys
 import json
+import hashlib
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 from collections import defaultdict
 
-# Notion API 설정
+# ============================================================
+# 설정
+# ============================================================
+
 NOTION_API_KEY = os.environ.get('NOTION_API_KEY')
 NOTION_VERSION = '2022-06-28'
 
@@ -31,7 +37,7 @@ DATABASES = {
     }
 }
 
-# 담당자 매핑
+# 담당자 매핑 (User ID → 이름)
 USER_MAP = {
     '1e3d872b-594c-8148-a561-0002b1fa89c4': '함정영',
     '1e3d872b-594c-8117-a95f-000282af6efc': '임혁',
@@ -54,6 +60,12 @@ HEADERS = {
     'Notion-Version': NOTION_VERSION
 }
 
+OUTPUT_PATH = 'data/wbs-data.json'
+HASH_PATH = 'data/.sync-hash'
+
+# ============================================================
+# 유틸리티 함수
+# ============================================================
 
 def get_status_group(status):
     """진행현황을 그룹으로 분류"""
@@ -72,59 +84,92 @@ def extract_property_value(prop):
     
     prop_type = prop.get('type')
     
-    if prop_type == 'title':
-        title_arr = prop.get('title', [])
-        return ''.join([t.get('plain_text', '') for t in title_arr]) if title_arr else None
+    extractors = {
+        'title': lambda p: ''.join([t.get('plain_text', '') for t in p.get('title', [])]) or None,
+        'rich_text': lambda p: ''.join([t.get('plain_text', '') for t in p.get('rich_text', [])]) or None,
+        'select': lambda p: p.get('select', {}).get('name') if p.get('select') else None,
+        'multi_select': lambda p: [item.get('name') for item in p.get('multi_select', [])] or [],
+        'status': lambda p: p.get('status', {}).get('name') if p.get('status') else None,
+        'number': lambda p: p.get('number'),
+        'checkbox': lambda p: p.get('checkbox', False),
+        'date': lambda p: {'start': p.get('date', {}).get('start'), 'end': p.get('date', {}).get('end')} if p.get('date') else None,
+        'people': lambda p: [USER_MAP.get(person.get('id'), person.get('name', '미지정')) for person in p.get('people', [])],
+        'url': lambda p: p.get('url'),
+        'formula': lambda p: extract_formula_value(p.get('formula', {})),
+        'last_edited_time': lambda p: p.get('last_edited_time'),
+    }
     
-    elif prop_type == 'rich_text':
-        text_arr = prop.get('rich_text', [])
-        return ''.join([t.get('plain_text', '') for t in text_arr]) if text_arr else None
-    
-    elif prop_type == 'select':
-        select = prop.get('select')
-        return select.get('name') if select else None
-    
-    elif prop_type == 'multi_select':
-        items = prop.get('multi_select', [])
-        return [item.get('name') for item in items] if items else []
-    
-    elif prop_type == 'status':
-        status = prop.get('status')
-        return status.get('name') if status else None
-    
-    elif prop_type == 'number':
-        return prop.get('number')
-    
-    elif prop_type == 'checkbox':
-        return prop.get('checkbox', False)
-    
-    elif prop_type == 'date':
-        date = prop.get('date')
-        if date:
-            return {
-                'start': date.get('start'),
-                'end': date.get('end')
-            }
-        return None
-    
-    elif prop_type == 'people':
-        people = prop.get('people', [])
-        return [USER_MAP.get(p.get('id'), p.get('name', '미지정')) for p in people]
-    
-    elif prop_type == 'url':
-        return prop.get('url')
-    
-    elif prop_type == 'formula':
-        formula = prop.get('formula', {})
-        formula_type = formula.get('type')
-        if formula_type == 'number':
-            return formula.get('number')
-        elif formula_type == 'string':
-            return formula.get('string')
-        elif formula_type == 'boolean':
-            return formula.get('boolean')
-        return None
-    
+    extractor = extractors.get(prop_type)
+    return extractor(prop) if extractor else None
+
+
+def extract_formula_value(formula):
+    """Formula 속성 값 추출"""
+    formula_type = formula.get('type')
+    if formula_type == 'number':
+        return formula.get('number')
+    elif formula_type == 'string':
+        return formula.get('string')
+    elif formula_type == 'boolean':
+        return formula.get('boolean')
+    return None
+
+
+def calculate_hash(data):
+    """데이터 해시 계산 (변경사항 감지용)"""
+    json_str = json.dumps(data, sort_keys=True, ensure_ascii=False)
+    return hashlib.md5(json_str.encode()).hexdigest()
+
+
+def load_previous_hash():
+    """이전 동기화 해시 로드"""
+    try:
+        if os.path.exists(HASH_PATH):
+            with open(HASH_PATH, 'r') as f:
+                return f.read().strip()
+    except Exception:
+        pass
+    return None
+
+
+def save_hash(hash_value):
+    """동기화 해시 저장"""
+    os.makedirs(os.path.dirname(HASH_PATH), exist_ok=True)
+    with open(HASH_PATH, 'w') as f:
+        f.write(hash_value)
+
+
+# ============================================================
+# Notion API 함수
+# ============================================================
+
+def check_database_access(database_id):
+    """데이터베이스 접근 권한 확인"""
+    url = f'https://api.notion.com/v1/databases/{database_id}'
+    try:
+        response = requests.get(url, headers=HEADERS, timeout=10)
+        if response.status_code == 200:
+            return True, None
+        elif response.status_code == 404:
+            return False, "데이터베이스를 찾을 수 없습니다. Notion 통합 연결을 확인하세요."
+        elif response.status_code == 401:
+            return False, "API 키가 유효하지 않습니다."
+        else:
+            return False, f"접근 오류: {response.status_code}"
+    except Exception as e:
+        return False, str(e)
+
+
+def get_database_last_edited(database_id):
+    """데이터베이스 최종 수정 시간 조회"""
+    url = f'https://api.notion.com/v1/databases/{database_id}'
+    try:
+        response = requests.get(url, headers=HEADERS, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            return data.get('last_edited_time')
+    except Exception:
+        pass
     return None
 
 
@@ -140,17 +185,24 @@ def query_database(database_id):
         if next_cursor:
             payload['start_cursor'] = next_cursor
         
-        response = requests.post(url, headers=HEADERS, json=payload)
-        
-        if response.status_code != 200:
-            print(f"Error querying database {database_id}: {response.status_code}")
-            print(response.text)
+        try:
+            response = requests.post(url, headers=HEADERS, json=payload, timeout=30)
+            
+            if response.status_code != 200:
+                print(f"  ❌ 조회 오류 ({response.status_code}): {response.text[:200]}")
+                break
+            
+            data = response.json()
+            all_results.extend(data.get('results', []))
+            has_more = data.get('has_more', False)
+            next_cursor = data.get('next_cursor')
+            
+        except requests.exceptions.Timeout:
+            print(f"  ⏱️ 타임아웃 발생, 재시도...")
+            continue
+        except Exception as e:
+            print(f"  ❌ 오류: {str(e)}")
             break
-        
-        data = response.json()
-        all_results.extend(data.get('results', []))
-        has_more = data.get('has_more', False)
-        next_cursor = data.get('next_cursor')
     
     return all_results
 
@@ -159,6 +211,7 @@ def process_page(page, wbs_type):
     """Notion 페이지 데이터 처리"""
     props = page.get('properties', {})
     page_id = page.get('id', '').replace('-', '')
+    last_edited = page.get('last_edited_time')
     
     # 공통 속성 추출
     title = extract_property_value(props.get('업무 항목'))
@@ -219,6 +272,7 @@ def process_page(page, wbs_type):
         'description': description,
         'slack_url': slack_url,
         'function_type': function_type,
+        'last_edited': last_edited,
         'dates': {
             'start': start_date.get('start') if start_date else None,
             'due': due_date.get('start') if due_date else None,
@@ -238,16 +292,9 @@ def calculate_statistics(items, wbs_type=None):
     total = len(filtered)
     if total == 0:
         return {
-            'total': 0,
-            'to_do': 0,
-            'in_progress': 0,
-            'complete': 0,
-            'average_progress': 0,
-            'by_area': {},
-            'by_status': {},
-            'by_priority': {},
-            'by_assignee': {},
-            'by_phase': {}
+            'total': 0, 'to_do': 0, 'in_progress': 0, 'complete': 0,
+            'average_progress': 0, 'by_area': {}, 'by_status': {},
+            'by_priority': {}, 'by_assignee': {}, 'by_phase': {}
         }
     
     # 상태별 집계
@@ -270,31 +317,21 @@ def calculate_statistics(items, wbs_type=None):
         if by_area[area]['count'] > 0:
             by_area[area]['progress'] = round(by_area[area]['progress'] / by_area[area]['count'], 1)
     
-    # 상태별
+    # 기타 통계
     by_status = defaultdict(int)
+    by_priority = defaultdict(int)
+    by_assignee = defaultdict(int)
+    by_phase = defaultdict(int)
+    
     for item in filtered:
         by_status[item['status']] += 1
-    
-    # 우선순위별
-    by_priority = defaultdict(int)
-    for item in filtered:
-        priority = item['priority'] or '미지정'
-        by_priority[priority] += 1
-    
-    # 담당자별
-    by_assignee = defaultdict(int)
-    for item in filtered:
+        by_priority[item['priority'] or '미지정'] += 1
+        by_phase[item['phase'] or '미지정'] += 1
         if item['assignees']:
             for assignee in item['assignees']:
                 by_assignee[assignee] += 1
         else:
             by_assignee['미배정'] += 1
-    
-    # 사업단계별
-    by_phase = defaultdict(int)
-    for item in filtered:
-        phase = item['phase'] or '미지정'
-        by_phase[phase] += 1
     
     return {
         'total': total,
@@ -310,42 +347,79 @@ def calculate_statistics(items, wbs_type=None):
     }
 
 
+# ============================================================
+# 메인 함수
+# ============================================================
+
 def main():
+    print("=" * 60)
+    print("🔄 아산 스마트시티 통합 WBS 자동 동기화")
+    print("=" * 60)
+    print(f"⏰ 실행 시간: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC")
+    print()
+    
+    # API 키 확인
     if not NOTION_API_KEY:
-        print("Error: NOTION_API_KEY environment variable not set")
-        return
+        print("❌ 오류: NOTION_API_KEY 환경변수가 설정되지 않았습니다.")
+        print()
+        print("해결 방법:")
+        print("  1. GitHub 저장소 → Settings → Secrets and variables → Actions")
+        print("  2. 'New repository secret' 클릭")
+        print("  3. Name: NOTION_API_KEY")
+        print("  4. Value: 노션 통합 API 키 입력")
+        sys.exit(1)
     
-    print("=" * 60)
-    print("아산 스마트시티 통합 WBS 동기화 시작")
-    print("=" * 60)
+    # 데이터베이스 접근 권한 확인
+    print("📡 데이터베이스 연결 확인...")
+    for wbs_type, db_config in DATABASES.items():
+        accessible, error = check_database_access(db_config['id'])
+        if accessible:
+            print(f"  ✅ {db_config['icon']} {db_config['name']}: 연결됨")
+        else:
+            print(f"  ❌ {db_config['icon']} {db_config['name']}: {error}")
+            print()
+            print("해결 방법:")
+            print(f"  1. Notion에서 '{db_config['name']}' 데이터베이스 열기")
+            print("  2. 우측 상단 '...' 클릭 → '연결 추가'")
+            print("  3. 생성한 통합(Integration) 선택")
+            sys.exit(1)
+    print()
     
+    # 데이터 수집
     all_items = []
     db_stats = {}
+    db_last_edited = {}
     
     for wbs_type, db_config in DATABASES.items():
-        print(f"\n{db_config['icon']} {db_config['name']} 동기화 중...")
+        print(f"📥 {db_config['icon']} {db_config['name']} 동기화 중...")
         
+        # 최종 수정 시간 확인
+        last_edited = get_database_last_edited(db_config['id'])
+        db_last_edited[wbs_type] = last_edited
+        
+        # 페이지 조회
         pages = query_database(db_config['id'])
-        print(f"  - 조회된 페이지: {len(pages)}개")
+        print(f"  📄 조회된 항목: {len(pages)}개")
         
+        # 페이지 처리
         items = [process_page(page, wbs_type) for page in pages]
         all_items.extend(items)
         
         # 개별 통계
         db_stats[wbs_type] = calculate_statistics(items, wbs_type)
-        print(f"  - 대기: {db_stats[wbs_type]['to_do']}개")
-        print(f"  - 진행중: {db_stats[wbs_type]['in_progress']}개")
-        print(f"  - 완료: {db_stats[wbs_type]['complete']}개")
-        print(f"  - 평균 진척률: {db_stats[wbs_type]['average_progress']}%")
+        print(f"  ⏳ 대기: {db_stats[wbs_type]['to_do']}개")
+        print(f"  🔄 진행중: {db_stats[wbs_type]['in_progress']}개")
+        print(f"  ✅ 완료: {db_stats[wbs_type]['complete']}개")
+        print(f"  📈 평균 진척률: {db_stats[wbs_type]['average_progress']}%")
+        print()
     
     # 통합 통계
-    print("\n📊 통합 통계 계산 중...")
     combined_stats = calculate_statistics(all_items)
     
-    # 데이터 구조화
+    # 출력 데이터 구조화
     output_data = {
         'metadata': {
-            'synced_at': datetime.utcnow().isoformat() + 'Z',
+            'synced_at': datetime.now(timezone.utc).isoformat(),
             'total_items': len(all_items),
             'databases': {
                 wbs_type: {
@@ -353,7 +427,8 @@ def main():
                     'name': db_config['name'],
                     'description': db_config['description'],
                     'icon': db_config['icon'],
-                    'url': f"https://www.notion.so/{db_config['id'].replace('-', '')}"
+                    'url': f"https://www.notion.so/{db_config['id'].replace('-', '')}",
+                    'last_edited': db_last_edited.get(wbs_type)
                 }
                 for wbs_type, db_config in DATABASES.items()
             }
@@ -370,18 +445,40 @@ def main():
         }
     }
     
-    # JSON 저장
-    output_path = 'data/wbs-data.json'
-    os.makedirs('data', exist_ok=True)
+    # 변경사항 확인
+    new_hash = calculate_hash(output_data['items'])
+    previous_hash = load_previous_hash()
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    if new_hash == previous_hash:
+        print("ℹ️  변경사항 없음 - 업데이트 스킵")
+        # GitHub Actions 출력
+        github_output = os.environ.get('GITHUB_OUTPUT')
+        if github_output:
+            with open(github_output, 'a') as f:
+                f.write('changed=false\n')
+        return
+    
+    # JSON 저장
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
     
-    print(f"\n✅ 동기화 완료!")
-    print(f"  - 총 항목: {len(all_items)}개")
-    print(f"  - 단위사업별 WBS: {len(output_data['items']['unit_project'])}개")
-    print(f"  - 사업관리 WBS: {len(output_data['items']['management'])}개")
-    print(f"  - 저장 위치: {output_path}")
+    # 해시 저장
+    save_hash(new_hash)
+    
+    print("=" * 60)
+    print("✅ 동기화 완료!")
+    print(f"  📊 총 항목: {len(all_items)}개")
+    print(f"  🎯 단위사업별: {len(output_data['items']['unit_project'])}개")
+    print(f"  ✒️ 사업관리: {len(output_data['items']['management'])}개")
+    print(f"  💾 저장: {OUTPUT_PATH}")
+    print("=" * 60)
+    
+    # GitHub Actions 출력
+    github_output = os.environ.get('GITHUB_OUTPUT')
+    if github_output:
+        with open(github_output, 'a') as f:
+            f.write('changed=true\n')
 
 
 if __name__ == '__main__':

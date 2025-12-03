@@ -1,14 +1,28 @@
-name: Sync Integrated WBS Data
+name: 🔄 Auto Sync Notion WBS
 
 on:
+  # ⏰ 15분마다 자동 동기화
   schedule:
-    # 매일 KST 09:00, 14:00, 18:00 동기화 (UTC 00:00, 05:00, 09:00)
-    - cron: '0 0,5,9 * * *'
-  workflow_dispatch:  # 수동 실행
+    - cron: '*/15 * * * *'
+  
+  # 🖱️ 수동 실행
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: '강제 업데이트 (변경사항 없어도 배포)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+  
+  # 📝 코드 변경 시
   push:
     branches: [main]
     paths:
       - 'sync_notion.py'
+      - 'index.html'
       - '.github/workflows/sync.yml'
 
 permissions:
@@ -17,70 +31,140 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "wbs-sync"
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: '3.11'
 
 jobs:
+  # ============================================================
+  # 1. Notion 데이터 동기화
+  # ============================================================
   sync:
+    name: 📥 Sync from Notion
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.sync.outputs.changed }}
+    
     steps:
-      - name: Checkout repository
+      - name: 📂 Checkout repository
         uses: actions/checkout@v4
-        
-      - name: Set up Python
+        with:
+          fetch-depth: 0
+      
+      - name: 🐍 Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          
-      - name: Install dependencies
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: 📦 Install dependencies
         run: pip install requests
-        
-      - name: Sync Notion databases
+      
+      - name: 🔄 Sync Notion databases
+        id: sync
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
         run: python sync_notion.py
-        
-      - name: Check for changes
-        id: check_changes
+      
+      - name: 📊 Check sync result
         run: |
-          if git diff --quiet data/wbs-data.json; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+          if [ -f data/wbs-data.json ]; then
+            echo "✅ 데이터 파일 생성됨"
+            echo "📊 파일 크기: $(wc -c < data/wbs-data.json) bytes"
+            echo "📅 동기화 시간: $(jq -r '.metadata.synced_at' data/wbs-data.json)"
+            echo "📋 총 항목: $(jq -r '.metadata.total_items' data/wbs-data.json)"
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "❌ 데이터 파일 없음"
           fi
-          
-      - name: Commit and push changes
-        if: steps.check_changes.outputs.changed == 'true'
+      
+      - name: 💾 Commit changes
+        if: steps.sync.outputs.changed == 'true' || github.event.inputs.force_update == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add data/wbs-data.json
-          git commit -m "🔄 Update integrated WBS data [$(date +'%Y-%m-%d %H:%M')]"
-          git push
+          git config --local user.name "🤖 WBS Sync Bot"
+          
+          # 변경사항 확인
+          if git diff --quiet data/; then
+            echo "ℹ️ 변경사항 없음"
+          else
+            git add data/
+            
+            # 커밋 메시지 생성
+            TOTAL=$(jq -r '.metadata.total_items' data/wbs-data.json 2>/dev/null || echo "?")
+            UNIT=$(jq -r '.items.unit_project | length' data/wbs-data.json 2>/dev/null || echo "?")
+            MGMT=$(jq -r '.items.management | length' data/wbs-data.json 2>/dev/null || echo "?")
+            
+            git commit -m "🔄 WBS 자동 동기화 [$(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M')]" \
+                       -m "📊 총 ${TOTAL}개 (단위사업: ${UNIT}, 사업관리: ${MGMT})"
+            
+            git push
+            echo "✅ 변경사항 커밋 완료"
+          fi
 
+  # ============================================================
+  # 2. GitHub Pages 배포
+  # ============================================================
   deploy:
+    name: 🚀 Deploy to GitHub Pages
     needs: sync
+    if: needs.sync.outputs.changed == 'true' || github.event.inputs.force_update == 'true' || github.event_name == 'push'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
-      - name: Checkout
+      - name: 📂 Checkout
         uses: actions/checkout@v4
         with:
           ref: main
-          
-      - name: Pull latest changes
+      
+      - name: 🔄 Pull latest changes
         run: git pull origin main
-        
-      - name: Setup Pages
+      
+      - name: ⚙️ Setup Pages
         uses: actions/configure-pages@v4
-        
-      - name: Upload artifact
+      
+      - name: 📦 Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-          
-      - name: Deploy to GitHub Pages
+      
+      - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      
+      - name: ✅ Deployment complete
+        run: |
+          echo "🎉 배포 완료!"
+          echo "🔗 URL: ${{ steps.deployment.outputs.page_url }}"
+
+  # ============================================================
+  # 3. 알림 (선택사항 - Slack 연동 시)
+  # ============================================================
+  # notify:
+  #   name: 📢 Send Notification
+  #   needs: [sync, deploy]
+  #   if: always() && needs.sync.outputs.changed == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Send to Slack
+  #       uses: slackapi/slack-github-action@v1
+  #       with:
+  #         payload: |
+  #           {
+  #             "text": "🔄 WBS 대시보드가 업데이트되었습니다!",
+  #             "blocks": [
+  #               {
+  #                 "type": "section",
+  #                 "text": {
+  #                   "type": "mrkdwn",
+  #                   "text": "*🏗️ 아산 스마트시티 WBS 업데이트*\n대시보드가 최신 데이터로 동기화되었습니다."
+  #                 }
+  #               }
+  #             ]
+  #           }
+  #       env:
+  #         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
