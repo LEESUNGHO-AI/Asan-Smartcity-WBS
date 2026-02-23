@@ -2,8 +2,8 @@ name: Update WBS Data from Notion
 
 on:
   schedule:
-    - cron: '*/30 * * * *'   # 30분마다 자동 실행
-  workflow_dispatch:          # 수동 실행 버튼
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
 
 jobs:
   fetch-notion-data:
@@ -15,17 +15,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug token (length only, no value)
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: |
+          echo "Token length: ${#NOTION_TOKEN}"
+          echo "Token prefix: ${NOTION_TOKEN:0:4}"
+          # 공백/줄바꿈 제거 후 길이 확인
+          CLEAN=$(echo -n "$NOTION_TOKEN" | tr -d '[:space:]')
+          echo "Clean token length: ${#CLEAN}"
+
       - name: Fetch Notion WBS data
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
-          python3 << 'EOF'
+          python3 << 'PYEOF'
           import urllib.request
           import urllib.error
           import json, os, time
 
-          NOTION_TOKEN = os.environ['NOTION_TOKEN']
+          # 공백/줄바꿈 완전 제거
+          NOTION_TOKEN = os.environ['NOTION_TOKEN'].strip()
           DB_ID = '559654aed9404d9f88225ea0adc7d746'
+
+          print(f"Token prefix: {NOTION_TOKEN[:8]}...")
+          print(f"Token length: {len(NOTION_TOKEN)}")
 
           def notion_query(cursor=None):
               url = f'https://api.notion.com/v1/databases/{DB_ID}/query'
@@ -76,36 +90,34 @@ jobs:
           for p in all_pages:
               props = p.get('properties', {})
               records.append({
-                  'id':            p['id'],
-                  'taskId':        get_text(props.get('작업명')),
-                  'name':          get_text(props.get('Name')),
-                  'level':         get_text(props.get('Level')),
-                  'category':      get_text(props.get('대분류')),
-                  'subCategory':   get_text(props.get('중분류')),
-                  'organization':  get_text(props.get('담당기관')),
-                  'manager':       get_text(props.get('담당R')),
-                  'collaborator':  get_text(props.get('협업C')),
-                  'startDate':     get_text(props.get('시작일')),
-                  'endDate':       get_text(props.get('종료일')),
-                  'duration':      get_text(props.get('기간')),
-                  'weight':        get_text(props.get('가중치')),
-                  'plannedRate':   get_text(props.get('계획공정률')),
-                  'actualRate':    get_text(props.get('실적공정률')),
-                  'progressRate':  get_text(props.get('진행률')),
-                  'deviation':     get_text(props.get('진척차')),
-                  'deliverable':   get_text(props.get('산출물')),
-                  'evidence':      get_text(props.get('근거자료')),
-                  'predecessor':   get_text(props.get('선행작업')),
-                  'note':          get_text(props.get('비고')),
-                  'url':           get_text(props.get('URL')),
+                  'id':           p['id'],
+                  'taskId':       get_text(props.get('작업명')),
+                  'name':         get_text(props.get('Name')),
+                  'level':        get_text(props.get('Level')),
+                  'category':     get_text(props.get('대분류')),
+                  'subCategory':  get_text(props.get('중분류')),
+                  'organization': get_text(props.get('담당기관')),
+                  'manager':      get_text(props.get('담당R')),
+                  'collaborator': get_text(props.get('협업C')),
+                  'startDate':    get_text(props.get('시작일')),
+                  'endDate':      get_text(props.get('종료일')),
+                  'duration':     get_text(props.get('기간')),
+                  'weight':       get_text(props.get('가중치')),
+                  'plannedRate':  get_text(props.get('계획공정률')),
+                  'actualRate':   get_text(props.get('실적공정률')),
+                  'progressRate': get_text(props.get('진행률')),
+                  'deviation':    get_text(props.get('진척차')),
+                  'deliverable':  get_text(props.get('산출물')),
+                  'evidence':     get_text(props.get('근거자료')),
+                  'predecessor':  get_text(props.get('선행작업')),
+                  'note':         get_text(props.get('비고')),
+                  'url':          get_text(props.get('URL')),
               })
 
-          # taskId 기준 정렬
           def sort_key(r):
               tid = r.get('taskId','')
               try:
-                  parts = [int(x) for x in tid.split('.')]
-                  return parts + [0]*(5-len(parts))
+                  return [int(x) for x in tid.split('.')] + [0]*5
               except:
                   return [9999]
 
@@ -122,12 +134,12 @@ jobs:
               json.dump(output, f, ensure_ascii=False, indent=2)
 
           print(f'data.json 저장 완료: {len(records)}건')
-          EOF
+          PYEOF
 
       - name: Commit and push data.json
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
-          git diff --staged --quiet || git commit -m "auto: Notion WBS 데이터 갱신 $(date +'%Y-%m-%d %H:%M KST' -d '+9 hours')"
+          git diff --staged --quiet || git commit -m "auto: Notion WBS 데이터 갱신 $(TZ=Asia/Seoul date +'%Y-%m-%d %H:%M KST')"
           git push
