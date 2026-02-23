@@ -17,7 +17,7 @@ jobs:
 
       - name: Debug token (length only, no value)
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_TOKEN: ${{ secrets.ASAN }}
         run: |
           echo "Token length: ${#NOTION_TOKEN}"
           echo "Token prefix: ${NOTION_TOKEN:0:4}"
@@ -27,7 +27,7 @@ jobs:
 
       - name: Fetch Notion WBS data
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_TOKEN: ${{ secrets.ASAN }}
         run: |
           python3 << 'PYEOF'
           import urllib.request
