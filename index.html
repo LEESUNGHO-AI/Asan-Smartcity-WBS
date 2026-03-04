@@ -601,7 +601,7 @@ const PER_PAGE = 50;
 async function loadData() {
   document.getElementById('sync-time').textContent = '동기화 중...';
   try {
-    const r = await fetch(`data/wbs.json?t=${Date.now()}`);
+    const r = await fetch(`data.json?t=${Date.now()}`);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const data = await r.json();
     renderDashboard(data);
