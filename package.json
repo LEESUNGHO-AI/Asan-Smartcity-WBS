@@ -1,0 +1,11 @@
+{
+  "name": "asan-smartcity-wbs",
+  "version": "1.0.0",
+  "description": "아산시 강소형 스마트시티 WBS 대시보드",
+  "scripts": {
+    "fetch": "node fetch-notion.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15"
+  }
+}
