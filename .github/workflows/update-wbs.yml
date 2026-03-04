@@ -28,7 +28,7 @@ jobs:
 
       - name: Fetch Notion WBS data
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN || secrets.NOTION_API_KEY }}
         run: |
           python3 << 'EOF'
           import os, json, requests, sys
