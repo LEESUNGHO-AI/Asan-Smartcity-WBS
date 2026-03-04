@@ -1,23 +1,23 @@
 {
   "meta": {
-    "generatedAt": "2026-03-04T02:31:53.992Z",
-    "generatedAtKst": "2026-03-04 11:31 KST",
-    "source": "아산시 강소형 스마트시티 WBS 2026 (Notion DB)",
+    "generatedAt": "2026-03-04T02:33:38.006Z",
+    "generatedAtKst": "2026-03-04 11:33:38 KST",
+    "source": "Notion DB - 아산시 강소형 스마트시티 WBS 2026",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
-    "totalRecords": 187
+    "totalRecords": 188
   },
   "summary": {
-    "total": 187,
+    "total": 188,
     "done": 41,
     "inProg": 58,
-    "avgPlan": 90.5,
-    "avgActual": 69.3,
+    "avgPlan": 90,
+    "avgActual": 69,
     "avgDev": -26.3,
     "byCategory": {
       "마일스톤": {
         "count": 3,
         "avgPlan": 100,
-        "avgActual": 33.3
+        "avgActual": 33
       },
       "사업총괄": {
         "count": 1,
@@ -26,23 +26,23 @@
       },
       "프로젝트 관리/거버넌스": {
         "count": 6,
-        "avgPlan": 87.2,
-        "avgActual": 94.5
+        "avgPlan": 87,
+        "avgActual": 95
       },
       "실시설계": {
         "count": 11,
-        "avgPlan": 88.2,
-        "avgActual": 77.3
+        "avgPlan": 88,
+        "avgActual": 77
       },
       "운영(3년)": {
         "count": 1,
-        "avgPlan": 66.7,
+        "avgPlan": 67,
         "avgActual": 55
       },
       "나라장터 발주 지원": {
         "count": 3,
-        "avgPlan": 67.5,
-        "avgActual": 96.7
+        "avgPlan": 67,
+        "avgActual": 97
       },
       "준공/검수/이관": {
         "count": 4,
@@ -57,7 +57,7 @@
       "통합시험/시범운영": {
         "count": 6,
         "avgPlan": 100,
-        "avgActual": 33.3
+        "avgActual": 33
       }
     },
     "byOrg": {
@@ -97,7 +97,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-811a-8d5d-d351b4600ea6"
     },
     {
       "id": "◆M1",
@@ -122,7 +124,9 @@
       "evidence": "실시계획 변경승인 요청서/실시계획서",
       "approver": "",
       "note": "Milestone",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fe50aa9-577d-8106-9b19-eb0a0d026c0b"
     },
     {
       "id": "◆M2",
@@ -147,7 +151,9 @@
       "evidence": "",
       "approver": "",
       "note": "Milestone",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "2fd50aa9-577d-8126-8f2d-e5b14d1d3908"
     },
     {
       "id": "◆M3",
@@ -172,7 +178,9 @@
       "evidence": "",
       "approver": "",
       "note": "Milestone",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "2fd50aa9-577d-8137-97dc-d76e62abe2ba"
     },
     {
       "id": "0",
@@ -197,7 +205,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "2fd50aa9-577d-816b-8d3b-f49286ad23c0"
     },
     {
       "id": "1",
@@ -212,7 +222,7 @@
       "endDate": "2026-12-31",
       "duration": 1127,
       "weight": 20,
-      "plannedRate": 67.6,
+      "plannedRate": 68,
       "actualRate": 71,
       "progressRate": null,
       "deviation": 3.4,
@@ -222,7 +232,9 @@
       "evidence": "설계보고서(사업개요/일정)",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-813c-aa82-c2462f26c8f6"
     },
     {
       "id": "1.1",
@@ -247,7 +259,9 @@
       "evidence": "실시계획서/설계보고서",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8129-a82e-df661124eb41"
     },
     {
       "id": "1.2",
@@ -262,7 +276,7 @@
       "endDate": "2026-12-31",
       "duration": 1127,
       "weight": -30,
-      "plannedRate": 67.6,
+      "plannedRate": 68,
       "actualRate": 60,
       "progressRate": null,
       "deviation": -7.6,
@@ -272,7 +286,9 @@
       "evidence": "감리 보고서, WBS, 구축 업체 산출물",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-813f-8f71-c5110232abb5"
     },
     {
       "id": "1.3",
@@ -287,8 +303,8 @@
       "endDate": "2026-12-31",
       "duration": 1113,
       "weight": 0,
-      "plannedRate": 67.2,
-      "actualRate": 67.2,
+      "plannedRate": 67,
+      "actualRate": 67,
       "progressRate": null,
       "deviation": 0,
       "budget": null,
@@ -297,7 +313,9 @@
       "evidence": "정기 보고서/비정기 보고서 등",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8104-b927-dbc9d6359df9"
     },
     {
       "id": "1.3.1",
@@ -322,7 +340,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8106-8eb1-fdda90f3f3ac"
     },
     {
       "id": "1.3.2",
@@ -347,7 +367,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "31350aa9-577d-8130-a4fa-e3816da6c2d6"
     },
     {
       "id": "1.3.3",
@@ -372,7 +394,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81b1-8624-ee78797c49c1"
     },
     {
       "id": "1.3.3.1",
@@ -397,7 +421,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8102-bb29-ca202e72b54b"
     },
     {
       "id": "1.3.3.2",
@@ -422,7 +448,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8175-98fb-fb83fcc8985a"
     },
     {
       "id": "1.3.3.3",
@@ -447,7 +475,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8162-b307-c235046a0e92"
     },
     {
       "id": "1.3.3.4",
@@ -472,7 +502,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8166-8c9f-f574f9a08f96"
     },
     {
       "id": "1.3.3.5",
@@ -497,7 +529,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-813e-b27e-d9bee9d3bfda"
     },
     {
       "id": "1.3.3.6",
@@ -522,7 +556,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8152-98e1-e630f54d52fe"
     },
     {
       "id": "1.3.3.7",
@@ -547,7 +583,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8100-a41c-efe16f95a113"
     },
     {
       "id": "1.3.3.8",
@@ -572,7 +610,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-81e3-b99a-e9e782cdd826"
     },
     {
       "id": "1.3.3.9",
@@ -597,7 +637,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8116-8a1d-dbd14709e3b9"
     },
     {
       "id": "1.3.3.10",
@@ -622,7 +664,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81ef-8cd0-c285a2285e3a"
     },
     {
       "id": "1.3.3.11",
@@ -647,7 +691,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-812f-82a8-fe66679d132f"
     },
     {
       "id": "1.3.3.12",
@@ -672,7 +718,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8166-a2bc-e4ce89d66eae"
     },
     {
       "id": "1.3.4",
@@ -697,7 +745,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81f5-9c3b-e25551bb4a59"
     },
     {
       "id": "1.3.4.1",
@@ -722,7 +772,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-8198-8c3d-eb0ccc645160"
     },
     {
       "id": "1.3.4.2",
@@ -747,7 +799,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-81ea-9dbd-ff1a88a6720a"
     },
     {
       "id": "1.3.4.3",
@@ -772,7 +826,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8113-8ea9-e14d725d010e"
     },
     {
       "id": "1.3.5",
@@ -797,7 +853,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8112-a045-d3bc1bb00657"
     },
     {
       "id": "1.4",
@@ -812,7 +870,7 @@
       "endDate": "2026-03-31",
       "duration": 790,
       "weight": 0,
-      "plannedRate": 88.6,
+      "plannedRate": 89,
       "actualRate": 100,
       "progressRate": null,
       "deviation": 11.4,
@@ -822,7 +880,9 @@
       "evidence": "실시게획 변경승인 요청",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8136-b6f9-c7676b698c7d"
     },
     {
       "id": "1.5",
@@ -837,7 +897,7 @@
       "endDate": "2026-12-31",
       "duration": 1096,
       "weight": 0,
-      "plannedRate": 66.7,
+      "plannedRate": 67,
       "actualRate": 55,
       "progressRate": null,
       "deviation": -11.7,
@@ -847,7 +907,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "30d50aa9-577d-8177-89a7-e9064b733ba6"
     },
     {
       "id": "1.6",
@@ -862,7 +924,7 @@
       "endDate": "2026-12-31",
       "duration": 1127,
       "weight": 0,
-      "plannedRate": 67.6,
+      "plannedRate": 68,
       "actualRate": 100,
       "progressRate": null,
       "deviation": 32.4,
@@ -872,7 +934,9 @@
       "evidence": "예산 관련 자료 일체",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-81c6-b5ec-c4582e2792c0"
     },
     {
       "id": "1.7",
@@ -897,7 +961,9 @@
       "evidence": "집행점검, 회계정산 및 감사자료 일체",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8161-8f1e-e947592c154c"
     },
     {
       "id": "2",
@@ -913,7 +979,7 @@
       "duration": 700,
       "weight": 40,
       "plannedRate": 100,
-      "actualRate": 96.7,
+      "actualRate": 97,
       "progressRate": null,
       "deviation": -3.3,
       "budget": null,
@@ -922,7 +988,9 @@
       "evidence": "설계보고서(사업개요/일정)",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-814f-9cca-f5117acb5b6b"
     },
     {
       "id": "2.1",
@@ -947,7 +1015,9 @@
       "evidence": "설계보고서(사업개요/일정)",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-816b-9d67-c0585e7822e1"
     },
     {
       "id": "2.1.1",
@@ -972,7 +1042,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-810b-8617-cba0d67ed399"
     },
     {
       "id": "2.1.2",
@@ -997,7 +1069,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81a1-b07b-e0cc7a969e75"
     },
     {
       "id": "2.2",
@@ -1012,7 +1086,7 @@
       "endDate": "2025-11-30",
       "duration": 90,
       "weight": -10,
-      "plannedRate": 2.1,
+      "plannedRate": 2,
       "actualRate": 90,
       "progressRate": null,
       "deviation": -10,
@@ -1022,7 +1096,9 @@
       "evidence": "요구사항 정의서(전체), 요구사항 추적표",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-818b-bd8c-d16ada86be53"
     },
     {
       "id": "2.2.1",
@@ -1047,7 +1123,9 @@
       "evidence": "",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "31350aa9-577d-810f-91fa-e34ac32cc39e"
     },
     {
       "id": "2.2.2",
@@ -1072,7 +1150,9 @@
       "evidence": "",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-81f1-8f07-edab172257c7"
     },
     {
       "id": "2.3",
@@ -1087,7 +1167,7 @@
       "endDate": "2025-07-31",
       "duration": 100,
       "weight": 0,
-      "plannedRate": 2.1,
+      "plannedRate": 2,
       "actualRate": 100,
       "progressRate": null,
       "deviation": 0,
@@ -1097,7 +1177,9 @@
       "evidence": "SDDC IT 인프라 설계보고서",
       "approver": "",
       "note": "선정 전문업체와 최종 협의를 통해 분리망, 보안, MCP 등 보완",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-81af-ba0d-d464c3a0beb5"
     },
     {
       "id": "2.3.1",
@@ -1122,7 +1204,9 @@
       "evidence": "",
       "approver": "",
       "note": "선정 전문업체와 최종 협의를 통해 분리망, 보안, MCP 등 보완",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "31350aa9-577d-816c-b2dd-de42ea156a96"
     },
     {
       "id": "2.3.2",
@@ -1147,7 +1231,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "31350aa9-577d-812e-aaa7-f5731c9bdedd"
     },
     {
       "id": "2.4",
@@ -1172,7 +1258,9 @@
       "evidence": "설계보고서(사업개요/일정)",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8193-9dc3-db456b702165"
     },
     {
       "id": "2.4.1",
@@ -1197,7 +1285,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81e6-bf47-f2bdb89a9f4d"
     },
     {
       "id": "2.4.1.1",
@@ -1222,7 +1312,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8118-873d-ff850b2ab949"
     },
     {
       "id": "2.4.1.2",
@@ -1247,7 +1339,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-812f-b40d-da2361069ad8"
     },
     {
       "id": "2.4.1.3",
@@ -1272,7 +1366,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-818e-b1d1-e808ecb51ba4"
     },
     {
       "id": "2.4.1.4",
@@ -1297,7 +1393,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-815f-9db0-d01da0b1db30"
     },
     {
       "id": "2.4.1.5",
@@ -1322,7 +1420,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81a6-946e-ddb05e5bb1fb"
     },
     {
       "id": "2.4.1.6",
@@ -1347,7 +1447,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81bf-adb1-ebe685097015"
     },
     {
       "id": "2.4.1.7",
@@ -1372,7 +1474,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-819a-8f9e-f3fad845cf66"
     },
     {
       "id": "2.4.2",
@@ -1397,7 +1501,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81ef-bcf8-fef6532518d6"
     },
     {
       "id": "2.4.2.1",
@@ -1422,7 +1528,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81e1-a550-df761f3600ce"
     },
     {
       "id": "2.4.2.2",
@@ -1447,7 +1555,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8141-924f-f15f57ecc38f"
     },
     {
       "id": "2.4.2.3",
@@ -1472,7 +1582,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81ef-83ce-eba61a58c355"
     },
     {
       "id": "2.4.2.4",
@@ -1497,7 +1609,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8154-9b69-fd099d3c4f1f"
     },
     {
       "id": "2.4.2.5",
@@ -1522,7 +1636,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8188-aa7f-c4eb4b4d8cf4"
     },
     {
       "id": "2.4.2.6",
@@ -1547,7 +1663,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81ea-839a-d7deb8edf915"
     },
     {
       "id": "2.5",
@@ -1562,7 +1680,7 @@
       "endDate": "2025-06-30",
       "duration": 90,
       "weight": -10,
-      "plannedRate": 2.4,
+      "plannedRate": 2,
       "actualRate": 90,
       "progressRate": null,
       "deviation": -10,
@@ -1572,7 +1690,9 @@
       "evidence": "설계보고서(사업개요/일정), 도면, 물량산출서 등",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8184-bd67-fb721f42a292"
     },
     {
       "id": "2.6",
@@ -1587,7 +1707,7 @@
       "endDate": "2024-05-31",
       "duration": 100,
       "weight": 0,
-      "plannedRate": 2.4,
+      "plannedRate": 2,
       "actualRate": 100,
       "progressRate": null,
       "deviation": 0,
@@ -1597,7 +1717,9 @@
       "evidence": "SW 플랫폼 FP 자료, HW 및 상용 SW 가격 산정 자료",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-816a-ab0f-c2f143bf8d4d"
     },
     {
       "id": "3",
@@ -1622,7 +1744,9 @@
       "evidence": "설계보고서(사업개요/일정)",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-818a-8a77-dbb79f909b85"
     },
     {
       "id": "3.1",
@@ -1647,7 +1771,9 @@
       "evidence": "제안요청서, 규격서, 과업지시서, 공고문",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8146-b0ae-d0fd787ec323"
     },
     {
       "id": "3.1.1",
@@ -1672,7 +1798,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-818f-9a66-d34e2adf0b92"
     },
     {
       "id": "3.1.1.1",
@@ -1697,7 +1825,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8197-8156-e2fc65a74695"
     },
     {
       "id": "3.1.1.2",
@@ -1722,7 +1852,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81e2-9fbc-ee73fcff28e4"
     },
     {
       "id": "3.1.1.3",
@@ -1747,7 +1879,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8114-87be-c574ace08adc"
     },
     {
       "id": "3.1.1.4",
@@ -1772,7 +1906,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81bc-8f26-cd12eece8628"
     },
     {
       "id": "3.1.1.5",
@@ -1797,7 +1933,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81b3-bfe5-dcefc79e7d21"
     },
     {
       "id": "3.1.1.6",
@@ -1822,7 +1960,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8189-9e5a-c7ccc76eb4a1"
     },
     {
       "id": "3.1.1.7",
@@ -1847,7 +1987,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81b6-ae05-d6038dd69aae"
     },
     {
       "id": "3.1.1.8",
@@ -1872,7 +2014,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8129-8f53-cc5cf13171aa"
     },
     {
       "id": "3.1.2",
@@ -1897,7 +2041,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81d0-a9c6-ccbe84d5890a"
     },
     {
       "id": "3.1.2.1",
@@ -1922,7 +2068,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8170-b07b-f7f9d27f3899"
     },
     {
       "id": "3.1.3",
@@ -1947,7 +2095,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8105-91cf-d5c6b5b9ceab"
     },
     {
       "id": "3.1.3.1",
@@ -1972,7 +2122,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8112-958f-ce7c6f47d719"
     },
     {
       "id": "3.1.3.2",
@@ -1997,7 +2149,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8143-b3a6-d39c54db0b69"
     },
     {
       "id": "3.1.4",
@@ -2022,7 +2176,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-816b-a358-feabea5ebcd6"
     },
     {
       "id": "3.1.4.1",
@@ -2047,7 +2203,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8106-95c7-d53ab2c5f27e"
     },
     {
       "id": "3.1.4.2",
@@ -2072,7 +2230,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-819e-9a94-c407660e6ea4"
     },
     {
       "id": "3.1.4.3",
@@ -2097,7 +2257,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-812b-8398-f8add2adb7fe"
     },
     {
       "id": "3.1.4.4",
@@ -2122,7 +2284,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81db-b9cc-cbce2ffbcc6c"
     },
     {
       "id": "3.1.4.5",
@@ -2147,7 +2311,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8192-a995-c61b7676edb6"
     },
     {
       "id": "3.1.4.6",
@@ -2172,7 +2338,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81a7-98cc-e2521bdc5ba7"
     },
     {
       "id": "3.1.4.7",
@@ -2197,7 +2365,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8151-850b-f0ab4817fbc3"
     },
     {
       "id": "3.2",
@@ -2222,7 +2392,9 @@
       "evidence": "나라장터 입찰공고 이력",
       "approver": "",
       "note": "- 상동",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-812d-bf81-ec54bf7e89b0"
     },
     {
       "id": "3.2.1",
@@ -2247,7 +2419,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81d9-b4c7-ed87d89a751f"
     },
     {
       "id": "3.2.1.1",
@@ -2272,7 +2446,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8120-8ae1-d849da19eece"
     },
     {
       "id": "3.2.1.2",
@@ -2297,7 +2473,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8199-93c0-c23820066b18"
     },
     {
       "id": "3.2.1.3",
@@ -2322,7 +2500,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-811a-ae6c-e9a1cf8fe0a8"
     },
     {
       "id": "3.2.1.4",
@@ -2347,7 +2527,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81db-913d-cff85994824c"
     },
     {
       "id": "3.2.1.5",
@@ -2372,7 +2554,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81d5-99e9-d7196ec235a4"
     },
     {
       "id": "3.2.1.6",
@@ -2397,7 +2581,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81b1-91d7-d0711a3f7d3e"
     },
     {
       "id": "3.2.1.7",
@@ -2422,7 +2608,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8186-8a52-c7485e13b92f"
     },
     {
       "id": "3.2.1.8",
@@ -2447,7 +2635,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81b5-8bee-c701dc6310f0"
     },
     {
       "id": "3.2.2",
@@ -2472,7 +2662,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-816f-a6ad-d0ccc4cab78a"
     },
     {
       "id": "3.2.2.1",
@@ -2497,7 +2689,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81f6-968d-cc135ccba678"
     },
     {
       "id": "3.2.3",
@@ -2522,7 +2716,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81c8-95f4-fdb690387fdb"
     },
     {
       "id": "3.2.3.1",
@@ -2547,7 +2743,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81f4-b359-d617cc989a43"
     },
     {
       "id": "3.2.3.2",
@@ -2572,7 +2770,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8129-9238-d643e45f38cc"
     },
     {
       "id": "3.2.4",
@@ -2597,7 +2797,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81b1-b178-d2eb1ffaafd7"
     },
     {
       "id": "3.2.4.1",
@@ -2622,7 +2824,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-811b-be4f-d9c6a37d422b"
     },
     {
       "id": "3.2.4.2",
@@ -2647,7 +2851,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81c0-ac0a-cf969b4b5fbc"
     },
     {
       "id": "3.2.4.3",
@@ -2672,7 +2878,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-812e-be8f-cd1980deb5e4"
     },
     {
       "id": "3.2.4.4",
@@ -2697,7 +2905,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8176-a82d-da095a34c932"
     },
     {
       "id": "3.2.4.5",
@@ -2722,7 +2932,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81bf-b927-fb72843735c1"
     },
     {
       "id": "3.2.4.6",
@@ -2747,7 +2959,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8161-9495-e0baa4227450"
     },
     {
       "id": "3.2.4.7",
@@ -2772,7 +2986,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81e9-99fd-ca8df7c1a15e"
     },
     {
       "id": "3.3",
@@ -2797,7 +3013,9 @@
       "evidence": "분기보고서, 나라장터 질의응답 대응이력",
       "approver": "",
       "note": "- 상동",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8164-abe6-fd1962bcb30d"
     },
     {
       "id": "3.4",
@@ -2822,7 +3040,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-818a-b559-ebcebc81fc7b"
     },
     {
       "id": "3.4.1",
@@ -2847,7 +3067,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81c1-95ce-e06a479a046f"
     },
     {
       "id": "3.4.2",
@@ -2872,7 +3094,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8117-899d-fdbf6e25e8bc"
     },
     {
       "id": "3.4.3",
@@ -2897,7 +3121,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8185-8be8-fcef58588ca6"
     },
     {
       "id": "3.4.4",
@@ -2922,7 +3148,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-814c-b659-d8dad1915678"
     },
     {
       "id": "3.4.5",
@@ -2947,7 +3175,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8139-9da7-d0ee6e3614cc"
     },
     {
       "id": "3.4.6",
@@ -2972,7 +3202,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81bc-9c76-fb708024aba7"
     },
     {
       "id": "3.4.7",
@@ -2997,7 +3229,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81c7-98a1-e9b78973eba2"
     },
     {
       "id": "3.4.8",
@@ -3022,7 +3256,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-8174-9853-c7d3c5264c7f"
     },
     {
       "id": "3.4.9",
@@ -3047,7 +3283,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81f3-a382-d8d69e89c890"
     },
     {
       "id": "4",
@@ -3063,7 +3301,7 @@
       "duration": 731,
       "weight": 15,
       "plannedRate": 100,
-      "actualRate": 69.1,
+      "actualRate": 69,
       "progressRate": null,
       "deviation": -30.9,
       "budget": null,
@@ -3072,7 +3310,9 @@
       "evidence": "구축업체 협의 자료(회의록, 최종 설계문서 등) 및 WBS",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8176-8638-c163cae751fa"
     },
     {
       "id": "4.1",
@@ -3088,7 +3328,7 @@
       "duration": 150,
       "weight": 1,
       "plannedRate": 100,
-      "actualRate": 66.7,
+      "actualRate": 67,
       "progressRate": null,
       "deviation": -33.3,
       "budget": null,
@@ -3097,7 +3337,9 @@
       "evidence": "",
       "approver": "",
       "note": "국토부 실시계획 변경 승인 절차 진행간 인허가 진행 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81d2-93e5-e4db07c307e3"
     },
     {
       "id": "4.1.1",
@@ -3122,7 +3364,9 @@
       "evidence": "현장실사보고서",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-81d0-bbea-c604c3ca45c8"
     },
     {
       "id": "4.1.2",
@@ -3147,7 +3391,9 @@
       "evidence": "기술협상 결과 보고서",
       "approver": "",
       "note": "디지털 OASIS SPOT 미확정에 따름",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "2fd50aa9-577d-8187-9e68-e3119289b64a"
     },
     {
       "id": "4.1.3",
@@ -3172,7 +3418,9 @@
       "evidence": "구축업체 회의록, 정기보고서, 분석, 설계 자료 등",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "2fd50aa9-577d-810e-a699-c16f2445aaee"
     },
     {
       "id": "4.2",
@@ -3188,7 +3436,7 @@
       "duration": 518,
       "weight": 1.5,
       "plannedRate": 100,
-      "actualRate": 66.7,
+      "actualRate": 67,
       "progressRate": null,
       "deviation": -33.3,
       "budget": null,
@@ -3197,7 +3445,9 @@
       "evidence": "디지털 OASIS 접수/운영/거래(NOP)",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81c6-be41-c8fdb5bc20ea"
     },
     {
       "id": "4.2.1",
@@ -3222,7 +3472,9 @@
       "evidence": "기술협상 결과 보고서",
       "approver": "",
       "note": "1차 : KT컨소 계약해지\n 최종 : 한국정보기술 컨소 선정",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-81e1-a4c2-c1b5a76b1978"
     },
     {
       "id": "4.2.2",
@@ -3247,7 +3499,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "구축업체 선정 및 실시설계자료 검토 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-818d-bf54-c8ad2fbc558b"
     },
     {
       "id": "4.2.3",
@@ -3272,7 +3526,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "30d50aa9-577d-8192-9082-d0a6c2f280ff"
     },
     {
       "id": "4.3",
@@ -3288,7 +3544,7 @@
       "duration": 518,
       "weight": 1,
       "plannedRate": 100,
-      "actualRate": 66.7,
+      "actualRate": 67,
       "progressRate": null,
       "deviation": -33.3,
       "budget": null,
@@ -3297,7 +3553,9 @@
       "evidence": "모바일 전자시민증(ECC)",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8178-98c5-e96971609c2f"
     },
     {
       "id": "4.3.1",
@@ -3322,7 +3580,9 @@
       "evidence": "기술협상 결과 보고서",
       "approver": "",
       "note": "1차 : KT컨소 계약해지\n 최종 : 한국정보기술 컨소 선정",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8125-b404-e15903080e70"
     },
     {
       "id": "4.3.2",
@@ -3347,7 +3607,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81a7-9152-cba3b19a95f1"
     },
     {
       "id": "4.3.3",
@@ -3372,7 +3634,9 @@
       "evidence": "WBS 기준 공정율 및 프로젝트 이슈/리스크 관리 관련 문서",
       "approver": "",
       "note": "테스트 계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81e5-8455-e682f249c549"
     },
     {
       "id": "4.4",
@@ -3388,7 +3652,7 @@
       "duration": 518,
       "weight": 1.5,
       "plannedRate": 100,
-      "actualRate": 66.7,
+      "actualRate": 67,
       "progressRate": null,
       "deviation": -33.3,
       "budget": null,
@@ -3397,7 +3661,9 @@
       "evidence": "요구사항: AI 시티관제(ACP)",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8113-b1c0-dad38ca0e556"
     },
     {
       "id": "4.4.1",
@@ -3422,7 +3688,9 @@
       "evidence": "기술협상 결과 보고서",
       "approver": "",
       "note": "1차 : KT컨소 계약해지\n 최종 : 한국정보기술 컨소 선정",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8108-a806-e9fc63096f6a"
     },
     {
       "id": "4.4.2",
@@ -3447,7 +3715,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8151-bb62-ce8d7d7473cb"
     },
     {
       "id": "4.4.3",
@@ -3472,7 +3742,9 @@
       "evidence": "WBS 기준 공정율 및 프로젝트 이슈/리스크 관리 관련 문서",
       "approver": "",
       "note": "테스트 계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81c8-baa0-c240334e388f"
     },
     {
       "id": "4.5",
@@ -3488,8 +3760,8 @@
       "duration": 518,
       "weight": 1,
       "plannedRate": 100,
-      "actualRate": 66.7,
-      "progressRate": 66.7,
+      "actualRate": 67,
+      "progressRate": 67,
       "deviation": -33.3,
       "budget": null,
       "predecessor": "5.2",
@@ -3497,7 +3769,9 @@
       "evidence": "요구사항: 비즈니스 인큐베이팅(BIS)",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8154-9102-e46312b36d22"
     },
     {
       "id": "4.5.1",
@@ -3522,7 +3796,9 @@
       "evidence": "기술협상 결과 보고서",
       "approver": "",
       "note": "1차 : KT컨소 계약해지\n 최종 : 한국정보기술 컨소 선정",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-819b-b22f-d195f72b4713"
     },
     {
       "id": "4.5.2",
@@ -3547,7 +3823,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81e0-87ff-f4210302fde6"
     },
     {
       "id": "4.5.3",
@@ -3572,7 +3850,9 @@
       "evidence": "WBS 기준 공정율 및 프로젝트 이슈/리스크 관리 관련 문서",
       "approver": "",
       "note": "테스트 계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8161-be1d-cdafaf97c390"
     },
     {
       "id": "4.6",
@@ -3588,7 +3868,7 @@
       "duration": 518,
       "weight": 2,
       "plannedRate": 100,
-      "actualRate": 86.7,
+      "actualRate": 87,
       "progressRate": null,
       "deviation": -13.3,
       "budget": null,
@@ -3597,7 +3877,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8120-a2db-dd60e4746819"
     },
     {
       "id": "4.6.1",
@@ -3622,7 +3904,9 @@
       "evidence": "계약서 및 기술협상 회의록",
       "approver": "",
       "note": "1차 : KT컨소 계약해지\n 최종 : 한국정보기술 컨소 선정",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-812d-b8d3-ece8038220c5"
     },
     {
       "id": "4.6.2",
@@ -3647,7 +3931,9 @@
       "evidence": "네트워크 설계 문서, VLAN 정의서",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8100-a942-d41594dd904d"
     },
     {
       "id": "4.6.3",
@@ -3672,7 +3958,9 @@
       "evidence": "납품확인서, 기술지원 확약서, 선정업체 협의 회의록, 최종 관련 보고서",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-817f-b64a-eab71a685130"
     },
     {
       "id": "4.6.4",
@@ -3697,7 +3985,9 @@
       "evidence": "VDI 배포 결과, CMP 접속 화면 캡처",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8155-bc07-f70bede975eb"
     },
     {
       "id": "4.6.5",
@@ -3722,7 +4012,9 @@
       "evidence": "보안장비 정책 설정 캡처, 차단 로그",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8182-8900-ef9605b58977"
     },
     {
       "id": "4.6.6",
@@ -3747,7 +4039,9 @@
       "evidence": "구축 WBS 기반 공정률, 결합 조치 보고서 등",
       "approver": "",
       "note": "테스트 계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8166-8611-ce77a8bc3d1f"
     },
     {
       "id": "4.7",
@@ -3763,7 +4057,7 @@
       "duration": 518,
       "weight": 1.5,
       "plannedRate": 100,
-      "actualRate": 62.5,
+      "actualRate": 63,
       "progressRate": null,
       "deviation": -37.5,
       "budget": null,
@@ -3772,7 +4066,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81c0-b510-e7a7deea7551"
     },
     {
       "id": "4.7.1",
@@ -3797,7 +4093,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8141-89ed-e1ea0a3bd3be"
     },
     {
       "id": "4.7.2",
@@ -3822,7 +4120,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8132-b0c2-c92c02889a83"
     },
     {
       "id": "4.7.3",
@@ -3847,7 +4147,9 @@
       "evidence": "WBS 기준 공정율 및 프로젝트 이슈/리스크 관리 관련 문서",
       "approver": "",
       "note": "테스트 계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81b9-8d0f-f79a42447e0b"
     },
     {
       "id": "4.7.4",
@@ -3872,7 +4174,9 @@
       "evidence": "API 연계 테스트 결과, 데이터 흐름도",
       "approver": "",
       "note": "운영간 실효성 있는 데이터 생성 연계",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8104-a670-e94f1f7b771b"
     },
     {
       "id": "4.8",
@@ -3888,7 +4192,7 @@
       "duration": 150,
       "weight": 1,
       "plannedRate": 100,
-      "actualRate": 76.7,
+      "actualRate": 77,
       "progressRate": null,
       "deviation": -23.3,
       "budget": null,
@@ -3897,7 +4201,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81c5-8ca9-fe60376cbce1"
     },
     {
       "id": "4.8.1",
@@ -3922,7 +4228,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8161-afc2-cff30cdd3513"
     },
     {
       "id": "4.8.2",
@@ -3947,7 +4255,9 @@
       "evidence": "현장실사 결과, 구축 계획 문서",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8187-833f-e23893574cf1"
     },
     {
       "id": "4.8.3",
@@ -3972,7 +4282,9 @@
       "evidence": "API 연계 테스트 결과",
       "approver": "",
       "note": "계획 수립",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8155-af69-d4d140f23042"
     },
     {
       "id": "4.9",
@@ -3988,7 +4300,7 @@
       "duration": 150,
       "weight": 1,
       "plannedRate": 100,
-      "actualRate": 66.7,
+      "actualRate": 67,
       "progressRate": null,
       "deviation": -33.3,
       "budget": null,
@@ -3997,7 +4309,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8120-802b-c471fe7358fc"
     },
     {
       "id": "4.9.1",
@@ -4022,7 +4336,9 @@
       "evidence": "계약서 및 기술협상 회의록",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8174-a425-d47464956fcd"
     },
     {
       "id": "4.9.2",
@@ -4047,7 +4363,9 @@
       "evidence": "현장실사 결과, 구축 계획 문서",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-814b-bc81-fa6e94fd5003"
     },
     {
       "id": "4.9.3",
@@ -4072,7 +4390,9 @@
       "evidence": "API 연계 테스트 결과",
       "approver": "",
       "note": "계획 수립",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81fc-a283-cb61c2442dec"
     },
     {
       "id": "4.10",
@@ -4087,7 +4407,7 @@
       "endDate": "2025-12-31",
       "duration": 66.66666666666667,
       "weight": -33.3,
-      "plannedRate": 5.2,
+      "plannedRate": 5,
       "actualRate": 50,
       "progressRate": null,
       "deviation": -50,
@@ -4097,7 +4417,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81bc-aeb9-e8264abba879"
     },
     {
       "id": "4.10.1",
@@ -4122,7 +4444,9 @@
       "evidence": "계약서 및 기술협상 회의록",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8155-bc1e-d97377122884"
     },
     {
       "id": "4.10.2",
@@ -4147,7 +4471,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81a6-9149-f3300caa1a4b"
     },
     {
       "id": "4.10.3",
@@ -4172,7 +4498,9 @@
       "evidence": "WBS 기준 공정율 및 프로젝트 이슈/리스크 관리 관련 문서",
       "approver": "",
       "note": "계획 수립",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81bf-996c-d31e404244e6"
     },
     {
       "id": "4.11",
@@ -4197,7 +4525,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81e4-be73-f3b0840208f7"
     },
     {
       "id": "4.11.1",
@@ -4222,7 +4552,9 @@
       "evidence": "계약서 및 기술협상 회의록",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8141-95e7-cbc6e08cea71"
     },
     {
       "id": "4.11.2",
@@ -4247,7 +4579,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "KAIST와 협의, 요구사항 및 기술사양 보완 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8184-8d2e-eb8917123194"
     },
     {
       "id": "4.11.3",
@@ -4272,7 +4606,9 @@
       "evidence": "WBS 기준 공정율 및 프로젝트 이슈/리스크 관리 관련 문서",
       "approver": "",
       "note": "계획 수립",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8106-aa38-de500c7b488e"
     },
     {
       "id": "4.12",
@@ -4297,7 +4633,9 @@
       "evidence": "구축업체 회의록, 정기보고서 및 개발 산출물 일체",
       "approver": "",
       "note": "준공 완료",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-815a-8ef0-da38c0852c53"
     },
     {
       "id": "4.12.1",
@@ -4322,7 +4660,9 @@
       "evidence": "계약서 및 기술협상 회의록",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8140-a8f0-ebb17a6fc350"
     },
     {
       "id": "4.12.2",
@@ -4347,7 +4687,9 @@
       "evidence": "설계 및 시공 문서",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8119-ba34-ed50083e1fa9"
     },
     {
       "id": "4.12.3",
@@ -4372,7 +4714,9 @@
       "evidence": "검수 및 감리 관련 문서",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-8120-ad99-f6383ac5c379"
     },
     {
       "id": "4(합계)",
@@ -4397,7 +4741,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81e5-aad4-c2d5d74fbfea"
     },
     {
       "id": "5",
@@ -4422,7 +4768,9 @@
       "evidence": "통합시험 관련 문서 일체",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81b9-b632-f1815a70ae39"
     },
     {
       "id": "5.1",
@@ -4447,7 +4795,9 @@
       "evidence": "테스트 시나리오, 테스트 결과",
       "approver": "",
       "note": "계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8157-8cdd-e6b45202a1b1"
     },
     {
       "id": "5.2",
@@ -4472,7 +4822,9 @@
       "evidence": "보안점검 결과, 성능 테스트 결과",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8148-a902-f5b00c7e9920"
     },
     {
       "id": "5.3",
@@ -4497,7 +4849,9 @@
       "evidence": "데이터 검수 결과, 이관 채크리스트",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81ae-acfa-dfbc0217e241"
     },
     {
       "id": "5.4",
@@ -4522,7 +4876,9 @@
       "evidence": "매뉴얼 문서, 교육 수료증",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-817c-b5f3-e02265c69dcb"
     },
     {
       "id": "5.5",
@@ -4547,7 +4903,9 @@
       "evidence": "시범운영 결과, 안정화 조치 결과",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81d1-b3a4-cfbe7db787e5"
     },
     {
       "id": "6",
@@ -4572,7 +4930,9 @@
       "evidence": "준공 관련 문서 일체",
       "approver": "",
       "note": "계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8138-a052-e5c86e037a8e"
     },
     {
       "id": "6.1",
@@ -4597,7 +4957,9 @@
       "evidence": "검수 체크리스트, UAT 시나리오",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-814e-ae89-fe51ee3b3144"
     },
     {
       "id": "6.2",
@@ -4622,7 +4984,9 @@
       "evidence": "준공 및 이관 관련 문서",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-81cf-874a-f47c3f84bb6e"
     },
     {
       "id": "9",
@@ -4647,7 +5011,36 @@
       "evidence": "운영 관련 문서",
       "approver": "",
       "note": "계획 수립 중",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-8174-a308-fab2a7dbb9ec"
+    },
+    {
+      "id": "WBS ID",
+      "name": "[삭제예정] 작업패키지",
+      "level": "",
+      "category": "",
+      "subCategory": "실적(%)",
+      "organization": "",
+      "manager": "비고",
+      "collaborator": "",
+      "startDate": "",
+      "endDate": "",
+      "duration": null,
+      "weight": null,
+      "plannedRate": null,
+      "actualRate": null,
+      "progressRate": null,
+      "deviation": null,
+      "budget": null,
+      "predecessor": "",
+      "deliverable": "",
+      "evidence": "",
+      "approver": "",
+      "note": "",
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-81b1-8a67-e8c638a24263"
     },
     {
       "id": "노션 실시간 분석 대시보드 수정 - Claude",
@@ -4672,7 +5065,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "30c50aa9-577d-8187-acd7-fdd6ea0187bc"
     },
     {
       "id": "산출물/형상/변경관리",
@@ -4697,7 +5092,9 @@
       "evidence": "설계보고서(사업개요/일정), 감리보고서",
       "approver": "",
       "note": "",
-      "status": "완료"
+      "url": "",
+      "status": "완료",
+      "notionPageId": "2fd50aa9-577d-81c0-8dd7-ddca609f2f5c"
     },
     {
       "id": "세부공정률(4. 서비스 구축) : 4.1 ~ 4.12 가중치 반영",
@@ -4722,7 +5119,9 @@
       "evidence": "",
       "approver": "",
       "note": "",
-      "status": "대기"
+      "url": "",
+      "status": "대기",
+      "notionPageId": "31350aa9-577d-816e-9113-ffe596946e5c"
     },
     {
       "id": "플랫폼 개발 진척사항 및 단위테스트 관리",
@@ -4747,7 +5146,9 @@
       "evidence": "WBS 기준 공정율 및 프로젝트 이슈/리스크 관리 관련 문서",
       "approver": "",
       "note": "",
-      "status": "진행중"
+      "url": "",
+      "status": "진행중",
+      "notionPageId": "2fd50aa9-577d-815f-a2d5-e3d07deb04c8"
     }
   ]
 }
