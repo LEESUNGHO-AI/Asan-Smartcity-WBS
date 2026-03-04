@@ -3,383 +3,515 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏗️ 아산 스마트시티 WBS 2026 대시보드</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<title>🏗️ 아산 스마트시티 WBS 2026</title>
 <style>
-  :root {
-    --primary: #1a56db; --primary-light: #e8f0fe;
-    --success: #0f9d58; --warning: #f4b400; --danger: #db4437;
-    --bg: #f8f9fa; --card: #ffffff; --border: #e0e0e0;
-    --text: #202124; --text-sub: #5f6368;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans KR', -apple-system, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
+:root {
+  --bg: #0f1117;
+  --card: #1a1d27;
+  --card2: #21253a;
+  --border: #2e3348;
+  --text: #e2e8f0;
+  --muted: #8892a4;
+  --primary: #6366f1;
+  --green: #22c55e;
+  --yellow: #f59e0b;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --cyan: #06b6d4;
+  --purple: #a855f7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Pretendard','Noto Sans KR',sans-serif; font-size: 14px; line-height: 1.6; }
 
-  header { background: linear-gradient(135deg, #1a56db 0%, #0d3785 100%); color: white; padding: 20px 32px; }
-  header h1 { font-size: 22px; font-weight: 700; }
-  header p  { font-size: 13px; opacity: .8; margin-top: 4px; }
-  .sync-badge { display: inline-block; background: rgba(255,255,255,.2); border-radius: 12px; padding: 3px 12px; font-size: 12px; margin-top: 8px; }
+/* ── 헤더 ── */
+.header { background: linear-gradient(135deg, #1e1b4b 0%, #1a1d27 60%); border-bottom: 1px solid var(--border); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.header h1 { font-size: 20px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; }
+.header h1 span.emoji { font-size: 24px; }
+.header-meta { font-size: 12px; color: var(--muted); text-align: right; }
+.header-meta strong { color: var(--cyan); }
 
-  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 20px 32px 0; }
-  .kpi { background: var(--card); border-radius: 10px; padding: 18px 20px; border: 1px solid var(--border); }
-  .kpi-val { font-size: 28px; font-weight: 700; color: var(--primary); }
-  .kpi-lbl { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
+/* ── KPI 카드 ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 16px 24px; }
+@media (max-width: 768px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.kpi .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.kpi .value { font-size: 28px; font-weight: 800; line-height: 1.1; }
+.kpi .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.kpi.blue .value { color: var(--blue); }
+.kpi.green .value { color: var(--green); }
+.kpi.yellow .value { color: var(--yellow); }
+.kpi.red .value { color: var(--red); }
 
-  .tabs { display: flex; gap: 0; padding: 20px 32px 0; border-bottom: 2px solid var(--border); background: white; }
-  .tab  { padding: 10px 24px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; font-weight: 500; color: var(--text-sub); transition: .2s; }
-  .tab:hover { color: var(--primary); }
-  .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+/* ── 탭 ── */
+.tabs { display: flex; gap: 0; padding: 0 24px; border-bottom: 1px solid var(--border); }
+.tab-btn { background: none; border: none; color: var(--muted); cursor: pointer; padding: 10px 16px; font-size: 13px; font-weight: 500; border-bottom: 2px solid transparent; transition: all .2s; }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-btn:hover { color: var(--text); }
 
-  .content { padding: 24px 32px; display: none; }
-  .content.active { display: block; }
+/* ── 패널 ── */
+.panel { display: none; padding: 20px 24px; }
+.panel.active { display: block; }
 
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-  .card  { background: var(--card); border-radius: 10px; padding: 20px; border: 1px solid var(--border); }
-  .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 14px; color: var(--text-sub); }
+/* ── 차트 행 ── */
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+@media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+.chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.chart-card h3 { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .05em; }
 
-  .filters { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
-  .filters select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; background: white; }
+/* ── 바 차트 ── */
+.bar-item { margin-bottom: 12px; }
+.bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.bar-name { font-size: 12px; color: var(--text); max-width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-vals { font-size: 11px; color: var(--muted); display: flex; gap: 8px; }
+.bar-track { background: var(--border); border-radius: 4px; height: 8px; position: relative; overflow: visible; }
+.bar-plan { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; background: var(--border); opacity: .5; }
+.bar-actual { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; background: var(--primary); transition: width .6s ease; }
+.bar-actual.over { background: var(--green); }
+.bar-actual.warn { background: var(--yellow); }
+.bar-actual.danger { background: var(--red); }
 
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th    { background: #f1f3f4; padding: 9px 10px; text-align: left; font-weight: 600; position: sticky; top: 0; white-space: nowrap; }
-  td    { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
-  tr:hover td { background: #f8f9ff; }
+/* ── 도넛 차트 ── */
+.donut-wrap { display: flex; align-items: center; gap: 20px; }
+.donut-svg { flex-shrink: 0; }
+.donut-legend { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
-  .badge-wait  { background: #feefc3; color: #7a4400; }
-  .badge-ing   { background: #d2e3fc; color: #174ea6; }
-  .badge-done  { background: #ceead6; color: #137333; }
-  .badge-lv1   { background: #e8eaed; color: #444; }
-  .badge-lv2   { background: #e0f0ff; color: #0d47a1; }
-  .badge-lv3   { background: #fce8ff; color: #5c007a; }
+/* ── 필터 행 ── */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+.filter-select { background: var(--card2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+.search-input { background: var(--card2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 10px; font-size: 12px; flex: 1; min-width: 160px; }
+.search-input::placeholder { color: var(--muted); }
+.badge-count { background: var(--primary); color: #fff; border-radius: 20px; padding: 2px 8px; font-size: 11px; font-weight: 600; margin-left: auto; }
 
-  .pbar-wrap { display: flex; align-items: center; gap: 8px; }
-  .pbar      { flex: 1; height: 8px; background: #e8eaed; border-radius: 4px; overflow: hidden; min-width: 60px; }
-  .pbar-fill { height: 100%; border-radius: 4px; transition: width .3s; }
-  .pbar-num  { font-size: 12px; color: var(--text-sub); white-space: nowrap; width: 42px; text-align: right; }
+/* ── 테이블 ── */
+.tbl-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead th { background: var(--card2); padding: 10px 12px; text-align: left; color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; position: sticky; top: 0; }
+tbody tr { border-top: 1px solid var(--border); transition: background .15s; }
+tbody tr:hover { background: var(--card2); }
+tbody td { padding: 9px 12px; vertical-align: middle; }
+.cell-id { font-family: monospace; font-size: 11px; color: var(--cyan); font-weight: 600; white-space: nowrap; }
+.cell-name { color: var(--text); font-weight: 500; }
+.cell-name.lv1 { color: #fff; font-weight: 700; font-size: 13px; }
+.cell-name.lv2 { color: var(--text); padding-left: 8px; }
+.cell-name.lv3 { color: var(--muted); padding-left: 16px; font-size: 11px; }
 
-  .org-chip { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; }
-  .org-0 { background: #e8f0fe; color: #1a56db; }
-  .org-1 { background: #fce8b2; color: #7a4400; }
-  .org-2 { background: #d2e3fc; color: #0d47a1; }
-  .org-3 { background: #ceead6; color: #137333; }
-  .org-4 { background: #fce8ff; color: #5c007a; }
+/* 레벨 뱃지 */
+.lv-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+.lv-badge.lv1 { background: #312e81; color: #818cf8; }
+.lv-badge.lv2 { background: #14532d; color: #4ade80; }
+.lv-badge.lv3 { background: #1e1b4b; color: #a5b4fc; }
 
-  .dev-neg { color: var(--danger); font-weight: 600; }
-  .dev-pos { color: var(--success); font-weight: 600; }
+/* 기관 뱃지 */
+.org-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+.org-badge.제일엔지니어링 { background: #1e3a5f; color: #60a5fa; }
+.org-badge.아산시 { background: #14532d; color: #4ade80; }
+.org-badge.호서대 { background: #3b0764; color: #c084fc; }
+.org-badge.충남연구원 { background: #431407; color: #fb923c; }
+.org-badge.KAIST { background: #450a0a; color: #f87171; }
 
-  .tbl-wrap { overflow-x: auto; max-height: 520px; overflow-y: auto; border-radius: 8px; border: 1px solid var(--border); }
+/* 공정률 바 */
+.rate-cell { min-width: 100px; }
+.mini-bar { height: 6px; background: var(--border); border-radius: 3px; margin-top: 3px; position: relative; }
+.mini-fill { height: 100%; border-radius: 3px; position: absolute; top: 0; left: 0; }
+.mini-plan { background: var(--border); opacity: .6; }
+.mini-actual { background: var(--primary); }
+.mini-actual.g { background: var(--green); }
+.mini-actual.y { background: var(--yellow); }
+.mini-actual.r { background: var(--red); }
+.rate-nums { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-  @media (max-width: 768px) {
-    .kpi-row { grid-template-columns: 1fr 1fr; padding: 16px; }
-    .grid2   { grid-template-columns: 1fr; }
-    .content { padding: 16px; }
-    header   { padding: 16px; }
-  }
+/* 진척차 */
+.dev-pos { color: var(--green); font-weight: 600; }
+.dev-neg { color: var(--red); font-weight: 600; }
+.dev-zero { color: var(--muted); }
 
-  #loading { text-align: center; padding: 60px; color: var(--text-sub); font-size: 16px; }
+/* ── 로딩 ── */
+.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 60px; color: var(--muted); }
+.spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── 상태 뱃지 ── */
+.status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+.status.완료 { background: #14532d; color: #4ade80; }
+.status.진행중 { background: #1e3a5f; color: #60a5fa; }
+.status.대기 { background: #1c1917; color: var(--muted); }
+
+/* ── 카테고리 색상 맵 ── */
+.cat-사업총괄 { color: #94a3b8; }
+.cat-프로젝트 { color: var(--blue); }
+.cat-실시설계 { color: var(--purple); }
+.cat-나라장터 { color: var(--yellow); }
+.cat-서비스 { color: var(--green); }
+.cat-통합시험 { color: var(--cyan); }
+
+/* ── 업데이트 시각 ── */
+.update-bar { background: var(--card2); border-top: 1px solid var(--border); padding: 8px 24px; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.update-bar .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>🏗️ 아산 스마트시티 WBS 2026 대시보드</h1>
-  <p>아산시 강소형 스마트시티 조성사업 — 단위사업 + 사업관리 WBS 통합 현황</p>
-  <span class="sync-badge" id="syncBadge">⏳ 로딩 중...</span>
-</header>
-
-<div id="loading">📡 WBS 데이터 로딩 중...</div>
-
-<div id="main" style="display:none">
-  <div class="kpi-row">
-    <div class="kpi"><div class="kpi-val" id="kpi-total">-</div><div class="kpi-lbl">전체 작업 수</div></div>
-    <div class="kpi"><div class="kpi-val" id="kpi-done">-</div><div class="kpi-lbl">완료 작업</div></div>
-    <div class="kpi"><div class="kpi-val" id="kpi-avg-actual" style="color:var(--success)">-</div><div class="kpi-lbl">평균 실적 공정률</div></div>
-    <div class="kpi"><div class="kpi-val" id="kpi-avg-dev" style="color:var(--danger)">-</div><div class="kpi-lbl">평균 진척차</div></div>
+<div class="header">
+  <div>
+    <h1><span class="emoji">🏗️</span> 아산시 강소형 스마트시티 WBS 2026</h1>
+    <div style="font-size:12px;color:var(--muted);margin-top:4px">국가보조금 사업 · 2023.12 ~ 2026.12 · 24억원</div>
   </div>
-
-  <div class="tabs" style="margin-top:20px">
-    <div class="tab active" onclick="switchTab('all')">📊 전체 현황</div>
-    <div class="tab" onclick="switchTab('category')">🎯 대분류별</div>
-    <div class="tab" onclick="switchTab('org')">👥 담당기관별</div>
-  </div>
-
-  <!-- 전체 현황 탭 -->
-  <div class="content active" id="tab-all">
-    <div class="grid2">
-      <div class="card"><h3>📈 대분류별 실적 공정률</h3><canvas id="chartCategory" height="200"></canvas></div>
-      <div class="card"><h3>🏢 담당기관별 진행현황</h3><canvas id="chartOrg" height="200"></canvas></div>
-    </div>
-    <div class="card">
-      <h3>📋 전체 업무 목록</h3>
-      <div class="filters">
-        <select id="f-level" onchange="renderAllTable()">
-          <option value="">전체 Level</option>
-          <option value="1">Level 1</option>
-          <option value="2">Level 2</option>
-          <option value="3">Level 3</option>
-        </select>
-        <select id="f-cat" onchange="renderAllTable()"><option value="">전체 대분류</option></select>
-        <select id="f-org" onchange="renderAllTable()"><option value="">전체 기관</option></select>
-        <select id="f-status" onchange="renderAllTable()">
-          <option value="">전체 상태</option>
-          <option value="done">완료</option>
-          <option value="ing">진행중</option>
-          <option value="wait">대기</option>
-        </select>
-      </div>
-      <div class="tbl-wrap">
-        <table><thead><tr>
-          <th>WBS</th><th>Lv</th><th>업무 항목</th><th>대분류</th>
-          <th>담당기관</th><th>계획(%)</th><th>실적(%)</th><th>진척차</th>
-        </tr></thead>
-        <tbody id="tbody-all"></tbody></table>
-      </div>
-    </div>
-  </div>
-
-  <!-- 대분류별 탭 -->
-  <div class="content" id="tab-category">
-    <div class="grid2" id="category-cards"></div>
-  </div>
-
-  <!-- 담당기관별 탭 -->
-  <div class="content" id="tab-org">
-    <div class="grid2" id="org-cards"></div>
+  <div class="header-meta">
+    <div>데이터 기준: <strong id="updated-at">로딩 중...</strong></div>
+    <div style="margin-top:2px">Notion DB → GitHub Pages 자동 동기화</div>
   </div>
 </div>
 
-<script>
-let allData = [];
+<div class="kpi-grid">
+  <div class="kpi blue"><div class="label">전체 WBS 항목</div><div class="value" id="kpi-total">-</div><div class="sub">Google Sheets 기준</div></div>
+  <div class="kpi green"><div class="label">완료 항목</div><div class="value" id="kpi-done">-</div><div class="sub" id="kpi-done-pct">-</div></div>
+  <div class="kpi yellow"><div class="label">평균 실적 공정률</div><div class="value" id="kpi-actual">-</div><div class="sub">계획 대비</div></div>
+  <div class="kpi red"><div class="label">평균 진척차</div><div class="value" id="kpi-dev">-</div><div class="sub">양수=선행, 음수=지연</div></div>
+</div>
 
-// ── 데이터 로드 ──────────────────────────────────────────────
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('overview')">📊 전체 현황</button>
+  <button class="tab-btn" onclick="switchTab('category')">🎯 대분류별</button>
+  <button class="tab-btn" onclick="switchTab('org')">🏢 담당기관별</button>
+  <button class="tab-btn" onclick="switchTab('list')">📋 업무 목록</button>
+</div>
+
+<!-- ── 전체 현황 탭 ── -->
+<div id="tab-overview" class="panel active">
+  <div class="chart-row">
+    <div class="chart-card">
+      <h3>📈 대분류별 실적 공정률</h3>
+      <div id="cat-bars"><div class="loading"><div class="spinner"></div></div></div>
+    </div>
+    <div class="chart-card">
+      <h3>🍩 진행 상태 분포</h3>
+      <div class="donut-wrap">
+        <svg class="donut-svg" width="130" height="130" viewBox="0 0 130 130">
+          <circle cx="65" cy="65" r="52" fill="none" stroke="#2e3348" stroke-width="18"/>
+          <circle id="donut-done" cx="65" cy="65" r="52" fill="none" stroke="#22c55e" stroke-width="18" stroke-dasharray="0 327" stroke-dashoffset="82" stroke-linecap="round" transform="rotate(-90 65 65)" style="transition:stroke-dasharray .8s"/>
+          <circle id="donut-prog" cx="65" cy="65" r="52" fill="none" stroke="#3b82f6" stroke-width="18" stroke-dasharray="0 327" stroke-dashoffset="82" stroke-linecap="round" transform="rotate(-90 65 65)" style="transition:stroke-dasharray .8s"/>
+          <text x="65" y="60" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" id="donut-center-val">-</text>
+          <text x="65" y="78" text-anchor="middle" fill="#8892a4" font-size="10">완료율</text>
+        </svg>
+        <div class="donut-legend" id="donut-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div><span>완료</span><span id="leg-done" style="margin-left:auto;color:#22c55e;font-weight:700">-</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div><span>진행중</span><span id="leg-prog" style="margin-left:auto;color:#3b82f6;font-weight:700">-</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#2e3348"></div><span>대기</span><span id="leg-wait" style="margin-left:auto;color:#8892a4;font-weight:700">-</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chart-card" style="margin-top:0">
+    <h3>📅 마일스톤 현황</h3>
+    <div id="milestones" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px"></div>
+  </div>
+</div>
+
+<!-- ── 대분류별 탭 ── -->
+<div id="tab-category" class="panel">
+  <div id="cat-detail-bars"></div>
+</div>
+
+<!-- ── 담당기관별 탭 ── -->
+<div id="tab-org" class="panel">
+  <div class="chart-row">
+    <div class="chart-card">
+      <h3>🏢 기관별 작업 분포</h3>
+      <div id="org-bars"></div>
+    </div>
+    <div class="chart-card">
+      <h3>📊 기관별 상세 현황</h3>
+      <div id="org-table"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 업무 목록 탭 ── -->
+<div id="tab-list" class="panel">
+  <div class="filter-row">
+    <input class="search-input" id="search" placeholder="🔍 업무명, 담당자 검색..." oninput="filterList()">
+    <select class="filter-select" id="f-level" onchange="filterList()">
+      <option value="">전체 Level</option>
+      <option value="1">Level 1</option>
+      <option value="2">Level 2</option>
+      <option value="3">Level 3</option>
+    </select>
+    <select class="filter-select" id="f-cat" onchange="filterList()">
+      <option value="">전체 대분류</option>
+    </select>
+    <select class="filter-select" id="f-org" onchange="filterList()">
+      <option value="">전체 기관</option>
+      <option>제일엔지니어링</option><option>아산시</option>
+      <option>호서대</option><option>충남연구원</option><option>KAIST</option>
+    </select>
+    <select class="filter-select" id="f-status" onchange="filterList()">
+      <option value="">전체 상태</option>
+      <option value="완료">완료</option>
+      <option value="진행중">진행중</option>
+      <option value="대기">대기</option>
+    </select>
+    <span class="badge-count" id="list-count">0건</span>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>WBS ID</th><th>Lv</th><th>업무 항목</th><th>대분류</th>
+          <th>담당기관</th><th>담당자</th><th>시작일</th><th>종료일</th>
+          <th>계획</th><th>실적</th><th>진척차</th><th>상태</th>
+        </tr>
+      </thead>
+      <tbody id="list-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="update-bar">
+  <div class="dot"></div>
+  <span>실시간 동기화 활성 · Notion DB 자동 갱신 (매일 09:00 / 14:00 / 18:00 KST)</span>
+  <span style="margin-left:auto">GitHub Actions 배포: <span id="footer-updated">-</span></span>
+</div>
+
+<script>
+let WBS = { items: [], summary: {} };
+
+const CAT_COLORS = {
+  '사업총괄':           '#6366f1',
+  '프로젝트 관리/거버넌스': '#3b82f6',
+  '실시설계':           '#a855f7',
+  '나라장터 발주 지원':  '#f59e0b',
+  '서비스 구축':         '#22c55e',
+  '통합시험/시범운영':   '#06b6d4',
+  '준공/검수/이관':      '#ec4899',
+  '운영(3년)':          '#84cc16',
+  '마일스톤':           '#f97316',
+};
+
+// ── 데이터 로드 ───────────────────────────────────────────
 async function loadData() {
   try {
-    const res = await fetch('data.json?t=' + Date.now());
-    if (!res.ok) throw new Error('data.json 로드 실패');
-    const json = await res.json();
-    allData = json.records || [];
-
-    const dt = new Date(json.updated_at);
-    const label = dt.toLocaleString('ko-KR', {timeZone:'Asia/Seoul',
-      month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
-    document.getElementById('syncBadge').textContent = `🔄 마지막 동기화: ${label} KST`;
-
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('main').style.display = 'block';
-
-    initFilters();
-    renderKPI();
-    renderCharts();
-    renderAllTable();
-    renderCategoryCards();
-    renderOrgCards();
+    const res = await fetch('./data/wbs.json?t=' + Date.now());
+    if (!res.ok) throw new Error('wbs.json 로드 실패: ' + res.status);
+    WBS = await res.json();
+    render();
   } catch(e) {
-    document.getElementById('loading').innerHTML =
-      `⚠️ 데이터 로드 실패: ${e.message}<br><small>GitHub Actions가 data.json을 아직 생성하지 않았을 수 있습니다.</small>`;
+    document.getElementById('kpi-total').textContent = '오류';
+    console.error(e);
+    // 재시도
+    setTimeout(loadData, 5000);
   }
 }
 
-// ── 헬퍼 ─────────────────────────────────────────────────────
-function pct(v) {
-  if (v === '' || v === null || v === undefined) return null;
-  const n = parseFloat(String(v).replace('%',''));
-  if (isNaN(n)) return null;
-  return Math.abs(n) <= 1 ? Math.round(n * 100) : Math.round(n);
-}
-function status(r) {
-  const a = pct(r.actualRate);
-  if (a === null) return 'wait';
-  if (a >= 100) return 'done';
-  if (a > 0) return 'ing';
-  return 'wait';
-}
-function statusBadge(st) {
-  const m = {done:['badge-done','완료'], ing:['badge-ing','진행중'], wait:['badge-wait','대기']};
-  const [cls, txt] = m[st] || ['',''];
-  return `<span class="badge ${cls}">${txt}</span>`;
-}
-function lvBadge(lv) {
-  const m = {'1':'badge-lv1','2':'badge-lv2','3':'badge-lv3'};
-  return `<span class="badge ${m[lv]||''}">${lv}</span>`;
-}
-const ORG_COLORS = ['org-0','org-1','org-2','org-3','org-4'];
-const ORG_LIST = ['제일엔지니어링','아산시','호서대','충남연구원','KAIST'];
-function orgChip(org) {
-  const i = ORG_LIST.indexOf(org);
-  return `<span class="org-chip ${ORG_COLORS[i>=0?i:0]}">${org||'-'}</span>`;
-}
-function pbarHtml(plan, actual) {
-  const p = plan ?? 0, a = actual ?? 0;
-  const color = a >= p ? 'var(--success)' : (p - a > 20 ? 'var(--danger)' : 'var(--warning)');
-  return `<div class="pbar-wrap">
-    <div class="pbar"><div class="pbar-fill" style="width:${Math.min(a,100)}%;background:${color}"></div></div>
-    <span class="pbar-num">${a}%</span>
-  </div>`;
-}
-function devHtml(dev) {
-  if (dev === null) return '-';
-  const cls = dev >= 0 ? 'dev-pos' : 'dev-neg';
-  return `<span class="${cls}">${dev >= 0 ? '+' : ''}${dev}%</span>`;
+// ── 전체 렌더 ─────────────────────────────────────────────
+function render() {
+  const { meta, summary, items } = WBS;
+
+  // 메타
+  document.getElementById('updated-at').textContent = meta.generatedAtKst || meta.generatedAt;
+  document.getElementById('footer-updated').textContent = meta.generatedAtKst || '-';
+
+  // KPI
+  document.getElementById('kpi-total').textContent  = summary.total;
+  document.getElementById('kpi-done').textContent   = summary.done;
+  document.getElementById('kpi-done-pct').textContent = `전체의 ${Math.round(summary.done/summary.total*100)||0}%`;
+  document.getElementById('kpi-actual').textContent = summary.avgActual + '%';
+  const devEl = document.getElementById('kpi-dev');
+  devEl.textContent = (summary.avgDev >= 0 ? '+' : '') + summary.avgDev + '%';
+  devEl.style.color = summary.avgDev >= 0 ? 'var(--green)' : 'var(--red)';
+
+  // 도넛
+  const circ = 2 * Math.PI * 52;
+  const donePct   = summary.done / summary.total;
+  const progPct   = summary.inProg / summary.total;
+  const waitCnt   = summary.total - summary.done - summary.inProg;
+  document.getElementById('donut-done').style.strokeDasharray   = `${donePct*circ} ${circ}`;
+  document.getElementById('donut-prog').style.strokeDasharray   = `${progPct*circ} ${circ}`;
+  document.getElementById('donut-prog').style.strokeDashoffset  = `${-(donePct)*circ + 82}`;
+  document.getElementById('donut-center-val').textContent       = Math.round(donePct*100) + '%';
+  document.getElementById('leg-done').textContent = summary.done + '건';
+  document.getElementById('leg-prog').textContent = summary.inProg + '건';
+  document.getElementById('leg-wait').textContent = waitCnt + '건';
+
+  // 대분류 바
+  renderCatBars('cat-bars', summary.byCategory, 10);
+  renderCatBars('cat-detail-bars', summary.byCategory, 100);
+
+  // 기관별
+  renderOrgBars(summary.byOrg);
+
+  // 마일스톤
+  renderMilestones(items);
+
+  // 목록 필터 옵션
+  const cats = [...new Set(items.map(i=>i.category).filter(Boolean))].sort();
+  const sel = document.getElementById('f-cat');
+  cats.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    sel.appendChild(o);
+  });
+
+  filterList();
 }
 
-// ── KPI ───────────────────────────────────────────────────────
-function renderKPI() {
-  const lvl3 = allData.filter(r => r.level === '3' || r.level === 3);
-  const done = lvl3.filter(r => status(r) === 'done').length;
-  const actuals = lvl3.map(r => pct(r.actualRate)).filter(n => n !== null);
-  const devs = lvl3.map(r => pct(r.deviation)).filter(n => n !== null);
-  const avgActual = actuals.length ? Math.round(actuals.reduce((a,b)=>a+b,0)/actuals.length) : 0;
-  const avgDev = devs.length ? Math.round(devs.reduce((a,b)=>a+b,0)/devs.length) : 0;
+// ── 대분류 바 차트 ────────────────────────────────────────
+function renderCatBars(id, byCategory, limit) {
+  const el = document.getElementById(id);
+  const entries = Object.entries(byCategory)
+    .filter(([,v]) => v.count > 0)
+    .sort((a,b) => b[1].avgActual - a[1].avgActual)
+    .slice(0, limit);
+  if (!entries.length) { el.innerHTML = '<div style="color:var(--muted);text-align:center;padding:20px">데이터 없음</div>'; return; }
 
-  document.getElementById('kpi-total').textContent = allData.length;
-  document.getElementById('kpi-done').textContent = done;
-  document.getElementById('kpi-avg-actual').textContent = avgActual + '%';
-  document.getElementById('kpi-avg-dev').textContent = (avgDev >= 0 ? '+' : '') + avgDev + '%';
+  el.innerHTML = entries.map(([cat, d]) => {
+    const color = CAT_COLORS[cat] || 'var(--primary)';
+    const plan   = Math.min(d.avgPlan, 100);
+    const actual = Math.min(d.avgActual, 100);
+    const cls    = actual >= plan ? 'over' : actual >= plan*0.8 ? 'warn' : 'danger';
+    const shortCat = cat.length > 16 ? cat.slice(0,16)+'…' : cat;
+    return `<div class="bar-item">
+      <div class="bar-header">
+        <div class="bar-name" title="${cat}">${shortCat}</div>
+        <div class="bar-vals">
+          <span style="color:${color}">실적 ${actual}%</span>
+          <span style="color:var(--muted)">/ 계획 ${plan}%</span>
+          <span style="color:var(--muted)">(${d.count}건)</span>
+        </div>
+      </div>
+      <div class="bar-track">
+        <div class="bar-plan" style="width:${plan}%"></div>
+        <div class="bar-actual ${cls}" style="width:${actual}%;background:${color}"></div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-// ── 필터 초기화 ───────────────────────────────────────────────
-function initFilters() {
-  const cats = [...new Set(allData.map(r=>r.category).filter(Boolean))];
-  const orgs = [...new Set(allData.map(r=>r.organization).filter(Boolean))];
-  const catSel = document.getElementById('f-cat');
-  const orgSel = document.getElementById('f-org');
-  cats.forEach(c => { const o=document.createElement('option'); o.value=o.textContent=c; catSel.appendChild(o); });
-  orgs.forEach(c => { const o=document.createElement('option'); o.value=o.textContent=c; orgSel.appendChild(o); });
+// ── 기관별 바 ─────────────────────────────────────────────
+function renderOrgBars(byOrg) {
+  const ORG_COLORS = { '제일엔지니어링':'#60a5fa','아산시':'#4ade80','호서대':'#c084fc','충남연구원':'#fb923c','KAIST':'#f87171' };
+  const max = Math.max(...Object.values(byOrg).map(v=>v.count), 1);
+
+  document.getElementById('org-bars').innerHTML = Object.entries(byOrg).map(([org,d]) => `
+    <div class="bar-item">
+      <div class="bar-header">
+        <div class="bar-name">${org}</div>
+        <div class="bar-vals"><span style="color:${ORG_COLORS[org]||'var(--primary)'}">${d.count}건</span></div>
+      </div>
+      <div class="bar-track">
+        <div class="bar-actual" style="width:${Math.round(d.count/max*100)}%;background:${ORG_COLORS[org]||'var(--primary)'}"></div>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('org-table').innerHTML = `
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead><tr>
+        <th style="padding:6px;text-align:left;color:var(--muted)">기관</th>
+        <th style="padding:6px;text-align:right;color:var(--muted)">전체</th>
+        <th style="padding:6px;text-align:right;color:var(--green)">완료</th>
+        <th style="padding:6px;text-align:right;color:var(--blue)">진행중</th>
+        <th style="padding:6px;text-align:right;color:var(--muted)">대기</th>
+      </tr></thead>
+      <tbody>${Object.entries(byOrg).map(([org,d]) => {
+        const wait = d.count - d.done - d.inProg;
+        return `<tr style="border-top:1px solid var(--border)">
+          <td style="padding:6px"><span class="org-badge ${org}">${org}</span></td>
+          <td style="padding:6px;text-align:right;font-weight:700">${d.count}</td>
+          <td style="padding:6px;text-align:right;color:var(--green)">${d.done}</td>
+          <td style="padding:6px;text-align:right;color:var(--blue)">${d.inProg}</td>
+          <td style="padding:6px;text-align:right;color:var(--muted)">${wait}</td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table>`;
 }
 
-// ── 전체 테이블 ───────────────────────────────────────────────
-function renderAllTable() {
-  const lv   = document.getElementById('f-level').value;
-  const cat  = document.getElementById('f-cat').value;
-  const org  = document.getElementById('f-org').value;
-  const st   = document.getElementById('f-status').value;
+// ── 마일스톤 ─────────────────────────────────────────────
+function renderMilestones(items) {
+  const ms = items.filter(i => i.category === '마일스톤' || (i.id && i.id.startsWith('◆')));
+  const el = document.getElementById('milestones');
+  if (!ms.length) { el.innerHTML = '<span style="color:var(--muted);font-size:12px">마일스톤 데이터 없음</span>'; return; }
+  el.innerHTML = ms.map(m => {
+    const done = m.status === '완료';
+    const ico  = done ? '✅' : '🔷';
+    return `<div style="background:var(--card2);border:1px solid ${done?'#22c55e':'var(--border)'};border-radius:8px;padding:8px 12px;font-size:12px">
+      ${ico} <strong>${m.name || m.id}</strong>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">${m.endDate || '-'} · <span class="status ${m.status}">${m.status}</span></div>
+    </div>`;
+  }).join('');
+}
 
-  const rows = allData.filter(r => {
-    if (lv  && String(r.level) !== lv) return false;
-    if (cat && r.category !== cat) return false;
-    if (org && r.organization !== org) return false;
-    if (st  && status(r) !== st) return false;
+// ── 목록 필터/렌더 ────────────────────────────────────────
+function filterList() {
+  const q      = document.getElementById('search').value.toLowerCase();
+  const level  = document.getElementById('f-level').value;
+  const cat    = document.getElementById('f-cat').value;
+  const org    = document.getElementById('f-org').value;
+  const status = document.getElementById('f-status').value;
+
+  const filtered = WBS.items.filter(i => {
+    if (level  && i.level !== level) return false;
+    if (cat    && i.category !== cat) return false;
+    if (org    && i.organization !== org) return false;
+    if (status && i.status !== status) return false;
+    if (q && !`${i.id}${i.name}${i.manager}${i.subCategory}`.toLowerCase().includes(q)) return false;
     return true;
   });
 
-  const tbody = document.getElementById('tbody-all');
-  tbody.innerHTML = rows.map(r => {
-    const plan = pct(r.plannedRate), actual = pct(r.actualRate);
-    const dev  = (plan !== null && actual !== null) ? actual - plan : null;
+  document.getElementById('list-count').textContent = filtered.length + '건';
+
+  const tbody = document.getElementById('list-body');
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="12" style="text-align:center;padding:30px;color:var(--muted)">검색 결과 없음</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(i => {
+    const plan   = i.plannedRate !== null ? i.plannedRate : '';
+    const actual = i.actualRate  !== null ? i.actualRate  : '';
+    const dev    = i.deviation   !== null ? i.deviation   : null;
+    const devCls = dev === null ? 'dev-zero' : dev >= 0 ? 'dev-pos' : 'dev-neg';
+    const devStr = dev === null ? '-' : (dev >= 0 ? '+' : '') + dev + '%';
+    const lvCls  = i.level === '1' ? 'lv1' : i.level === '2' ? 'lv2' : 'lv3';
+    const aColor = (actual === '') ? 'var(--border)' :
+                   actual >= plan  ? 'var(--green)'  :
+                   actual >= plan*0.8 ? 'var(--yellow)' : 'var(--red)';
+
     return `<tr>
-      <td><code>${r.taskId||''}</code></td>
-      <td>${lvBadge(String(r.level))}</td>
-      <td>${r.name||''}</td>
-      <td>${r.category||'-'}</td>
-      <td>${orgChip(r.organization)}</td>
-      <td>${plan !== null ? plan+'%' : '-'}</td>
-      <td>${pbarHtml(plan, actual)}</td>
-      <td>${devHtml(dev)}</td>
+      <td class="cell-id">${i.id || '-'}</td>
+      <td><span class="lv-badge lv${i.level||''}">L${i.level||'?'}</span></td>
+      <td class="cell-name ${lvCls}">${i.name || '-'}</td>
+      <td style="font-size:11px;color:${CAT_COLORS[i.category]||'var(--muted)'};max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${i.category||''}">${i.category || '-'}</td>
+      <td><span class="org-badge ${i.organization||''}">${i.organization || '-'}</span></td>
+      <td style="font-size:11px;color:var(--muted)">${i.manager || '-'}</td>
+      <td style="font-size:11px;white-space:nowrap">${i.startDate || '-'}</td>
+      <td style="font-size:11px;white-space:nowrap">${i.endDate || '-'}</td>
+      <td class="rate-cell">
+        ${plan !== '' ? `<div>${plan}%</div>
+        <div class="mini-bar" style="width:80px"><div class="mini-fill mini-plan" style="width:${plan}%"></div></div>` : '-'}
+      </td>
+      <td class="rate-cell">
+        ${actual !== '' ? `<div style="color:${aColor}">${actual}%</div>
+        <div class="mini-bar" style="width:80px"><div class="mini-fill mini-actual" style="width:${actual}%;background:${aColor}"></div></div>` : '-'}
+      </td>
+      <td class="${devCls}">${devStr}</td>
+      <td><span class="status ${i.status}">${i.status}</span></td>
     </tr>`;
   }).join('');
 }
 
-// ── 차트 ─────────────────────────────────────────────────────
-function renderCharts() {
-  // 대분류별 실적 공정률
-  const cats = [...new Set(allData.map(r=>r.category).filter(Boolean))];
-  const catData = cats.map(c => {
-    const rows = allData.filter(r => r.category === c && r.level === '3');
-    const vals = rows.map(r=>pct(r.actualRate)).filter(n=>n!==null);
-    return vals.length ? Math.round(vals.reduce((a,b)=>a+b)/vals.length) : 0;
-  });
-  new Chart(document.getElementById('chartCategory'), {
-    type: 'bar',
-    data: { labels: cats, datasets: [{ label: '실적(%)', data: catData,
-      backgroundColor: 'rgba(26,86,219,.7)', borderRadius: 4 }] },
-    options: { responsive: true, plugins: { legend: { display: false } },
-      scales: { y: { max: 100, ticks: { callback: v=>v+'%' } } } }
-  });
-
-  // 담당기관별 상태 분포
-  const orgCounts = {};
-  allData.filter(r=>r.level==='3').forEach(r => {
-    const o = r.organization || '미지정';
-    if (!orgCounts[o]) orgCounts[o] = {done:0,ing:0,wait:0};
-    orgCounts[o][status(r)]++;
-  });
-  const orgLabels = Object.keys(orgCounts);
-  new Chart(document.getElementById('chartOrg'), {
-    type: 'bar',
-    data: {
-      labels: orgLabels,
-      datasets: [
-        { label: '완료', data: orgLabels.map(o=>orgCounts[o].done),  backgroundColor: 'rgba(15,157,88,.7)', borderRadius:2 },
-        { label: '진행중', data: orgLabels.map(o=>orgCounts[o].ing), backgroundColor: 'rgba(26,86,219,.7)', borderRadius:2 },
-        { label: '대기', data: orgLabels.map(o=>orgCounts[o].wait), backgroundColor: 'rgba(200,200,200,.7)', borderRadius:2 },
-      ]
-    },
-    options: { responsive: true, scales: { x: { stacked: true }, y: { stacked: true } } }
-  });
-}
-
-// ── 대분류별 카드 ─────────────────────────────────────────────
-function renderCategoryCards() {
-  const cats = [...new Set(allData.map(r=>r.category).filter(Boolean))];
-  const container = document.getElementById('category-cards');
-  container.innerHTML = cats.map(cat => {
-    const rows = allData.filter(r => r.category === cat);
-    const lv3  = rows.filter(r => r.level === '3');
-    const avg  = lv3.length ? Math.round(lv3.map(r=>pct(r.actualRate)||0).reduce((a,b)=>a+b)/lv3.length) : 0;
-    const done = lv3.filter(r=>status(r)==='done').length;
-    const rows_html = rows.slice(0,8).map(r => {
-      const a = pct(r.actualRate);
-      return `<tr><td><code>${r.taskId}</code></td><td>${r.name||''}</td>
-        <td>${pbarHtml(pct(r.plannedRate), a)}</td></tr>`;
-    }).join('');
-    return `<div class="card">
-      <h3>🎯 ${cat}</h3>
-      <div style="margin-bottom:10px;font-size:13px;color:var(--text-sub)">
-        전체 ${rows.length}건 | Level3 완료 ${done}/${lv3.length} | 평균 실적 <b>${avg}%</b>
-      </div>
-      <div class="tbl-wrap" style="max-height:300px">
-        <table><tbody>${rows_html}</tbody></table>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ── 담당기관별 카드 ───────────────────────────────────────────
-function renderOrgCards() {
-  const orgs = [...new Set(allData.map(r=>r.organization).filter(Boolean))];
-  const container = document.getElementById('org-cards');
-  container.innerHTML = orgs.map((org,i) => {
-    const rows = allData.filter(r => r.organization === org);
-    const lv3  = rows.filter(r => r.level === '3');
-    const avg  = lv3.length ? Math.round(lv3.map(r=>pct(r.actualRate)||0).reduce((a,b)=>a+b)/lv3.length) : 0;
-    const rows_html = rows.slice(0,6).map(r => {
-      const a = pct(r.actualRate);
-      return `<tr><td><code>${r.taskId}</code></td><td>${r.name||''}</td>
-        <td>${statusBadge(status(r))}</td></tr>`;
-    }).join('');
-    return `<div class="card">
-      <h3><span class="org-chip ${ORG_COLORS[i%5]}">${org}</span></h3>
-      <div style="margin-bottom:10px;font-size:13px;color:var(--text-sub)">
-        전체 ${rows.length}건 | 평균 실적 <b>${avg}%</b>
-      </div>
-      <div class="tbl-wrap" style="max-height:280px">
-        <table><tbody>${rows_html}</tbody></table>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ── 탭 전환 ───────────────────────────────────────────────────
+// ── 탭 전환 ──────────────────────────────────────────────
 function switchTab(name) {
-  document.querySelectorAll('.tab').forEach((t,i) => {
-    const names = ['all','category','org'];
-    t.classList.toggle('active', names[i] === name);
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    const tabs = ['overview','category','org','list'];
+    b.classList.toggle('active', tabs[i] === name);
   });
-  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
 }
 
+// ── 시작 ─────────────────────────────────────────────────
 loadData();
 </script>
 </body>
