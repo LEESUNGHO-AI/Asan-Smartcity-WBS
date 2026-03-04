@@ -2,7 +2,7 @@ name: 🔄 Notion WBS 자동 동기화
 
 on:
   schedule:
-    # KST 기준 09:00, 13:00, 18:00, 22:00 (UTC -9h)
+    # KST 기준 09:00, 13:00, 18:00, 22:00 (UTC+9 = UTC 0,4,9,13)
     - cron: '0 0,4,9,13 * * *'
   workflow_dispatch:  # 수동 실행 허용
 
@@ -12,7 +12,7 @@ permissions:
 jobs:
   sync-wbs:
     runs-on: ubuntu-latest
-    name: Notion → data.json 동기화
+    name: Notion → data.json 동기화 (루트)
 
     steps:
       - name: Checkout repository
@@ -222,24 +222,23 @@ jobs:
               "records": records
           }
 
-          os.makedirs("data", exist_ok=True)
-          with open("data/wbs.json", "w", encoding="utf-8") as f:
+          with open("data.json", "w", encoding="utf-8") as f:
               json.dump(output, f, ensure_ascii=False, indent=2)
 
-          print(f"\n✅ data/wbs.json 저장 완료")
+          print(f"\n✅ data.json 저장 완료 (루트 경로)")
           print(f"   총 {total}건 | 전체 진행률 {overall_progress}% | 지연 {len(delayed)}건")
           EOF
 
-      - name: Commit and push data.json
+      - name: Commit and push data.json (루트)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/wbs.json
+          git add data.json
           if git diff --staged --quiet; then
             echo "변경사항 없음 - 커밋 생략"
           else
             TIMESTAMP=$(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M KST')
             git commit -m "🔄 WBS 자동 동기화: ${TIMESTAMP}"
             git push
-            echo "✅ data/wbs.json 업로드 완료"
+            echo "✅ data.json 업로드 완료 (루트)"
           fi
