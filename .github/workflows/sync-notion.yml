@@ -1,25 +1,22 @@
 name: 🔄 Notion WBS 자동 동기화
 
 on:
+  # KST 09:00 / 14:00 / 18:00 / 22:00
   schedule:
-    # KST 09:00 (UTC 00:00)
-    - cron: '0 0 * * *'
-    # KST 13:00 (UTC 04:00)
-    - cron: '0 4 * * *'
-    # KST 18:00 (UTC 09:00)
-    - cron: '0 9 * * *'
-    # KST 22:00 (UTC 13:00)
-    - cron: '0 13 * * *'
-  workflow_dispatch:   # 수동 실행 허용
+    - cron: '0 0 * * *'    # KST 09:00
+    - cron: '0 5 * * *'    # KST 14:00
+    - cron: '0 9 * * *'    # KST 18:00
+    - cron: '0 13 * * *'   # KST 22:00
+  workflow_dispatch:        # 수동 실행 허용
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # 파일 커밋 권한
+      contents: write
 
     steps:
-      - name: 📥 저장소 체크아웃
+      - name: ⬇️ 저장소 체크아웃
         uses: actions/checkout@v4
 
       - name: 🐍 Python 설정
@@ -27,42 +24,46 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 📦 의존성 없음 (표준 라이브러리만 사용)
-        run: echo "urllib 사용 — 추가 패키지 불필요"
-
-      - name: 🔄 Notion → wbs-data.json 동기화
+      - name: 🔄 Notion → JSON 동기화
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-        run: |
-          python sync_notion.py
+        run: python sync_notion.py
 
-      - name: 📊 생성된 데이터 확인
+      - name: 🔍 JSON 검증
         run: |
-          echo "=== data/wbs-data.json 크기 ==="
-          wc -c data/wbs-data.json
-          echo "=== 항목 수 확인 ==="
-          python3 -c "
-          import json
-          with open('data/wbs-data.json') as f:
-              d = json.load(f)
-          m = d['meta']
-          s = d['summary']
-          print(f'생성 시각: {m[\"generatedAtKst\"]}')
-          print(f'총 항목: {s[\"total\"]}건 | 완료: {s[\"done\"]} | 진행중: {s[\"inProg\"]}')
-          print(f'평균 실적공정률: {s[\"avgActual\"]}%')
-          "
+          python3 - <<'EOF'
+          import json, sys, os
+          path = "data/wbs-data.json"
+          if not os.path.exists(path):
+              print("❌ wbs-data.json 파일이 없습니다!")
+              sys.exit(1)
+          try:
+              with open(path, encoding="utf-8") as f:
+                  d = json.load(f)
+          except Exception as e:
+              print(f"❌ JSON 파싱 실패: {e}")
+              sys.exit(1)
+          s = d.get("summary", {})
+          items = d.get("items", [])
+          total = s.get("total", len(items))
+          print(f"✅ 검증 성공: {total}건 | 완료 {s.get('done',0)}건 | 진행 {s.get('inProg',0)}건")
+          print(f"   평균 실적: {s.get('avgActual',0)}% / 계획: {s.get('avgPlan',0)}%")
+          cats = s.get("byCategory", {})
+          print(f"   대분류 수: {len(cats)}개 → {list(cats.keys())[:5]}")
+          orgs = s.get("byOrg", {})
+          print(f"   담당기관: {list(orgs.keys())}")
+          EOF
 
       - name: 💾 변경사항 커밋 & 푸시
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "WBS Auto Sync Bot"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/wbs-data.json
-          # 변경사항 있을 때만 커밋
-          if git diff --staged --quiet; then
-            echo "⏭️ 변경사항 없음 — 커밋 스킵"
+          if git diff --cached --quiet; then
+            echo "ℹ️ 변경 없음 - 커밋 스킵"
           else
-            NOW=$(date -u -d "+9 hours" "+%Y-%m-%d %H:%M KST" 2>/dev/null || date "+%Y-%m-%d %H:%M KST")
-            git commit -m "📊 WBS 자동 업데이트 [$NOW]"
+            TIMESTAMP=$(TZ=Asia/Seoul date +"%Y-%m-%d %H:%M KST")
+            git commit -m "🔄 WBS 데이터 자동 동기화 [${TIMESTAMP}]"
             git push
-            echo "✅ 커밋 완료"
+            echo "✅ GitHub Pages 업데이트 완료"
           fi
