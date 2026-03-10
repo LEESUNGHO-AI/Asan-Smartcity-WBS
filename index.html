@@ -4,354 +4,1319 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>아산 스마트시티 WBS 대시보드 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-:root{
-  --primary:#1e3a5f;--accent:#2563eb;--green:#16a34a;--yellow:#ca8a04;
-  --red:#dc2626;--gray:#6b7280;--light:#f8fafc;--border:#e2e8f0;
-  --card:#ffffff;--shadow:0 1px 3px rgba(0,0,0,.1);
+/* ─── 디자인 시스템 ─────────────────────────────── */
+:root {
+  --bg:         #0d1117;
+  --bg2:        #161b22;
+  --bg3:        #1c2128;
+  --border:     #30363d;
+  --border2:    #21262d;
+  --text:       #e6edf3;
+  --text2:      #8b949e;
+  --text3:      #6e7681;
+  --blue:       #58a6ff;
+  --blue-dim:   #1f6feb;
+  --blue-glow:  rgba(88,166,255,.15);
+  --green:      #3fb950;
+  --green-dim:  #238636;
+  --yellow:     #d29922;
+  --orange:     #f0883e;
+  --red:        #f85149;
+  --purple:     #a371f7;
+  --cyan:       #39d353;
+  --accent:     #58a6ff;
+  --radius:     8px;
+  --shadow:     0 1px 3px rgba(1,4,9,.8);
+  --font:       'Noto Sans KR', system-ui, sans-serif;
+  --mono:       'IBM Plex Mono', monospace;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans KR',system-ui,sans-serif;background:#f1f5f9;color:#1e293b;font-size:14px}
-/* 헤더 */
-.header{background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:#fff;padding:16px 24px;
-  display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.header h1{font-size:18px;font-weight:700}
-.header .subtitle{font-size:12px;opacity:.8;margin-top:2px}
-.header .meta{text-align:right;font-size:11px;opacity:.75}
-/* KPI 카드 */
-.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:16px 24px}
-.kpi{background:var(--card);border-radius:8px;padding:14px;box-shadow:var(--shadow);border-left:4px solid var(--accent)}
-.kpi.green{border-color:var(--green)}.kpi.yellow{border-color:var(--yellow)}.kpi.red{border-color:var(--red)}
-.kpi-label{font-size:11px;color:var(--gray);margin-bottom:4px}
-.kpi-value{font-size:22px;font-weight:700;color:var(--primary)}
-.kpi-sub{font-size:11px;color:var(--gray);margin-top:2px}
-/* 차트 영역 */
-.charts{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 24px 16px}
-.chart-card{background:var(--card);border-radius:8px;padding:16px;box-shadow:var(--shadow)}
-.chart-title{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:12px;
-  padding-bottom:8px;border-bottom:1px solid var(--border)}
-/* 진행바 */
-.bar-row{margin-bottom:10px}
-.bar-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px}
-.bar-track{background:#e2e8f0;border-radius:999px;height:8px;position:relative}
-.bar-plan{position:absolute;top:0;left:0;height:100%;background:#93c5fd;border-radius:999px;opacity:.6}
-.bar-actual{position:absolute;top:0;left:0;height:100%;background:var(--accent);border-radius:999px}
-/* 테이블 */
-.table-section{padding:0 24px 24px}
-.table-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.table-header h2{font-size:14px;font-weight:600;color:var(--primary)}
-.controls{display:flex;gap:8px;flex-wrap:wrap}
-.controls input,.controls select{
-  padding:5px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;
-  background:#fff;cursor:pointer;outline:none}
-.controls input:focus,.controls select:focus{border-color:var(--accent)}
-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:8px;
-  box-shadow:var(--shadow);overflow:hidden}
-thead th{background:var(--primary);color:#fff;padding:10px 8px;text-align:left;
-  font-size:12px;font-weight:600;white-space:nowrap}
-tbody tr:hover{background:#f0f7ff}
-tbody tr:nth-child(even){background:#f8fafc}
-tbody tr:nth-child(even):hover{background:#e8f0ff}
-td{padding:8px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:middle}
-/* 레벨 배지 */
-.lv{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11px;font-weight:600}
-.lv-1{background:#dbeafe;color:#1d4ed8}
-.lv-2{background:#dcfce7;color:#15803d}
-.lv-3{background:#fef9c3;color:#92400e}
-/* 상태 배지 */
-.st{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
-.st-완료{background:#dcfce7;color:#15803d}
-.st-진행중{background:#dbeafe;color:#1d4ed8}
-.st-대기{background:#f1f5f9;color:#64748b}
-.st-지연{background:#fee2e2;color:#dc2626}
-/* 페이지네이션 */
-.paging{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;
-  background:var(--card);border-top:1px solid var(--border);font-size:12px;color:var(--gray)}
-.paging button{padding:5px 12px;border:1px solid var(--border);border-radius:6px;
-  background:#fff;cursor:pointer;font-size:12px}
-.paging button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.paging button:disabled{opacity:.4;cursor:default}
-/* 갱신 버튼 */
-.refresh-btn{padding:6px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);
-  border-radius:6px;color:#fff;cursor:pointer;font-size:12px}
-.refresh-btn:hover{background:rgba(255,255,255,.35)}
-/* 로딩 */
-.loading{text-align:center;padding:60px;color:var(--gray);font-size:16px}
-/* 기관 그리드 */
-.org-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.org-item{background:#f8fafc;border-radius:6px;padding:10px;text-align:center}
-.org-name{font-size:12px;font-weight:600;color:var(--primary);margin-bottom:4px}
-.org-count{font-size:11px;color:var(--gray)}
-.org-bar{background:#e2e8f0;border-radius:4px;height:6px;margin-top:6px}
-.org-bar-fill{background:var(--accent);border-radius:4px;height:100%}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ─── 레이아웃 ──────────────────────────────────── */
+.app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  height: 52px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 100;
+}
+.main { display: flex; flex: 1; overflow: hidden; }
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 16px 0;
+}
+.content { flex: 1; overflow-y: auto; padding: 20px; }
+
+/* ─── 상단바 ────────────────────────────────────── */
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.logo {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 700; color: var(--text);
+  letter-spacing: -.3px;
+}
+.logo-badge {
+  background: linear-gradient(135deg, var(--blue-dim), var(--purple));
+  color: #fff;
+  font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 20px;
+}
+.topbar-meta {
+  font-size: 11px; color: var(--text3);
+  display: flex; align-items: center; gap: 16px;
+}
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.sync-info {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--text3);
+}
+.sync-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50%      { opacity: .4; }
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg3);
+  color: var(--text2);
+  font-size: 12px; cursor: pointer;
+  transition: all .15s;
+}
+.btn:hover { border-color: var(--blue); color: var(--blue); }
+.btn-primary { background: var(--blue-dim); border-color: var(--blue-dim); color: #fff; }
+.btn-primary:hover { background: #1a7ad4; color: #fff; }
+
+/* ─── 사이드바 ──────────────────────────────────── */
+.sidebar-section { padding: 0 12px; margin-bottom: 20px; }
+.sidebar-title {
+  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  color: var(--text3); text-transform: uppercase;
+  padding: 4px 8px 8px;
+}
+.sidebar-nav-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 8px; border-radius: 6px;
+  cursor: pointer; color: var(--text2); font-size: 12px;
+  transition: all .15s; margin-bottom: 1px;
+  border: 1px solid transparent;
+}
+.sidebar-nav-item:hover { background: var(--bg3); color: var(--text); }
+.sidebar-nav-item.active {
+  background: var(--blue-glow);
+  border-color: var(--blue-dim);
+  color: var(--blue);
+}
+.sidebar-icon { font-size: 14px; flex-shrink: 0; }
+
+/* KPI 조각 */
+.mini-kpi {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 0 12px 8px;
+}
+.mini-kpi-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
+.mini-kpi-val { font-size: 22px; font-weight: 700; font-family: var(--mono); color: var(--text); }
+.mini-kpi-sub { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.mini-progress {
+  height: 4px; background: var(--border);
+  border-radius: 2px; margin-top: 8px; overflow: hidden;
+}
+.mini-progress-bar { height: 100%; background: var(--blue); border-radius: 2px; transition: width .6s; }
+
+/* ─── 콘텐츠 탭 ─────────────────────────────────── */
+.tab-bar {
+  display: flex; gap: 2px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.tab {
+  padding: 8px 16px; font-size: 13px;
+  color: var(--text3); cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .15s;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+/* ─── KPI 카드 그리드 ──────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.kpi-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.kpi-card:hover { border-color: var(--blue-dim); }
+.kpi-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.kpi-card.blue::before  { background: var(--blue); }
+.kpi-card.green::before { background: var(--green); }
+.kpi-card.yellow::before{ background: var(--yellow); }
+.kpi-card.red::before   { background: var(--red); }
+.kpi-card.purple::before{ background: var(--purple); }
+.kpi-label  { font-size: 11px; color: var(--text3); margin-bottom: 6px; }
+.kpi-value  { font-size: 28px; font-weight: 700; font-family: var(--mono); color: var(--text); line-height: 1; }
+.kpi-sub    { font-size: 11px; color: var(--text3); margin-top: 6px; }
+.kpi-trend  { position: absolute; top: 16px; right: 16px; font-size: 20px; opacity: .4; }
+
+/* ─── 차트 그리드 ───────────────────────────────── */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.charts-row-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.chart-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.chart-title {
+  font-size: 12px; font-weight: 600;
+  color: var(--text2); text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 14px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.chart-title span { color: var(--text3); font-weight: 400; font-size: 11px; text-transform: none; letter-spacing: 0; }
+.chart-wrap { position: relative; }
+
+/* ─── 진행률 바 ─────────────────────────────────── */
+.progress-list { display: flex; flex-direction: column; gap: 10px; }
+.prog-item {}
+.prog-header {
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--text2); margin-bottom: 4px;
+}
+.prog-name { font-weight: 500; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.prog-pcts { display: flex; gap: 8px; }
+.prog-track {
+  height: 6px; background: var(--border);
+  border-radius: 3px; position: relative; overflow: hidden;
+}
+.prog-plan {
+  position: absolute; top: 0; left: 0; height: 100%;
+  background: var(--border2); border-radius: 3px;
+}
+.prog-actual {
+  position: absolute; top: 0; left: 0; height: 100%;
+  border-radius: 3px;
+  transition: width .8s cubic-bezier(.4,0,.2,1);
+}
+
+/* ─── 기관 현황 카드 ────────────────────────────── */
+.org-list { display: flex; flex-direction: column; gap: 8px; }
+.org-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  background: var(--bg3);
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+}
+.org-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.org-name { font-size: 12px; font-weight: 600; flex: 1; }
+.org-stats { display: flex; gap: 12px; }
+.org-stat { text-align: right; }
+.org-stat-val { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--text); }
+.org-stat-label { font-size: 9px; color: var(--text3); }
+
+/* ─── 간트 영역 ─────────────────────────────────── */
+.gantt-wrap { overflow-x: auto; }
+.gantt-header {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+.gantt-label-col { width: 200px; flex-shrink: 0; font-size: 10px; color: var(--text3); padding: 4px 8px; }
+.gantt-months {
+  flex: 1; display: flex;
+}
+.gantt-month {
+  flex: 1; text-align: center;
+  font-size: 10px; color: var(--text3); padding: 4px 2px;
+  border-left: 1px solid var(--border2);
+}
+.gantt-row { display: flex; align-items: center; margin-bottom: 3px; min-height: 22px; }
+.gantt-task-name {
+  width: 200px; flex-shrink: 0;
+  font-size: 11px; color: var(--text2);
+  padding: 0 8px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.gantt-timeline { flex: 1; position: relative; height: 14px; }
+.gantt-bar {
+  position: absolute; height: 10px; top: 2px;
+  border-radius: 3px;
+  opacity: .85;
+}
+.gantt-bar.planned   { background: var(--border); top: 6px; height: 4px; }
+.gantt-bar.progress  { z-index: 2; }
+.gantt-today {
+  position: absolute; top: 0; bottom: 0; width: 1px;
+  background: var(--red); opacity: .6;
+  z-index: 10;
+}
+
+/* ─── 데이터 테이블 ──────────────────────────────── */
+.table-toolbar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.search-box {
+  flex: 1; min-width: 200px;
+  display: flex; align-items: center; gap: 6px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+.search-box input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--text); font-size: 12px; font-family: var(--font);
+}
+.search-box input::placeholder { color: var(--text3); }
+.filter-select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: var(--text2); font-size: 12px;
+  cursor: pointer; outline: none;
+  font-family: var(--font);
+}
+.filter-select:focus { border-color: var(--blue); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+thead th {
+  background: var(--bg3);
+  padding: 9px 10px;
+  text-align: left;
+  font-size: 10px; font-weight: 600;
+  color: var(--text3); text-transform: uppercase; letter-spacing: .5px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  cursor: pointer; user-select: none;
+}
+thead th:hover { color: var(--text2); }
+tbody tr {
+  border-bottom: 1px solid var(--border2);
+  transition: background .1s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(88,166,255,.04); }
+td {
+  padding: 8px 10px; font-size: 12px;
+  color: var(--text2); vertical-align: middle;
+}
+td.id-col { font-family: var(--mono); font-size: 11px; color: var(--blue); font-weight: 600; }
+td.name-col { color: var(--text); max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 배지들 */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 8px; border-radius: 20px;
+  font-size: 10px; font-weight: 600; white-space: nowrap;
+}
+.badge-lv1  { background: rgba(88,166,255,.15); color: var(--blue); border: 1px solid rgba(88,166,255,.3); }
+.badge-lv2  { background: rgba(63,185,80,.15);  color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+.badge-lv3  { background: rgba(163,113,247,.15);color: var(--purple); border: 1px solid rgba(163,113,247,.3); }
+.badge-done  { background: rgba(63,185,80,.15);  color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+.badge-prog  { background: rgba(88,166,255,.15); color: var(--blue);  border: 1px solid rgba(88,166,255,.3); }
+.badge-wait  { background: rgba(110,118,129,.15); color: var(--text3); border: 1px solid var(--border); }
+.badge-delay { background: rgba(248,81,73,.15);  color: var(--red);  border: 1px solid rgba(248,81,73,.3); }
+.badge-mile  { background: rgba(240,136,62,.15); color: var(--orange); border: 1px solid rgba(240,136,62,.3); }
+
+/* 인라인 진행률 바 */
+.inline-bar { display: flex; align-items: center; gap: 6px; }
+.inline-bar-track {
+  flex: 1; height: 4px; background: var(--border);
+  border-radius: 2px; overflow: hidden; min-width: 60px;
+}
+.inline-bar-fill { height: 100%; border-radius: 2px; transition: width .6s; }
+.inline-bar-val { font-family: var(--mono); font-size: 10px; min-width: 36px; text-align: right; }
+
+/* 페이징 */
+.paging-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 12px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-size: 11px; color: var(--text3);
+}
+.paging-btns { display: flex; gap: 4px; }
+.paging-btn {
+  padding: 4px 10px; border: 1px solid var(--border);
+  border-radius: 5px; background: var(--bg3);
+  color: var(--text2); font-size: 11px; cursor: pointer;
+  transition: all .15s;
+}
+.paging-btn:hover:not(:disabled) { border-color: var(--blue); color: var(--blue); }
+.paging-btn:disabled { opacity: .3; cursor: default; }
+.paging-btn.active { background: var(--blue-dim); border-color: var(--blue-dim); color: #fff; }
+
+/* ─── 빈 상태 / 로딩 ────────────────────────────── */
+.loading-overlay {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px; z-index: 9999;
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 13px; color: var(--text3); }
+
+/* 에러 박스 */
+.error-box {
+  background: rgba(248,81,73,.08);
+  border: 1px solid rgba(248,81,73,.3);
+  border-radius: var(--radius);
+  padding: 20px; text-align: center; color: var(--red);
+  margin: 20px 0;
+}
+.error-box .err-sub { font-size: 12px; color: var(--text3); margin-top: 8px; }
+
+/* ─── 섹션 제목 ─────────────────────────────────── */
+.section-title {
+  font-size: 11px; font-weight: 600;
+  color: var(--text3); text-transform: uppercase; letter-spacing: .5px;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border2);
+}
+
+/* ─── 숨기기 ─────────────────────────────────────── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ─── 스크롤바 ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .sidebar { display: none; }
+  .charts-row { grid-template-columns: 1fr 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div>
-    <h1>🏗️ 아산 스마트시티 WBS 대시보드 2026</h1>
-    <div class="subtitle">아산시 강소형 스마트시티 조성사업 | 사업기간: 2023.12 ~ 2026.12</div>
-  </div>
-  <div class="meta">
-    <button class="refresh-btn" onclick="location.reload()">↻ 새로고침</button>
-    <div id="last-updated" style="margin-top:4px">데이터 로딩 중...</div>
-  </div>
+<div id="loading-overlay" class="loading-overlay">
+  <div class="spinner"></div>
+  <div class="loading-text">WBS 데이터 로딩 중...</div>
 </div>
 
-<div id="kpi-area" class="kpi-grid">
-  <div class="loading" style="grid-column:1/-1">📡 WBS 데이터 로딩 중...</div>
-</div>
+<div class="app" id="app" style="display:none">
 
-<div id="charts-area" class="charts" style="display:none"></div>
-
-<div class="table-section">
-  <div class="table-header">
-    <h2>📋 WBS 세부 항목</h2>
-    <div class="controls">
-      <input id="search" type="text" placeholder="🔍 WBS ID / 작업명 검색" oninput="applyFilter()">
-      <select id="fLevel" onchange="applyFilter()">
-        <option value="">전체 Level</option>
-        <option value="1">Level 1</option>
-        <option value="2">Level 2</option>
-        <option value="3">Level 3</option>
-      </select>
-      <select id="fCat" onchange="applyFilter()">
-        <option value="">전체 대분류</option>
-      </select>
-      <select id="fOrg" onchange="applyFilter()">
-        <option value="">전체 기관</option>
-      </select>
-      <select id="fStatus" onchange="applyFilter()">
-        <option value="">전체 상태</option>
-        <option value="완료">완료</option>
-        <option value="진행중">진행중</option>
-        <option value="대기">대기</option>
-        <option value="지연">지연</option>
-      </select>
+  <!-- 상단바 -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="logo">
+        🏗️ 아산시 강소형 스마트시티
+        <span class="logo-badge">WBS 2026</span>
+      </div>
+      <div class="topbar-meta">
+        <span>사업기간: 2023.12 ~ 2026.12</span>
+        <span>·</span>
+        <span>총예산: 240억원</span>
+        <span>·</span>
+        <span>제일엔지니어링 · 아산시 · 호서대 · 충남연구원 · KAIST</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="sync-info">
+        <div class="sync-dot"></div>
+        <span id="sync-time">–</span>
+      </div>
+      <button class="btn" onclick="location.reload()">↻ 새로고침</button>
     </div>
   </div>
-  <table id="wbs-table">
-    <thead>
-      <tr>
-        <th>WBS ID</th><th>Lv</th><th style="min-width:180px">작업명</th>
-        <th>대분류</th><th>담당기관</th><th>시작일</th><th>종료일</th>
-        <th>계획(%)</th><th>실적(%)</th><th>진척차</th><th>담당자</th><th>상태</th>
-      </tr>
-    </thead>
-    <tbody id="wbs-body"><tr><td colspan="12" class="loading">로딩 중...</td></tr></tbody>
-  </table>
-  <div class="paging">
-    <span id="paging-info"></span>
-    <div>
-      <button onclick="goPage(-1)" id="btn-prev">◀ 이전</button>
-      <span id="page-num" style="margin:0 10px"></span>
-      <button onclick="goPage(1)" id="btn-next">다음 ▶</button>
+
+  <div class="main">
+
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <!-- 미니 KPI -->
+      <div class="mini-kpi">
+        <div class="mini-kpi-label">전체 진행률</div>
+        <div class="mini-kpi-val" id="sb-overall">–%</div>
+        <div class="mini-kpi-sub" id="sb-overall-plan">계획 –%</div>
+        <div class="mini-progress">
+          <div class="mini-progress-bar" id="sb-bar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="mini-kpi">
+        <div class="mini-kpi-label">전체 항목</div>
+        <div class="mini-kpi-val" id="sb-total">–</div>
+        <div class="mini-kpi-sub" id="sb-done">완료 – / 진행 –</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">화면 이동</div>
+        <div class="sidebar-nav-item active" onclick="showTab('overview')">
+          <span class="sidebar-icon">📊</span> 종합 현황
+        </div>
+        <div class="sidebar-nav-item" onclick="showTab('gantt')">
+          <span class="sidebar-icon">📅</span> 간트 차트
+        </div>
+        <div class="sidebar-nav-item" onclick="showTab('table')">
+          <span class="sidebar-icon">📋</span> 세부 항목
+        </div>
+        <div class="sidebar-nav-item" onclick="showTab('org')">
+          <span class="sidebar-icon">🏢</span> 기관별 현황
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">필터 (공통)</div>
+        <select class="filter-select" style="width:100%;margin-bottom:6px" id="sb-filter-org" onchange="globalFilter()">
+          <option value="">전체 기관</option>
+        </select>
+        <select class="filter-select" style="width:100%;margin-bottom:6px" id="sb-filter-lv" onchange="globalFilter()">
+          <option value="">전체 Level</option>
+          <option value="1">Level 1</option>
+          <option value="2">Level 2</option>
+          <option value="3">Level 3</option>
+        </select>
+        <select class="filter-select" style="width:100%" id="sb-filter-cat" onchange="globalFilter()">
+          <option value="">전체 대분류</option>
+        </select>
+      </div>
     </div>
-    <select onchange="changePageSize(this.value)" style="padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-size:12px">
-      <option value="30">30개씩</option>
-      <option value="50">50개씩</option>
-      <option value="100">100개씩</option>
-    </select>
-  </div>
-</div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+
+      <!-- 탭바 -->
+      <div class="tab-bar">
+        <div class="tab active" id="tab-overview" onclick="showTab('overview')">📊 종합 현황</div>
+        <div class="tab" id="tab-gantt" onclick="showTab('gantt')">📅 간트 차트</div>
+        <div class="tab" id="tab-table" onclick="showTab('table')">📋 세부 항목</div>
+        <div class="tab" id="tab-org" onclick="showTab('org')">🏢 기관별 현황</div>
+      </div>
+
+      <!-- ① 종합 현황 -->
+      <div class="tab-panel active" id="panel-overview">
+
+        <!-- KPI 카드 4개 -->
+        <div class="kpi-grid">
+          <div class="kpi-card blue">
+            <div class="kpi-trend">📋</div>
+            <div class="kpi-label">전체 WBS 항목</div>
+            <div class="kpi-value" id="kpi-total">–</div>
+            <div class="kpi-sub" id="kpi-total-sub">Level 1·2·3 포함</div>
+          </div>
+          <div class="kpi-card green">
+            <div class="kpi-trend">✅</div>
+            <div class="kpi-label">완료 항목</div>
+            <div class="kpi-value" id="kpi-done">–</div>
+            <div class="kpi-sub" id="kpi-done-sub">–</div>
+          </div>
+          <div class="kpi-card yellow">
+            <div class="kpi-trend">📈</div>
+            <div class="kpi-label">평균 실적공정률</div>
+            <div class="kpi-value" id="kpi-actual">–</div>
+            <div class="kpi-sub" id="kpi-plan-sub">계획 –%</div>
+          </div>
+          <div class="kpi-card red">
+            <div class="kpi-trend">⚠️</div>
+            <div class="kpi-label">지연 항목</div>
+            <div class="kpi-value" id="kpi-delay">–</div>
+            <div class="kpi-sub">계획 대비 5%p 이상 미달</div>
+          </div>
+        </div>
+
+        <!-- 차트 3열 -->
+        <div class="charts-row">
+          <!-- 전체 진행률 도넛 -->
+          <div class="chart-card">
+            <div class="chart-title">전체 진행률 <span>실적 vs 계획</span></div>
+            <div class="chart-wrap" style="height:180px; display:flex; align-items:center; justify-content:center;">
+              <canvas id="ch-donut" style="max-width:170px;max-height:170px"></canvas>
+            </div>
+            <div style="text-align:center; margin-top:8px;">
+              <div style="font-size:11px;color:var(--text3)">
+                <span style="display:inline-block;width:10px;height:10px;background:var(--blue);border-radius:2px;margin-right:4px;"></span>실적
+                <span style="display:inline-block;width:10px;height:10px;background:var(--border);border-radius:2px;margin:0 4px 0 12px;"></span>미달성
+              </div>
+            </div>
+          </div>
+
+          <!-- 상태별 분포 -->
+          <div class="chart-card">
+            <div class="chart-title">상태별 분포 <span>항목 수</span></div>
+            <div class="chart-wrap" style="height:180px;">
+              <canvas id="ch-status"></canvas>
+            </div>
+          </div>
+
+          <!-- Level별 완료율 -->
+          <div class="chart-card">
+            <div class="chart-title">Level별 완료율 <span>%</span></div>
+            <div class="chart-wrap" style="height:180px;">
+              <canvas id="ch-level"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2열 차트 -->
+        <div class="charts-row-2">
+          <!-- 대분류별 계획 vs 실적 -->
+          <div class="chart-card">
+            <div class="chart-title">대분류별 계획 vs 실적 공정률 <span>단위: %</span></div>
+            <div class="chart-wrap" style="height:220px;">
+              <canvas id="ch-category"></canvas>
+            </div>
+          </div>
+
+          <!-- 기관별 WBS 수 -->
+          <div class="chart-card">
+            <div class="chart-title">담당기관별 항목 수 <span>건</span></div>
+            <div class="chart-wrap" style="height:220px;">
+              <canvas id="ch-org-count"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 진행 중인 항목 (상위 10개) -->
+        <div class="section-title">진행 중 항목 — 실적공정률 높은 순</div>
+        <div class="chart-card">
+          <div class="progress-list" id="top-progress-list"></div>
+        </div>
+
+      </div><!-- /overview -->
+
+      <!-- ② 간트 차트 -->
+      <div class="tab-panel" id="panel-gantt">
+        <div class="chart-card">
+          <div class="chart-title">
+            WBS 간트 차트 <span>Level 1·2 표시 / 사업 기간: 2023.12 ~ 2026.12</span>
+          </div>
+          <div class="gantt-wrap" id="gantt-wrap"></div>
+        </div>
+      </div>
+
+      <!-- ③ 세부 항목 테이블 -->
+      <div class="tab-panel" id="panel-table">
+        <div class="table-toolbar">
+          <div class="search-box">
+            🔍 <input id="tbl-search" type="text" placeholder="WBS ID 또는 작업명 검색…" oninput="applyTableFilter()">
+          </div>
+          <select class="filter-select" id="tbl-lv" onchange="applyTableFilter()">
+            <option value="">전체 Level</option>
+            <option value="1">Level 1</option><option value="2">Level 2</option><option value="3">Level 3</option>
+          </select>
+          <select class="filter-select" id="tbl-status" onchange="applyTableFilter()">
+            <option value="">전체 상태</option>
+            <option value="완료">완료</option><option value="진행중">진행중</option>
+            <option value="지연">지연</option><option value="대기">대기</option>
+          </select>
+          <select class="filter-select" id="tbl-cat" onchange="applyTableFilter()">
+            <option value="">전체 대분류</option>
+          </select>
+          <span id="tbl-count" style="font-size:11px;color:var(--text3);white-space:nowrap"></span>
+        </div>
+
+        <table id="main-table">
+          <thead>
+            <tr>
+              <th onclick="sortTable('id')">WBS ID ↕</th>
+              <th>Lv</th>
+              <th onclick="sortTable('name')">작업명 ↕</th>
+              <th>대분류</th>
+              <th>담당기관</th>
+              <th>시작일</th>
+              <th>종료일</th>
+              <th onclick="sortTable('plannedRate')">계획(%) ↕</th>
+              <th onclick="sortTable('actualRate')">실적(%) ↕</th>
+              <th onclick="sortTable('deviation')">진척차 ↕</th>
+              <th>담당자</th>
+              <th>상태</th>
+            </tr>
+          </thead>
+          <tbody id="main-tbody"></tbody>
+        </table>
+        <div class="paging-row">
+          <span id="paging-info"></span>
+          <div class="paging-btns" id="paging-btns"></div>
+          <select class="filter-select" onchange="changePageSize(+this.value)">
+            <option value="30">30개씩</option>
+            <option value="50">50개씩</option>
+            <option value="100">100개씩</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ④ 기관별 현황 -->
+      <div class="tab-panel" id="panel-org">
+        <div id="org-detail-grid"></div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
 
 <script>
-let allItems=[], filtered=[], pageSize=30, currentPage=1;
+/* ═══════════════════════════════════════════════════
+   DATA & STATE
+═══════════════════════════════════════════════════ */
+let ALL = [], FILTERED = [];
+let sortKey = 'id', sortDir = 1;
+let pageSize = 30, curPage = 1;
 
-// 데이터 로드 — data/wbs-data.json
-async function loadData(){
-  try{
-    const r=await fetch('data/wbs-data.json?_='+ Date.now());
-    if(!r.ok) throw new Error(`HTTP ${r.status}`);
-    const d=await r.json();
-    if(!d.items?.length) throw new Error('데이터 없음');
-    return d;
-  }catch(e){
+const ORG_COLORS = {
+  '제일엔지니어링': '#58a6ff',
+  '아산시':        '#3fb950',
+  '호서대':        '#a371f7',
+  '충남연구원':    '#f0883e',
+  'KAIST':         '#f85149',
+};
+const CAT_SHORT = {
+  '사업총괄':              '사업총괄',
+  '프로젝트 관리/거버넌스':'PM/거버넌스',
+  '실시설계':              '실시설계',
+  '나라장터 발주 지원':    '나라장터',
+  '서비스 구축':           '서비스구축',
+  '통합시험/시범운영':     '통합시험',
+  '준공/검수/이관':        '준공/검수',
+  '운영(3년)':             '운영(3년)',
+  '마일스톤':              '마일스톤',
+};
+
+function getStatus(item) {
+  const a = item.actualRate, p = item.plannedRate;
+  if (a === null || a === undefined) return '대기';
+  if (a >= 100) return '완료';
+  if (a > 0 && p !== null && p !== undefined && a < p - 5) return '지연';
+  if (a > 0) return '진행중';
+  return '대기';
+}
+
+function fmtPct(v) {
+  if (v === null || v === undefined) return '–';
+  return v.toFixed(1) + '%';
+}
+
+/* ═══════════════════════════════════════════════════
+   LOAD DATA
+═══════════════════════════════════════════════════ */
+async function loadData() {
+  try {
+    const r = await fetch('data/wbs-data.json?_=' + Date.now());
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.json();
+  } catch (e) {
     console.error(e);
     return null;
   }
 }
 
-function fmtPct(v){
-  if(v===null||v===undefined) return '-';
-  return v.toFixed(1)+'%';
-}
-function pctColor(v){
-  if(v===null||v===undefined) return '';
-  if(v>=100) return 'color:#16a34a;font-weight:700';
-  if(v>=70)  return 'color:#2563eb';
-  if(v>=40)  return 'color:#ca8a04';
-  return 'color:#dc2626';
-}
-function devColor(v){
-  if(v===null||v===undefined) return '';
-  if(v>=0) return 'color:#16a34a';
-  return 'color:#dc2626;font-weight:600';
-}
-function getStatus(item){
-  const a=item.actualRate, p=item.plannedRate;
-  if(a===null||a===undefined) return item.status||'대기';
-  if(a>=100) return '완료';
-  if(a>0 && p!==null && a<p-5) return '지연';
-  if(a>0) return '진행중';
-  return '대기';
-}
+/* ═══════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════ */
+(async () => {
+  const data = await loadData();
+  document.getElementById('loading-overlay').style.display = 'none';
 
-function renderKPI(summary){
-  const {total,done,inProg,avgPlan,avgActual,avgDev}=summary;
-  const delayed=allItems.filter(i=>getStatus(i)==='지연').length;
-  document.getElementById('kpi-area').innerHTML=`
-    <div class="kpi"><div class="kpi-label">전체 항목</div><div class="kpi-value">${total}</div><div class="kpi-sub">WBS 전체</div></div>
-    <div class="kpi green"><div class="kpi-label">완료</div><div class="kpi-value">${done}</div><div class="kpi-sub">${total?Math.round(done/total*100):0}%</div></div>
-    <div class="kpi"><div class="kpi-label">진행중</div><div class="kpi-value">${inProg}</div><div class="kpi-sub">처리 중</div></div>
-    <div class="kpi red"><div class="kpi-label">지연</div><div class="kpi-value">${delayed}</div><div class="kpi-sub">계획 대비</div></div>
-    <div class="kpi yellow"><div class="kpi-label">평균 계획(%)</div><div class="kpi-value">${avgPlan}%</div><div class="kpi-sub">계획공정률</div></div>
-    <div class="kpi"><div class="kpi-label">평균 실적(%)</div><div class="kpi-value">${avgActual}%</div><div class="kpi-sub">실적공정률</div></div>
-  `;
-}
-
-function renderCharts(summary){
-  const {byCategory,byOrg}=summary;
-  const ca=document.getElementById('charts-area');
-  ca.style.display='grid';
-
-  // 대분류 차트
-  const cats=Object.entries(byCategory).filter(([,v])=>v.avgActual!==undefined);
-  const catHtml=cats.map(([name,v])=>`
-    <div class="bar-row">
-      <div class="bar-label">
-        <span>${name}</span>
-        <span style="font-weight:600">${v.avgActual}% <span style="opacity:.6;font-size:11px">/ 계획 ${v.avgPlan}%</span></span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-plan" style="width:${Math.min(v.avgPlan,100)}%"></div>
-        <div class="bar-actual" style="width:${Math.min(v.avgActual,100)}%"></div>
-      </div>
-    </div>`).join('');
-
-  // 기관 카드
-  const orgs=Object.entries(byOrg);
-  const maxCnt=Math.max(...orgs.map(([,v])=>v.count),1);
-  const orgHtml=`<div class="org-grid">${orgs.map(([name,v])=>`
-    <div class="org-item">
-      <div class="org-name">${name}</div>
-      <div class="org-count">${v.count}건 | 완료 ${v.done} | 진행 ${v.inProg}</div>
-      <div class="org-bar"><div class="org-bar-fill" style="width:${Math.round(v.count/maxCnt*100)}%"></div></div>
-    </div>`).join('')}</div>`;
-
-  ca.innerHTML=`
-    <div class="chart-card">
-      <div class="chart-title">📈 대분류별 계획 vs 실적 공정률</div>
-      ${catHtml||'<div style="color:var(--gray);text-align:center;padding:20px">대분류 데이터 없음</div>'}
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">🏢 담당기관별 WBS 현황</div>
-      ${orgHtml||'<div style="color:var(--gray);text-align:center;padding:20px">기관 데이터 없음</div>'}
-    </div>`;
-}
-
-function populateFilters(items){
-  const cats=[...new Set(items.map(i=>i.category).filter(Boolean))].sort();
-  const orgs=[...new Set(items.map(i=>i.organization).filter(Boolean))].sort();
-  const fc=document.getElementById('fCat');
-  const fo=document.getElementById('fOrg');
-  cats.forEach(c=>{const o=document.createElement('option');o.value=o.textContent=c;fc.appendChild(o)});
-  orgs.forEach(o=>{const op=document.createElement('option');op.value=op.textContent=o;fo.appendChild(op)});
-}
-
-function applyFilter(){
-  const q=document.getElementById('search').value.toLowerCase();
-  const lv=document.getElementById('fLevel').value;
-  const cat=document.getElementById('fCat').value;
-  const org=document.getElementById('fOrg').value;
-  const st=document.getElementById('fStatus').value;
-  filtered=allItems.filter(i=>{
-    if(q&&!i.id.toLowerCase().includes(q)&&!i.name.toLowerCase().includes(q)) return false;
-    if(lv&&i.level!==lv) return false;
-    if(cat&&i.category!==cat) return false;
-    if(org&&i.organization!==org) return false;
-    const status=getStatus(i);
-    if(st&&status!==st) return false;
-    return true;
-  });
-  currentPage=1;
-  renderTable();
-}
-
-function renderTable(){
-  const start=(currentPage-1)*pageSize;
-  const page=filtered.slice(start,start+pageSize);
-  const tbody=document.getElementById('wbs-body');
-  if(!page.length){
-    tbody.innerHTML='<tr><td colspan="12" style="text-align:center;padding:30px;color:var(--gray)">검색 결과 없음</td></tr>';
-  } else {
-    tbody.innerHTML=page.map(i=>{
-      const status=getStatus(i);
-      const dev=i.deviation;
-      const devStr=dev!==null&&dev!==undefined?(dev>=0?'+':'')+dev.toFixed(1)+'%':'-';
-      return `<tr>
-        <td style="font-weight:600;color:var(--accent)">${i.id}</td>
-        <td><span class="lv lv-${i.level||'1'}">${i.level||'-'}</span></td>
-        <td>${i.name}</td>
-        <td style="font-size:11px">${i.category||'-'}</td>
-        <td style="font-size:11px">${i.organization||'-'}</td>
-        <td style="font-size:11px">${i.startDate||'-'}</td>
-        <td style="font-size:11px">${i.endDate||'-'}</td>
-        <td style="${pctColor(i.plannedRate)}">${fmtPct(i.plannedRate)}</td>
-        <td style="${pctColor(i.actualRate)}">${fmtPct(i.actualRate)}</td>
-        <td style="${devColor(dev)}">${devStr}</td>
-        <td style="font-size:11px">${i.manager||'-'}</td>
-        <td><span class="st st-${status}">${status}</span></td>
-      </tr>`;
-    }).join('');
-  }
-  const total=filtered.length;
-  const totalPages=Math.ceil(total/pageSize)||1;
-  document.getElementById('paging-info').textContent=
-    `${total}건 중 ${Math.min(start+1,total)}~${Math.min(start+pageSize,total)}번째 표시`;
-  document.getElementById('page-num').textContent=`${currentPage} / ${totalPages}`;
-  document.getElementById('btn-prev').disabled=currentPage<=1;
-  document.getElementById('btn-next').disabled=currentPage>=totalPages;
-}
-
-function goPage(d){
-  const tot=Math.ceil(filtered.length/pageSize)||1;
-  currentPage=Math.max(1,Math.min(tot,currentPage+d));
-  renderTable();
-}
-function changePageSize(v){pageSize=parseInt(v);currentPage=1;renderTable();}
-
-// 메인 초기화
-(async()=>{
-  const data=await loadData();
-  if(!data){
-    document.getElementById('kpi-area').innerHTML=
-      '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#dc2626">'+
-      '❌ 데이터 로드 실패 — GitHub Actions가 아직 실행되지 않았거나 NOTION_API_KEY Secret이 미설정 상태입니다.<br>'+
-      '<small style="color:#6b7280;margin-top:8px;display:block">GitHub → Actions → 🔄 Notion WBS 자동 동기화 → Run workflow 수동 실행</small></div>';
+  if (!data || !data.items?.length) {
+    document.getElementById('app').style.display = 'flex';
+    document.getElementById('panel-overview').innerHTML =
+      `<div class="error-box">
+        <div>❌ 데이터를 불러올 수 없습니다</div>
+        <div class="err-sub">GitHub Actions → <b>🔄 Notion WBS 자동 동기화</b> → Run workflow를 실행하거나<br>
+        NOTION_API_KEY Secret이 등록되어 있는지 확인하세요.</div>
+      </div>`;
     return;
   }
 
-  allItems=[...data.items];
-  filtered=[...allItems];
+  ALL = data.items.map(i => ({ ...i, status: getStatus(i) }));
+  FILTERED = [...ALL];
 
-  // KPI
-  renderKPI(data.summary);
+  // 동기화 시각
+  document.getElementById('sync-time').textContent =
+    '동기화: ' + (data.meta?.generatedAtKst || '');
 
-  // 차트
-  renderCharts(data.summary);
-
-  // 필터 옵션 채우기
-  populateFilters(allItems);
-
-  // 테이블
+  renderSidebar(data.summary);
+  buildFilters();
+  renderOverview(data.summary);
+  renderGantt();
   renderTable();
+  renderOrgDetail();
 
-  // 갱신 시각
-  document.getElementById('last-updated').textContent=
-    '📅 ' + (data.meta.generatedAtKst||data.meta.generatedAt||'');
+  document.getElementById('app').style.display = 'flex';
 })();
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════════ */
+function renderSidebar(s) {
+  document.getElementById('sb-overall').textContent = s.avgActual + '%';
+  document.getElementById('sb-overall-plan').textContent = '계획 ' + s.avgPlan + '%';
+  document.getElementById('sb-bar').style.width = Math.min(s.avgActual, 100) + '%';
+  document.getElementById('sb-total').textContent = s.total;
+  document.getElementById('sb-done').textContent = `완료 ${s.done} / 진행 ${s.inProg}`;
+}
+
+/* ═══════════════════════════════════════════════════
+   FILTER 초기화
+═══════════════════════════════════════════════════ */
+function buildFilters() {
+  const orgs = [...new Set(ALL.map(i => i.organization).filter(Boolean))].sort();
+  const cats = [...new Set(ALL.map(i => i.category).filter(Boolean).filter(c => CAT_SHORT[c] || c.length < 15))].sort();
+
+  ['sb-filter-org'].forEach(id => {
+    const el = document.getElementById(id);
+    orgs.forEach(o => { const op = new Option(o, o); el.appendChild(op); });
+  });
+  ['sb-filter-cat'].forEach(id => {
+    const el = document.getElementById(id);
+    cats.forEach(c => { const op = new Option(CAT_SHORT[c] || c.substring(0,12), c); el.appendChild(op); });
+  });
+
+  // 테이블 필터
+  const tblCat = document.getElementById('tbl-cat');
+  cats.forEach(c => { const op = new Option(CAT_SHORT[c] || c.substring(0,12), c); tblCat.appendChild(op); });
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL FILTER (사이드바)
+═══════════════════════════════════════════════════ */
+function globalFilter() {
+  const org = document.getElementById('sb-filter-org').value;
+  const lv  = document.getElementById('sb-filter-lv').value;
+  const cat = document.getElementById('sb-filter-cat').value;
+  FILTERED = ALL.filter(i => {
+    if (org && i.organization !== org) return false;
+    if (lv  && i.level !== lv)  return false;
+    if (cat && i.category !== cat) return false;
+    return true;
+  });
+  applyTableFilter();
+}
+
+/* ═══════════════════════════════════════════════════
+   탭 전환
+═══════════════════════════════════════════════════ */
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sidebar-nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════════
+   ① 종합 현황
+═══════════════════════════════════════════════════ */
+function renderOverview(s) {
+  // KPI
+  document.getElementById('kpi-total').textContent  = s.total;
+  document.getElementById('kpi-done').textContent   = s.done;
+  document.getElementById('kpi-actual').textContent = s.avgActual + '%';
+  const delayCount = ALL.filter(i => i.status === '지연').length;
+  document.getElementById('kpi-delay').textContent  = delayCount;
+  document.getElementById('kpi-done-sub').textContent  = `전체의 ${s.total ? Math.round(s.done/s.total*100) : 0}%`;
+  document.getElementById('kpi-plan-sub').textContent  = `계획 ${s.avgPlan}%`;
+
+  // ── 도넛 차트 ──
+  new Chart(document.getElementById('ch-donut'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [s.avgActual, Math.max(0, 100 - s.avgActual)],
+        backgroundColor: ['#58a6ff', '#21262d'],
+        borderWidth: 0,
+        circumference: 360,
+      }]
+    },
+    options: {
+      cutout: '70%',
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false },
+      },
+    },
+    plugins: [{
+      id: 'centerText',
+      afterDraw(chart) {
+        const { ctx, width: w, height: h } = chart;
+        ctx.save();
+        ctx.font = 'bold 20px IBM Plex Mono';
+        ctx.fillStyle = '#e6edf3';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(s.avgActual + '%', w/2, h/2 - 6);
+        ctx.font = '11px Noto Sans KR';
+        ctx.fillStyle = '#6e7681';
+        ctx.fillText('평균 실적', w/2, h/2 + 14);
+        ctx.restore();
+      }
+    }]
+  });
+
+  // ── 상태별 바 차트 ──
+  const statusData = ['완료','진행중','지연','대기'].map(st =>
+    ALL.filter(i => i.status === st).length
+  );
+  new Chart(document.getElementById('ch-status'), {
+    type: 'bar',
+    data: {
+      labels: ['완료','진행중','지연','대기'],
+      datasets: [{
+        data: statusData,
+        backgroundColor: ['#238636','#1f6feb','#da3633','#30363d'],
+        borderRadius: 4,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: '#21262d' }, ticks: { color: '#8b949e', font: { size: 11 } } },
+        y: { grid: { color: '#21262d' }, ticks: { color: '#8b949e', font: { size: 10 } } }
+      }
+    }
+  });
+
+  // ── Level별 완료율 ──
+  const lvLabels = ['1','2','3'];
+  const lvDone   = lvLabels.map(lv => {
+    const sub = ALL.filter(i => i.level === lv);
+    const done = sub.filter(i => i.status === '완료').length;
+    return sub.length ? Math.round(done/sub.length*100) : 0;
+  });
+  new Chart(document.getElementById('ch-level'), {
+    type: 'bar',
+    data: {
+      labels: ['Level 1','Level 2','Level 3'],
+      datasets: [{
+        label: '완료율(%)',
+        data: lvDone,
+        backgroundColor: ['#1f6feb','#238636','#6e40c9'],
+        borderRadius: 4,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: '#21262d' }, ticks: { color: '#8b949e', font: { size: 11 } } },
+        y: { max: 100, grid: { color: '#21262d' }, ticks: { color: '#8b949e', font: { size: 10 }, callback: v => v+'%' } }
+      }
+    }
+  });
+
+  // ── 대분류별 계획 vs 실적 ──
+  const validCats = Object.keys(CAT_SHORT).filter(c => {
+    const items = ALL.filter(i => i.category === c && i.actualRate !== null);
+    return items.length > 0;
+  });
+  const catPlan   = validCats.map(c => {
+    const items = ALL.filter(i => i.category === c && i.plannedRate !== null);
+    return items.length ? Math.round(items.reduce((a,b) => a + b.plannedRate, 0) / items.length * 10) / 10 : 0;
+  });
+  const catActual = validCats.map(c => {
+    const items = ALL.filter(i => i.category === c && i.actualRate !== null);
+    return items.length ? Math.round(items.reduce((a,b) => a + b.actualRate, 0) / items.length * 10) / 10 : 0;
+  });
+  new Chart(document.getElementById('ch-category'), {
+    type: 'bar',
+    data: {
+      labels: validCats.map(c => CAT_SHORT[c] || c.substring(0,8)),
+      datasets: [
+        { label: '계획(%)', data: catPlan, backgroundColor: 'rgba(88,166,255,.25)', borderColor: '#58a6ff', borderWidth: 1, borderRadius: 3, borderSkipped: false },
+        { label: '실적(%)', data: catActual, backgroundColor: 'rgba(63,185,80,.6)', borderColor: '#3fb950', borderWidth: 1, borderRadius: 3, borderSkipped: false },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { color: '#8b949e', font: { size: 11 }, boxWidth: 12, padding: 12 }
+        }
+      },
+      scales: {
+        x: { grid: { color: '#21262d' }, ticks: { color: '#8b949e', font: { size: 10 } } },
+        y: { max: 100, grid: { color: '#21262d' }, ticks: { color: '#8b949e', font: { size: 10 }, callback: v => v+'%' } }
+      }
+    }
+  });
+
+  // ── 기관별 항목 수 도넛 ──
+  const orgNames = Object.keys(ORG_COLORS).filter(o => ALL.some(i => i.organization === o));
+  const orgCounts = orgNames.map(o => ALL.filter(i => i.organization === o).length);
+  new Chart(document.getElementById('ch-org-count'), {
+    type: 'doughnut',
+    data: {
+      labels: orgNames,
+      datasets: [{
+        data: orgCounts,
+        backgroundColor: orgNames.map(o => ORG_COLORS[o]),
+        borderColor: '#161b22',
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '55%',
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: { color: '#8b949e', font: { size: 11 }, boxWidth: 10, padding: 10 }
+        }
+      }
+    }
+  });
+
+  // ── 진행 중 항목 진행률 리스트 ──
+  const topItems = [...ALL]
+    .filter(i => i.status === '진행중' && i.actualRate !== null)
+    .sort((a, b) => (b.actualRate || 0) - (a.actualRate || 0))
+    .slice(0, 12);
+
+  const listEl = document.getElementById('top-progress-list');
+  listEl.innerHTML = topItems.map(i => {
+    const plan   = i.plannedRate || 0;
+    const actual = i.actualRate  || 0;
+    const color  = actual >= plan ? '#3fb950' : actual >= plan - 10 ? '#d29922' : '#f85149';
+    return `<div class="prog-item">
+      <div class="prog-header">
+        <span class="prog-name">[${i.id}] ${i.name.replace(/^\[.*?\]\s*/,'')}</span>
+        <span class="prog-pcts">
+          <span style="color:var(--text3)">계획 ${fmtPct(plan)}</span>
+          <span style="color:${color};font-weight:600">실적 ${fmtPct(actual)}</span>
+        </span>
+      </div>
+      <div class="prog-track">
+        <div class="prog-plan"  style="width:${Math.min(plan,100)}%"></div>
+        <div class="prog-actual" style="width:${Math.min(actual,100)}%;background:${color}"></div>
+      </div>
+    </div>`;
+  }).join('');
+  if (!topItems.length) listEl.innerHTML = '<div style="color:var(--text3);text-align:center;padding:20px">진행 중인 항목 없음</div>';
+}
+
+/* ═══════════════════════════════════════════════════
+   ② 간트 차트
+═══════════════════════════════════════════════════ */
+function renderGantt() {
+  const wrap = document.getElementById('gantt-wrap');
+
+  // Level 1·2만 표시
+  const items = ALL
+    .filter(i => (i.level === '1' || i.level === '2') && i.startDate && i.endDate)
+    .sort((a, b) => a.id.localeCompare(b.id));
+
+  if (!items.length) {
+    wrap.innerHTML = '<div style="color:var(--text3);padding:20px;text-align:center">날짜 데이터가 있는 항목 없음</div>';
+    return;
+  }
+
+  // 전체 기간
+  const START  = new Date('2023-12-01');
+  const END    = new Date('2026-12-31');
+  const TOTAL  = END - START;
+  const TODAY  = new Date('2026-03-10');
+  const todayPct = Math.min(100, Math.max(0, (TODAY - START) / TOTAL * 100));
+
+  // 월 헤더 생성 (분기별 표시)
+  const months = [];
+  let cur = new Date(START);
+  while (cur <= END) {
+    if (cur.getMonth() % 3 === 0) months.push(new Date(cur));
+    cur = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+  }
+
+  const quarterHeaders = months.map(m => {
+    const left = (m - START) / TOTAL * 100;
+    const label = `${m.getFullYear()}.Q${Math.floor(m.getMonth()/3)+1}`;
+    return `<div class="gantt-month" style="position:absolute;left:${left}%;font-size:10px;color:var(--text3)">${label}</div>`;
+  }).join('');
+
+  const rows = items.map(i => {
+    const s   = new Date(i.startDate);
+    const e   = new Date(i.endDate);
+    const left = Math.max(0, (s - START) / TOTAL * 100);
+    const width = Math.min(100 - left, (e - s) / TOTAL * 100);
+    const actual = i.actualRate || 0;
+    const color = i.level === '1' ? '#58a6ff' : '#3fb950';
+    const statusDot = i.status === '완료' ? '✅' : i.status === '지연' ? '🔴' : i.status === '진행중' ? '🟡' : '⚪';
+    return `<div class="gantt-row">
+      <div class="gantt-task-name" title="[${i.id}] ${i.name.replace(/^\[.*?\]\s*/,'')}" style="padding-left:${i.level==='2'?16:6}px;">
+        ${statusDot} <span style="color:${color};font-size:10px;font-family:var(--mono)">${i.id}</span>
+        <span style="font-size:11px;color:var(--text2);margin-left:4px">${i.name.replace(/^\[.*?\]\s*/,'').substring(0,18)}</span>
+      </div>
+      <div class="gantt-timeline">
+        <div class="gantt-today" style="left:${todayPct}%"></div>
+        <div class="gantt-bar planned" style="left:${left}%;width:${width}%"></div>
+        <div class="gantt-bar progress" style="left:${left}%;width:${width * actual/100}%;background:${color};opacity:.7"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  wrap.innerHTML = `
+    <div style="position:relative;margin-bottom:6px;height:18px">
+      <div style="position:absolute;left:200px;right:0">${quarterHeaders}</div>
+    </div>
+    <div style="font-size:10px;color:var(--text3);padding:4px 8px;display:flex;gap:12px;margin-bottom:4px;padding-left:208px">
+      <span><span style="display:inline-block;width:20px;height:3px;background:var(--border);margin-right:4px;vertical-align:middle"></span>계획</span>
+      <span><span style="display:inline-block;width:20px;height:8px;background:var(--blue);margin-right:4px;vertical-align:middle;border-radius:2px;opacity:.7"></span>실적</span>
+      <span><span style="display:inline-block;width:2px;height:12px;background:var(--red);margin-right:4px;vertical-align:middle;opacity:.6"></span>오늘(2026.03.10)</span>
+    </div>
+    ${rows}
+  `;
+}
+
+/* ═══════════════════════════════════════════════════
+   ③ 세부 테이블
+═══════════════════════════════════════════════════ */
+let tableItems = [];
+
+function applyTableFilter() {
+  const q      = (document.getElementById('tbl-search')?.value || '').toLowerCase();
+  const lv     = document.getElementById('tbl-lv')?.value || '';
+  const status = document.getElementById('tbl-status')?.value || '';
+  const cat    = document.getElementById('tbl-cat')?.value || '';
+  const orgF   = document.getElementById('sb-filter-org')?.value || '';
+  const lvF    = document.getElementById('sb-filter-lv')?.value || '';
+  const catF   = document.getElementById('sb-filter-cat')?.value || '';
+
+  tableItems = ALL.filter(i => {
+    if (q && !i.id.toLowerCase().includes(q) && !i.name.toLowerCase().includes(q)) return false;
+    if (lv && i.level !== lv) return false;
+    if (status && i.status !== status) return false;
+    if (cat && i.category !== cat) return false;
+    if (orgF && i.organization !== orgF) return false;
+    if (lvF && i.level !== lvF) return false;
+    if (catF && i.category !== catF) return false;
+    return true;
+  });
+
+  // 정렬
+  tableItems.sort((a, b) => {
+    let va = a[sortKey], vb = b[sortKey];
+    if (va === null || va === undefined) va = -Infinity;
+    if (vb === null || vb === undefined) vb = -Infinity;
+    if (typeof va === 'string') return sortDir * va.localeCompare(vb);
+    return sortDir * (va - vb);
+  });
+
+  curPage = 1;
+  renderTable();
+}
+
+function sortTable(key) {
+  if (sortKey === key) sortDir *= -1; else { sortKey = key; sortDir = 1; }
+  applyTableFilter();
+}
+
+function renderTable() {
+  if (!tableItems.length) tableItems = [...ALL];
+  const total = tableItems.length;
+  const start = (curPage - 1) * pageSize;
+  const page  = tableItems.slice(start, start + pageSize);
+
+  const tbody = document.getElementById('main-tbody');
+  tbody.innerHTML = page.map(i => {
+    const dev = i.deviation;
+    const devStr  = dev !== null && dev !== undefined ? (dev >= 0 ? '+' : '') + dev.toFixed(1) + '%' : '–';
+    const devColor = dev === null || dev === undefined ? '' : dev >= 0 ? 'color:#3fb950' : 'color:#f85149;font-weight:600';
+    const actualColor = (i.actualRate || 0) >= (i.plannedRate || 0) ? '#3fb950' : (i.status === '지연' ? '#f85149' : '#58a6ff');
+    const catName = i.category ? (CAT_SHORT[i.category] || i.category.substring(0,10)) : '–';
+    const orgColor = ORG_COLORS[i.organization] || '#8b949e';
+
+    return `<tr>
+      <td class="id-col">${i.id}</td>
+      <td><span class="badge badge-lv${i.level||'1'}">${i.level||'–'}</span></td>
+      <td class="name-col" title="${i.name}">${i.name.replace(/^\[.*?\]\s*/,'')}</td>
+      <td style="font-size:11px;color:var(--text3)">${catName}</td>
+      <td><span style="color:${orgColor};font-size:11px;font-weight:600">${i.organization||'–'}</span></td>
+      <td style="font-size:11px;color:var(--text3)">${i.startDate||'–'}</td>
+      <td style="font-size:11px;color:var(--text3)">${i.endDate||'–'}</td>
+      <td>
+        <div class="inline-bar">
+          <div class="inline-bar-track">
+            <div class="inline-bar-fill" style="width:${Math.min(i.plannedRate||0,100)}%;background:#30363d"></div>
+          </div>
+          <span class="inline-bar-val" style="color:var(--text3)">${fmtPct(i.plannedRate)}</span>
+        </div>
+      </td>
+      <td>
+        <div class="inline-bar">
+          <div class="inline-bar-track">
+            <div class="inline-bar-fill" style="width:${Math.min(i.actualRate||0,100)}%;background:${actualColor}"></div>
+          </div>
+          <span class="inline-bar-val" style="color:${actualColor}">${fmtPct(i.actualRate)}</span>
+        </div>
+      </td>
+      <td style="font-family:var(--mono);font-size:11px;${devColor}">${devStr}</td>
+      <td style="font-size:11px;color:var(--text3)">${i.manager||'–'}</td>
+      <td><span class="badge badge-${i.status}">${i.status}</span></td>
+    </tr>`;
+  }).join('');
+
+  // 페이징
+  const totalPages = Math.ceil(total / pageSize) || 1;
+  document.getElementById('paging-info').textContent =
+    `${total}건 중 ${Math.min(start+1,total)}~${Math.min(start+pageSize,total)}번째`;
+  document.getElementById('tbl-count').textContent = `총 ${total}건`;
+
+  const btns = document.getElementById('paging-btns');
+  btns.innerHTML = '';
+  const addBtn = (label, page, disabled=false, active=false) => {
+    const b = document.createElement('button');
+    b.className = 'paging-btn' + (active ? ' active' : '');
+    b.textContent = label;
+    b.disabled = disabled;
+    b.onclick = () => { curPage = page; renderTable(); };
+    btns.appendChild(b);
+  };
+  addBtn('◀', curPage-1, curPage<=1);
+  const range = 2;
+  for (let p = Math.max(1, curPage-range); p <= Math.min(totalPages, curPage+range); p++)
+    addBtn(p, p, false, p===curPage);
+  addBtn('▶', curPage+1, curPage>=totalPages);
+}
+
+function changePageSize(v) { pageSize = v; curPage = 1; renderTable(); }
+
+/* ═══════════════════════════════════════════════════
+   ④ 기관별 현황
+═══════════════════════════════════════════════════ */
+function renderOrgDetail() {
+  const grid = document.getElementById('org-detail-grid');
+  const orgs = Object.keys(ORG_COLORS).filter(o => ALL.some(i => i.organization === o));
+
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = '1fr 1fr';
+  grid.style.gap = '12px';
+
+  grid.innerHTML = orgs.map(org => {
+    const items = ALL.filter(i => i.organization === org);
+    const done  = items.filter(i => i.status === '완료').length;
+    const prog  = items.filter(i => i.status === '진행중').length;
+    const delay = items.filter(i => i.status === '지연').length;
+    const wait  = items.filter(i => i.status === '대기').length;
+    const avgA  = items.filter(i=>i.actualRate!==null).length
+      ? Math.round(items.filter(i=>i.actualRate!==null).reduce((a,b)=>a+b.actualRate,0)/items.filter(i=>i.actualRate!==null).length*10)/10
+      : 0;
+    const avgP  = items.filter(i=>i.plannedRate!==null).length
+      ? Math.round(items.filter(i=>i.plannedRate!==null).reduce((a,b)=>a+b.plannedRate,0)/items.filter(i=>i.plannedRate!==null).length*10)/10
+      : 0;
+    const color = ORG_COLORS[org];
+
+    const taskRows = items
+      .filter(i => i.level !== '1')
+      .sort((a,b) => (b.actualRate||0)-(a.actualRate||0))
+      .slice(0,6)
+      .map(i => {
+        const a = i.actualRate || 0;
+        const p = i.plannedRate || 0;
+        const c = a >= p ? '#3fb950' : a >= p-10 ? '#d29922' : '#f85149';
+        return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:10px;color:${color};min-width:36px">${i.id}</span>
+          <span style="font-size:11px;color:var(--text2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${i.name.replace(/^\[.*?\]\s*/,'')}</span>
+          <div style="width:60px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;">
+            <div style="width:${Math.min(a,100)}%;height:100%;background:${c};border-radius:2px;"></div>
+          </div>
+          <span style="font-family:var(--mono);font-size:10px;color:${c};min-width:36px;text-align:right">${fmtPct(a)}</span>
+        </div>`;
+      }).join('');
+
+    return `<div class="chart-card" style="border-left:3px solid ${color}">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
+        <div>
+          <div style="font-size:14px;font-weight:700;color:${color}">${org}</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:2px">총 ${items.length}개 항목</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:var(--text)">${avgA}%</div>
+          <div style="font-size:10px;color:var(--text3)">평균 실적 (계획 ${avgP}%)</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="badge badge-done">완료 ${done}</span>
+        <span class="badge badge-prog">진행 ${prog}</span>
+        <span class="badge badge-delay">지연 ${delay}</span>
+        <span class="badge badge-wait">대기 ${wait}</span>
+      </div>
+      <div style="height:4px;background:var(--border);border-radius:2px;margin-bottom:12px;overflow:hidden">
+        <div style="width:${Math.min(avgA,100)}%;height:100%;background:${color};border-radius:2px;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">주요 진행 항목</div>
+      ${taskRows || '<div style="color:var(--text3);font-size:11px;text-align:center;padding:8px">항목 없음</div>'}
+    </div>`;
+  }).join('');
+}
 </script>
 </body>
 </html>
