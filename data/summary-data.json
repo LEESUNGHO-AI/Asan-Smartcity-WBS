@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-03-11T23:06:10.772416+09:00",
-    "generatedAtKst": "2026-03-11 23:06 KST",
+    "generatedAt": "2026-03-12T08:57:07.199068+09:00",
+    "generatedAtKst": "2026-03-12 08:57 KST",
     "source": "Notion 총괄표 DB",
     "dbId": "ba6685cb0690464ea8da4d5cd04cc167",
     "totalRecords": 10
@@ -15,11 +15,11 @@
     "inProg": 35,
     "delayed": 4,
     "waiting": 13,
-    "plannedRate": 90.5,
-    "actualRate": 70.0,
-    "deviation": -20.5,
+    "plannedRate": 94.8,
+    "actualRate": 51.6,
+    "deviation": -43.2,
     "achieveRate": 58.4,
-    "updatedAt": "2026-03-11",
+    "updatedAt": "2026-03-12",
     "note": ""
   },
   "byCategory": [
@@ -36,7 +36,7 @@
       "actualRate": 89.7,
       "deviation": -10.3,
       "achieveRate": 70.5,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -49,10 +49,10 @@
       "delayed": 4,
       "waiting": 3,
       "plannedRate": 100,
-      "actualRate": 48.8,
-      "deviation": -51.2,
+      "actualRate": 42.4,
+      "deviation": -57.6,
       "achieveRate": 37.5,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -68,7 +68,7 @@
       "actualRate": 98.0,
       "deviation": -2.0,
       "achieveRate": 76.2,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -84,7 +84,7 @@
       "actualRate": 74.9,
       "deviation": -25.1,
       "achieveRate": 55.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -96,11 +96,11 @@
       "inProg": 0,
       "delayed": 0,
       "waiting": 0,
-      "plannedRate": 50.0,
-      "actualRate": 10.0,
-      "deviation": -40.0,
+      "plannedRate": 62.5,
+      "actualRate": 12.5,
+      "deviation": -50.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -116,7 +116,7 @@
       "actualRate": 0.0,
       "deviation": 0.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -132,7 +132,7 @@
       "actualRate": 0.0,
       "deviation": 0.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -148,7 +148,7 @@
       "actualRate": 0.0,
       "deviation": -100,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -164,7 +164,7 @@
       "actualRate": 40.0,
       "deviation": 40.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     }
   ],
@@ -179,11 +179,11 @@
       "inProg": 0,
       "delayed": 0,
       "waiting": 0,
-      "plannedRate": 50.0,
-      "actualRate": 10.0,
-      "deviation": -40.0,
+      "plannedRate": 62.5,
+      "actualRate": 12.5,
+      "deviation": -50.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -199,7 +199,7 @@
       "actualRate": 0.0,
       "deviation": 0.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -215,7 +215,7 @@
       "actualRate": 98.0,
       "deviation": -2.0,
       "achieveRate": 76.2,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -231,7 +231,7 @@
       "actualRate": 0.0,
       "deviation": 0.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -244,10 +244,10 @@
       "delayed": 4,
       "waiting": 3,
       "plannedRate": 100,
-      "actualRate": 48.8,
-      "deviation": -51.2,
+      "actualRate": 42.4,
+      "deviation": -57.6,
       "achieveRate": 37.5,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -263,7 +263,7 @@
       "actualRate": 74.9,
       "deviation": -25.1,
       "achieveRate": 55.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -279,7 +279,7 @@
       "actualRate": 89.7,
       "deviation": -10.3,
       "achieveRate": 70.5,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -295,7 +295,7 @@
       "actualRate": 0.0,
       "deviation": -100,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -307,11 +307,11 @@
       "inProg": 35,
       "delayed": 4,
       "waiting": 13,
-      "plannedRate": 90.5,
-      "actualRate": 70.0,
-      "deviation": -20.5,
+      "plannedRate": 94.8,
+      "actualRate": 51.6,
+      "deviation": -43.2,
       "achieveRate": 58.4,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     },
     {
@@ -327,7 +327,7 @@
       "actualRate": 40.0,
       "deviation": 40.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-03-11",
+      "updatedAt": "2026-03-12",
       "note": ""
     }
   ]
