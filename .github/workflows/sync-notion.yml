@@ -1,20 +1,17 @@
 name: 🔄 Notion WBS 자동 동기화
-
 on:
-  # KST 09:00 / 14:00 / 18:00 / 22:00
   schedule:
     - cron: '0 0 * * *'    # KST 09:00
     - cron: '0 5 * * *'    # KST 14:00
     - cron: '0 9 * * *'    # KST 18:00
     - cron: '0 13 * * *'   # KST 22:00
-  workflow_dispatch:        # 수동 실행 허용
+  workflow_dispatch:
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: ⬇️ 저장소 체크아웃
         uses: actions/checkout@v4
@@ -24,7 +21,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 🔄 Notion → JSON 동기화
+      - name: 🔄 Notion → JSON 동기화 (WBS + 총괄표)
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
         run: python sync_notion.py
@@ -33,37 +30,55 @@ jobs:
         run: |
           python3 - <<'EOF'
           import json, sys, os
+
+          # ── wbs-data.json 검증 ──────────────────────
           path = "data/wbs-data.json"
           if not os.path.exists(path):
               print("❌ wbs-data.json 파일이 없습니다!")
               sys.exit(1)
-          try:
-              with open(path, encoding="utf-8") as f:
-                  d = json.load(f)
-          except Exception as e:
-              print(f"❌ JSON 파싱 실패: {e}")
-              sys.exit(1)
+          with open(path, encoding="utf-8") as f:
+              d = json.load(f)
           s = d.get("summary", {})
           items = d.get("items", [])
           total = s.get("total", len(items))
-          print(f"✅ 검증 성공: {total}건 | 완료 {s.get('done',0)}건 | 진행 {s.get('inProg',0)}건")
+          print(f"✅ wbs-data.json 검증 성공")
+          print(f"   항목: {total}건 | 완료 {s.get('done',0)}건 | 진행 {s.get('inProg',0)}건")
           print(f"   평균 실적: {s.get('avgActual',0)}% / 계획: {s.get('avgPlan',0)}%")
           cats = s.get("byCategory", {})
-          print(f"   대분류 수: {len(cats)}개 → {list(cats.keys())[:5]}")
+          print(f"   대분류 수: {len(cats)}개")
           orgs = s.get("byOrg", {})
           print(f"   담당기관: {list(orgs.keys())}")
+
+          # ── summary-data.json 검증 ───────────────────
+          spath = "data/summary-data.json"
+          if not os.path.exists(spath):
+              print("⚠️  summary-data.json 파일이 없습니다 (총괄표 DB 데이터 없음)")
+          else:
+              with open(spath, encoding="utf-8") as f:
+                  sd = json.load(f)
+              records = sd.get("records", [])
+              src = sd.get("meta", {}).get("source", "unknown")
+              print(f"✅ summary-data.json 검증 성공")
+              print(f"   레코드: {len(records)}건 | 소스: {src}")
+              tr = sd.get("total")
+              if tr:
+                  print(f"   전체현황: 총 {tr.get('total',0)}건 | 계획 {tr.get('plannedRate',0)}% | 실적 {tr.get('actualRate',0)}%")
           EOF
 
       - name: 💾 변경사항 커밋 & 푸시
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # wbs-data.json + summary-data.json 모두 스테이징
           git add data/wbs-data.json
+          [ -f data/summary-data.json ] && git add data/summary-data.json || true
+
           if git diff --cached --quiet; then
             echo "ℹ️ 변경 없음 - 커밋 스킵"
           else
             TIMESTAMP=$(TZ=Asia/Seoul date +"%Y-%m-%d %H:%M KST")
-            git commit -m "🔄 WBS 데이터 자동 동기화 [${TIMESTAMP}]"
+            git commit -m "🔄 WBS + 총괄표 데이터 자동 동기화 [${TIMESTAMP}]"
             git push
             echo "✅ GitHub Pages 업데이트 완료"
           fi
