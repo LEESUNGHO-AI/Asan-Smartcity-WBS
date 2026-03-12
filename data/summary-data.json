@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-03-12T10:05:07.485313+09:00",
-    "generatedAtKst": "2026-03-12 10:05 KST",
+    "generatedAt": "2026-03-12T10:13:00.662896+09:00",
+    "generatedAtKst": "2026-03-12 10:13 KST",
     "source": "Notion 총괄표 DB",
     "dbId": "ba6685cb0690464ea8da4d5cd04cc167",
     "totalRecords": 8
@@ -20,7 +20,7 @@
     "deviation": -41.2,
     "achieveRate": 56.6,
     "updatedAt": "2026-03-12",
-    "note": "공정관리 시트 직접 확인값 | 기준일 2026-12-31 | 수동복구 09:58"
+    "note": "공정관리시트(공정률)+Slack(n건수) 통합반영 | 2026-03-12"
   },
   "byCategory": [
     {
@@ -248,7 +248,7 @@
       "deviation": -41.2,
       "achieveRate": 56.6,
       "updatedAt": "2026-03-12",
-      "note": "공정관리 시트 직접 확인값 | 기준일 2026-12-31 | 수동복구 09:58"
+      "note": "공정관리시트(공정률)+Slack(n건수) 통합반영 | 2026-03-12"
     },
     {
       "id": "32050aa9-577d-81ea-bf51-d1e92e901d50",
