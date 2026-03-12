@@ -278,6 +278,25 @@ def gen_summary(wbs_items):
     if pages:
         records = [parse_summary(p) for p in pages]
         source  = "Notion 총괄표 DB"
+
+        # ── 건수가 0인 레코드 → WBS 집계로 보완 ──────────────────
+        total_r = next((r for r in records if r["groupType"]=="전체"), None)
+        if total_r and total_r["total"] == 0:
+            print("  ⚠️ 총괄표 DB 건수 = 0 → WBS 2026 DB에서 건수 자동 보완", flush=True)
+            fallback = fallback_summary(wbs_items)
+            fb_map   = {r["name"]: r for r in fallback}
+            for rec in records:
+                fb = fb_map.get(rec["name"])
+                if fb:
+                    rec["total"]   = fb["total"]
+                    rec["done"]    = fb["done"]
+                    rec["inProg"]  = fb["inProg"]
+                    rec["delayed"] = fb["delayed"]
+                    rec["waiting"] = fb["waiting"]
+                    if rec["total"] > 0:
+                        rec["achieveRate"] = round(rec["done"] / rec["total"] * 100, 1)
+            source = "Notion 총괄표 DB (공정률) + WBS DB (건수)"
+            print(f"  ✅ 건수 보완 완료: 전체 {total_r['total']}건", flush=True)
     else:
         print("  ⚠️ 총괄표 DB 비어있음 → WBS 집계 폴백", flush=True)
         records = fallback_summary(wbs_items)
