@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-03-12T09:06:19.072859+09:00",
-    "generatedAtKst": "2026-03-12 09:06 KST",
+    "generatedAt": "2026-03-12T09:43:28.797860+09:00",
+    "generatedAtKst": "2026-03-12 09:43 KST",
     "source": "Notion 총괄표 DB",
     "dbId": "ba6685cb0690464ea8da4d5cd04cc167",
     "totalRecords": 10
@@ -20,7 +20,7 @@
     "deviation": -43.2,
     "achieveRate": 58.4,
     "updatedAt": "2026-03-12",
-    "note": ""
+    "note": "Slack #wbs 총괄표 메시지 직접 반영 | 2026-03-12 08:56 KST"
   },
   "byCategory": [
     {
@@ -37,7 +37,7 @@
       "deviation": -10.3,
       "achieveRate": 70.5,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8168-884b-c38ceacb896c",
@@ -53,7 +53,7 @@
       "deviation": -57.6,
       "achieveRate": 37.5,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8136-bb09-d1ff036c219a",
@@ -69,7 +69,7 @@
       "deviation": -2.0,
       "achieveRate": 76.2,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8174-826d-c2da8cee4e84",
@@ -85,7 +85,7 @@
       "deviation": -25.1,
       "achieveRate": 55.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-811e-9803-edfa196bcb99",
@@ -101,7 +101,7 @@
       "deviation": -50.0,
       "achieveRate": 0.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8128-97f6-c9ea131f2221",
@@ -149,7 +149,7 @@
       "deviation": -100,
       "achieveRate": 0.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-81ea-bf51-d1e92e901d50",
@@ -165,7 +165,7 @@
       "deviation": 40.0,
       "achieveRate": 0.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     }
   ],
   "byOrg": [],
@@ -184,7 +184,7 @@
       "deviation": -50.0,
       "achieveRate": 0.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8128-97f6-c9ea131f2221",
@@ -216,7 +216,7 @@
       "deviation": -2.0,
       "achieveRate": 76.2,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8159-a5d0-fcf3612602c9",
@@ -248,7 +248,7 @@
       "deviation": -57.6,
       "achieveRate": 37.5,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8174-826d-c2da8cee4e84",
@@ -264,7 +264,7 @@
       "deviation": -25.1,
       "achieveRate": 55.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-8174-b3fa-d4506ed26bec",
@@ -280,7 +280,7 @@
       "deviation": -10.3,
       "achieveRate": 70.5,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-818a-a324-c353089088b6",
@@ -296,7 +296,7 @@
       "deviation": -100,
       "achieveRate": 0.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     },
     {
       "id": "32050aa9-577d-81cb-bd39-d21dd1a2d4c2",
@@ -312,7 +312,7 @@
       "deviation": -43.2,
       "achieveRate": 58.4,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 총괄표 메시지 직접 반영 | 2026-03-12 08:56 KST"
     },
     {
       "id": "32050aa9-577d-81ea-bf51-d1e92e901d50",
@@ -328,7 +328,7 @@
       "deviation": 40.0,
       "achieveRate": 0.0,
       "updatedAt": "2026-03-12",
-      "note": ""
+      "note": "Slack #wbs 메시지 직접 반영"
     }
   ]
 }
