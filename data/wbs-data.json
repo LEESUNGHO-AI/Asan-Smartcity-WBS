@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-03-18T23:21:55.339022+09:00",
-    "generatedAtKst": "2026-03-18 23:21 KST",
+    "generatedAt": "2026-03-19T10:47:59.649930+09:00",
+    "generatedAtKst": "2026-03-19 10:47 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
     "totalRecords": 169
@@ -13,8 +13,8 @@
     "delayed": 10,
     "waiting": 16,
     "avgPlan": 94.5,
-    "avgActual": 64.9,
-    "avgDev": -29.6,
+    "avgActual": 65.0,
+    "avgDev": -29.5,
     "byCategory": {
       "기타": {
         "total": 1,
@@ -50,7 +50,7 @@
         "delayed": 4,
         "waiting": 2,
         "avgPlan": 100.0,
-        "avgActual": 48.8
+        "avgActual": 49.1
       },
       "프로젝트 관리/거버넌스": {
         "total": 11,
@@ -124,7 +124,7 @@
         "delayed": 10,
         "waiting": 16,
         "avgPlan": 94.5,
-        "avgActual": 64.9
+        "avgActual": 65.0
       }
     }
   },
@@ -556,27 +556,27 @@
     },
     {
       "id": "31b50aa9-577d-8113-bf60-c2f4c132b2c3",
-      "name": "[4.1] 메타버스 플랫폼",
+      "name": "[4.1] 디지털 OASIS SPOT 구축",
       "wbsId": "4.1",
       "level": "2",
       "category": "서비스 구축",
-      "subCategory": "메타버스 플랫폼 / 요구사항 정합화→설계→개발/구축→연계→단위/통합 테스트",
+      "subCategory": "디지털 OASIS SPOT 구축 / 디지털 OASIS SPOT 대상지 선정, 법률 인허가 검토 및 실구축",
       "organization": "제일엔지니어링",
-      "manager": "담당 PL(메타버스)",
+      "manager": "담당 PL(NOP)",
       "collaborator": "플랫폼/보안",
       "approver": "",
-      "startDate": "2026-04-01",
-      "endDate": "2026-08-31",
-      "duration": 153,
+      "startDate": "2024-01-01",
+      "endDate": "2026-09-30",
+      "duration": 1004,
       "weight": 1,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 17.0,
+      "deviation": -83.0,
       "budget": 0,
       "predecessor": "5.2",
-      "deliverable": "메타버스 플랫폼",
+      "deliverable": "기술협상결과서, 준공 산출물 등",
       "evidence": "",
-      "note": "진행 중",
+      "note": "진행 중 | 국토부 실시계획 변경 승인 절차 진행간 인허가 진행 중",
       "status": "진행중"
     },
     {
