@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-03-24T10:28:38.228852+09:00",
-    "generatedAtKst": "2026-03-24 10:28 KST",
+    "generatedAt": "2026-03-24T14:52:16.977825+09:00",
+    "generatedAtKst": "2026-03-24 14:52 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
     "totalRecords": 169
@@ -12,9 +12,9 @@
     "inProg": 56,
     "delayed": 10,
     "waiting": 16,
-    "avgPlan": 94.5,
-    "avgActual": 64.9,
-    "avgDev": -29.6,
+    "avgPlan": 94.3,
+    "avgActual": 64.8,
+    "avgDev": -29.5,
     "byCategory": {
       "기타": {
         "total": 1,
@@ -86,7 +86,7 @@
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 100.0,
-        "avgActual": 20.0
+        "avgActual": 10.0
       },
       "마일스톤": {
         "total": 3,
@@ -112,7 +112,7 @@
         "inProg": 1,
         "delayed": 0,
         "waiting": 0,
-        "avgPlan": 33.0,
+        "avgPlan": 0.0,
         "avgActual": 40.0
       }
     },
@@ -123,8 +123,8 @@
         "inProg": 56,
         "delayed": 10,
         "waiting": 16,
-        "avgPlan": 94.5,
-        "avgActual": 64.9
+        "avgPlan": 94.3,
+        "avgActual": 64.8
       }
     }
   },
@@ -690,13 +690,13 @@
       "manager": "PM, PMO, 기술총괄, 행정/전산 관리",
       "collaborator": "PM, PMO, 기술총괄, 감리",
       "approver": "",
-      "startDate": "2025-12-10",
-      "endDate": "2025-12-31",
+      "startDate": "2026-12-10",
+      "endDate": "2026-12-31",
       "duration": 22,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 20.0,
-      "deviation": -80.0,
+      "actualRate": 0.0,
+      "deviation": -100,
       "budget": 0,
       "predecessor": "8.1",
       "deliverable": "이관 계획 및 결과보고서",
@@ -3119,14 +3119,14 @@
       "endDate": "2028-12-31",
       "duration": 1096,
       "weight": 2.5,
-      "plannedRate": 33.0,
+      "plannedRate": 0.0,
       "actualRate": 40.0,
-      "deviation": 7.0,
+      "deviation": 40.0,
       "budget": 0,
       "predecessor": "◆M3",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "진행 중 | 계획 수립 중",
+      "note": "진행 중 | 3년 운영 예산 및 계획 수립 중",
       "status": "진행중"
     },
     {
