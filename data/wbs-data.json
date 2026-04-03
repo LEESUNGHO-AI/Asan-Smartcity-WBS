@@ -1,38 +1,38 @@
 {
   "meta": {
-    "generatedAt": "2026-04-03T10:51:35.740146+09:00",
-    "generatedAtKst": "2026-04-03 10:51 KST",
+    "generatedAt": "2026-04-03T12:37:32.160525+09:00",
+    "generatedAtKst": "2026-04-03 12:37 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
-    "totalRecords": 177
+    "totalRecords": 179
   },
   "summary": {
-    "total": 175,
-    "done": 89,
-    "inProg": 61,
+    "total": 176,
+    "done": 88,
+    "inProg": 62,
     "delayed": 10,
-    "waiting": 15,
-    "avgPlan": 78.7,
-    "avgActual": 62.1,
-    "avgDev": -16.6,
+    "waiting": 16,
+    "avgPlan": 76.9,
+    "avgActual": 61.3,
+    "avgDev": -15.6,
     "byCategory": {
       "기타": {
-        "total": 1,
+        "total": 2,
         "done": 0,
         "inProg": 0,
         "delayed": 0,
-        "waiting": 1,
+        "waiting": 2,
         "avgPlan": 0.0,
         "avgActual": 0.0
       },
       "나라장터 발주 지원": {
-        "total": 48,
+        "total": 47,
         "done": 33,
-        "inProg": 10,
+        "inProg": 9,
         "delayed": 0,
         "waiting": 5,
-        "avgPlan": 97.7,
-        "avgActual": 79.5
+        "avgPlan": 97.6,
+        "avgActual": 79.3
       },
       "시스템 구축": {
         "total": 4,
@@ -44,13 +44,13 @@
         "avgActual": 100.0
       },
       "서비스 구축": {
-        "total": 64,
+        "total": 63,
         "done": 25,
-        "inProg": 35,
+        "inProg": 34,
         "delayed": 4,
         "waiting": 0,
-        "avgPlan": 59.5,
-        "avgActual": 46.9
+        "avgPlan": 58.9,
+        "avgActual": 47.0
       },
       "프로젝트 관리/거버넌스": {
         "total": 11,
@@ -62,22 +62,22 @@
         "avgActual": 92.8
       },
       "사업총괄": {
-        "total": 29,
-        "done": 15,
+        "total": 28,
+        "done": 14,
         "inProg": 7,
         "delayed": 0,
         "waiting": 7,
-        "avgPlan": 74.7,
-        "avgActual": 65.4
+        "avgPlan": 73.8,
+        "avgActual": 65.0
       },
       "실시설계": {
-        "total": 6,
+        "total": 5,
         "done": 5,
-        "inProg": 1,
+        "inProg": 0,
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 100.0,
-        "avgActual": 98.8
+        "avgActual": 99.0
       },
       "준공/검수/이관": {
         "total": 2,
@@ -97,6 +97,15 @@
         "avgPlan": 100.0,
         "avgActual": 33.3
       },
+      "운영·유지관리·SLA·모니터링·기능개선/고도화(계약 범위에 따라)": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 11.0,
+        "avgActual": 2.5
+      },
       "통합시험/시범운영": {
         "total": 6,
         "done": 0,
@@ -106,6 +115,24 @@
         "avgPlan": 100.0,
         "avgActual": 0.0
       },
+      "요구사항 정의서 및 제안요청서 작성": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 46.0,
+        "avgActual": 40.0
+      },
+      "디지털 OASIS SPOT 및 이노베이션 센터 각 1개소 구축\n 판매 데이터·CCTV 연계·디지털 노마드 접수/운영/거래": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 92.0,
+        "avgActual": 88.0
+      },
       "운영(3년)": {
         "total": 1,
         "done": 0,
@@ -114,17 +141,62 @@
         "waiting": 0,
         "avgPlan": 0.0,
         "avgActual": 40.0
+      },
+      "최종 산출물 제출(설계·구축·운영계획)·성과보고서": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 22.0,
+        "avgActual": 98.0
       }
     },
     "byOrg": {
       "제일엔지니어링": {
-        "total": 175,
-        "done": 89,
-        "inProg": 61,
+        "total": 172,
+        "done": 88,
+        "inProg": 58,
         "delayed": 10,
-        "waiting": 15,
-        "avgPlan": 78.7,
-        "avgActual": 62.1
+        "waiting": 16,
+        "avgPlan": 77.7,
+        "avgActual": 61.4
+      },
+      "Thu Jan 01 2026 17:00:00 GMT+0900 (Korean Standard Time)": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 11.0,
+        "avgActual": 2.5
+      },
+      "Mon Mar 16 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 46.0,
+        "avgActual": 40.0
+      },
+      "Fri May 01 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 92.0,
+        "avgActual": 88.0
+      },
+      "Thu Dec 10 2026 17:00:00 GMT+0900 (Korean Standard Time)": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 22.0,
+        "avgActual": 98.0
       }
     }
   },
@@ -1206,28 +1278,28 @@
     },
     {
       "id": "31b50aa9-577d-813e-9552-ee7971a90d42",
-      "name": "[1] 프로젝트 관리/거버넌스",
+      "name": "9",
       "wbsId": "1",
       "level": "1",
-      "category": "사업총괄",
-      "subCategory": "프로젝트 관리/거버넌스 / 착수~준공까지 PMO 운영, 품질/보안/형상/변경 관리",
-      "organization": "제일엔지니어링",
-      "manager": "PMO",
+      "category": "운영·유지관리·SLA·모니터링·기능개선/고도화(계약 범위에 따라)",
+      "subCategory": "설계보고서(사업개요/일정)",
+      "organization": "Thu Jan 01 2026 17:00:00 GMT+0900 (Korean Standard Time)",
+      "manager": "Sun Dec 31 2028 17:00:00 GMT+0900 (Korean Standard Time)",
       "collaborator": "각 분야 리더",
       "approver": "",
-      "startDate": "2023-12-01",
+      "startDate": "1970-01-01",
       "endDate": "2026-12-31",
       "duration": 1127,
-      "weight": 10,
-      "plannedRate": 100,
-      "actualRate": 75.0,
-      "deviation": -25.0,
+      "weight": 40,
+      "plannedRate": 11.0,
+      "actualRate": 2.5,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "완료",
-      "status": "완료"
+      "note": "운영",
+      "status": "진행중"
     },
     {
       "id": "31b50aa9-577d-8140-a7bd-c2d2c70bb171",
@@ -1556,27 +1628,27 @@
     },
     {
       "id": "31b50aa9-577d-8157-a379-cfec1e55bd5f",
-      "name": "[4] 서비스 구축(앱/웹/플랫폼) 구축",
+      "name": "3.2.4.7",
       "wbsId": "4",
       "level": "1",
-      "category": "서비스 구축",
-      "subCategory": "서비스 구축(앱/웹/플랫폼) 구축 / 각 서비스별 개발·구축·요구사항 추적",
-      "organization": "제일엔지니어링",
-      "manager": "",
+      "category": "요구사항 정의서 및 제안요청서 작성",
+      "subCategory": "나라장터 공고 이력",
+      "organization": "Mon Mar 16 2026 16:00:00 GMT+0900 (Korean Standard Time)",
+      "manager": "Thu Apr 30 2026 16:00:00 GMT+0900 (Korean Standard Time)",
       "collaborator": "",
       "approver": "",
-      "startDate": "2024-01-01",
+      "startDate": "1970-01-01",
       "endDate": "2025-12-31",
       "duration": 731,
-      "weight": 63,
-      "plannedRate": 100,
+      "weight": 0.0,
+      "plannedRate": 46.0,
       "actualRate": 40.0,
-      "deviation": -60.0,
+      "deviation": 100,
       "budget": 0,
       "predecessor": "",
       "deliverable": "구축업체 협의 자료(회의록, 최종 설계문서 등) 및 WBS",
       "evidence": "",
-      "note": "",
+      "note": "PM, PMO, 기술총괄",
       "status": "진행중"
     },
     {
@@ -1631,27 +1703,27 @@
     },
     {
       "id": "31b50aa9-577d-815d-9f4c-dbcd8ff51d31",
-      "name": "[3] 나라장터 발주 지원",
+      "name": "4.14.3",
       "wbsId": "3",
       "level": "1",
-      "category": "나라장터 발주 지원",
-      "subCategory": "나라장터 발주 지원 / 구축 사업 발주 패키지 구성 및 기술지원",
-      "organization": "제일엔지니어링",
-      "manager": "나라장터 입찰공고",
+      "category": "디지털 OASIS SPOT 및 이노베이션 센터 각 1개소 구축\n 판매 데이터·CCTV 연계·디지털 노마드 접수/운영/거래",
+      "subCategory": "준공도서",
+      "organization": "Fri May 01 2026 16:00:00 GMT+0900 (Korean Standard Time)",
+      "manager": "Fri Jul 31 2026 16:00:00 GMT+0900 (Korean Standard Time)",
       "collaborator": "제일엔지니어링 컨소시엄",
       "approver": "",
-      "startDate": "2024-04-01",
+      "startDate": "1970-01-01",
       "endDate": "2026-03-31",
       "duration": 730,
-      "weight": 10,
-      "plannedRate": 100,
+      "weight": 0.0,
+      "plannedRate": 92.0,
       "actualRate": 88.0,
-      "deviation": -12.0,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "2.5",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "",
+      "note": "담당 PL(편의시설)",
       "status": "진행중"
     },
     {
@@ -3206,27 +3278,27 @@
     },
     {
       "id": "31b50aa9-577d-81bf-bada-c464157be121",
-      "name": "[2] 실시설계",
+      "name": "6.1",
       "wbsId": "2",
       "level": "1",
-      "category": "실시설계",
-      "subCategory": "실시설계 / 현황분 요구사항 상세화, 실시설계 및 관련 문서 작성",
-      "organization": "제일엔지니어링",
-      "manager": "설계총괄",
+      "category": "최종 산출물 제출(설계·구축·운영계획)·성과보고서",
+      "subCategory": "이관 계획 및 결과보고서",
+      "organization": "Thu Dec 10 2026 17:00:00 GMT+0900 (Korean Standard Time)",
+      "manager": "Thu Dec 31 2026 17:00:00 GMT+0900 (Korean Standard Time)",
       "collaborator": "각 단위사업 분야별",
       "approver": "",
-      "startDate": "2024-01-01",
+      "startDate": "1970-01-01",
       "endDate": "2025-11-30",
       "duration": 700,
-      "weight": 10,
-      "plannedRate": 100,
+      "weight": 0.0,
+      "plannedRate": 22.0,
       "actualRate": 98.0,
-      "deviation": -2.0,
+      "deviation": 100,
       "budget": 0,
       "predecessor": "1.1",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "Not Started",
+      "note": "PM, PMO, 기술총괄, 행정/전산 관리",
       "status": "진행중"
     },
     {
@@ -4553,6 +4625,56 @@
       "evidence": "",
       "note": "완료",
       "status": "완료"
+    },
+    {
+      "id": "33750aa9-577d-8126-93ea-d83f51a4d0e2",
+      "name": "범례",
+      "wbsId": "노란색 행 = 마일스톤",
+      "level": "1",
+      "category": "",
+      "subCategory": "",
+      "organization": "제일엔지니어링",
+      "manager": "",
+      "collaborator": "",
+      "approver": "",
+      "startDate": "",
+      "endDate": "",
+      "duration": 0,
+      "weight": 0.0,
+      "plannedRate": 0.0,
+      "actualRate": 0.0,
+      "deviation": 0.0,
+      "budget": 0,
+      "predecessor": "",
+      "deliverable": "",
+      "evidence": "",
+      "note": "",
+      "status": "대기"
+    },
+    {
+      "id": "33750aa9-577d-81e1-9b40-e989d319cc7b",
+      "name": "Slack to Notion 자동화 오류 수정 - Claude",
+      "wbsId": "",
+      "level": "",
+      "category": "",
+      "subCategory": "",
+      "organization": "제일엔지니어링",
+      "manager": "",
+      "collaborator": "",
+      "approver": "",
+      "startDate": "",
+      "endDate": "",
+      "duration": 0,
+      "weight": 0.0,
+      "plannedRate": 0.0,
+      "actualRate": 0.0,
+      "deviation": 0.0,
+      "budget": 0,
+      "predecessor": "",
+      "deliverable": "",
+      "evidence": "",
+      "note": "",
+      "status": "대기"
     }
   ]
 }
