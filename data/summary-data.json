@@ -1,26 +1,26 @@
 {
   "meta": {
-    "generatedAt": "2026-04-03T12:37:32.760024+09:00",
-    "generatedAtKst": "2026-04-03 12:37 KST",
+    "generatedAt": "2026-04-03T14:07:31.682432+09:00",
+    "generatedAtKst": "2026-04-03 14:07 KST",
     "source": "Notion 총괄표 DB (공정률) + WBS DB (건수)",
     "dbId": "ba6685cb0690464ea8da4d5cd04cc167",
     "totalRecords": 8
   },
   "total": {
-    "id": "32050aa9-577d-81cb-bd39-d21dd1a2d4c2",
+    "id": "33750aa9-577d-81b6-afd0-e9031076033f",
     "name": "📋 전체 종합",
     "groupType": "전체",
-    "total": 176,
-    "done": 88,
-    "inProg": 62,
+    "total": 175,
+    "done": 89,
+    "inProg": 61,
     "delayed": 10,
-    "waiting": 16,
+    "waiting": 15,
     "plannedRate": 95.0,
     "actualRate": 52.3,
     "deviation": -42.7,
-    "achieveRate": 50.0,
+    "achieveRate": 50.9,
     "updatedAt": "2026-04-03",
-    "note": "공정관리시트(공정률)+Slack(n건수) 통합반영 | 2026-03-12"
+    "note": ""
   },
   "byCategory": [
     {
@@ -37,7 +37,7 @@
       "deviation": -59.7,
       "achieveRate": 39.7,
       "updatedAt": "2026-04-03",
-      "note": "WBS 4 서비스구축 | 가중치 62.5 | 공정관리 시트 기준"
+      "note": "가중치 합=15"
     },
     {
       "id": "32050aa9-577d-8174-b3fa-d4506ed26bec",
@@ -184,7 +184,7 @@
       "deviation": -59.7,
       "achieveRate": 39.7,
       "updatedAt": "2026-04-03",
-      "note": "WBS 4 서비스구축 | 가중치 62.5 | 공정관리 시트 기준"
+      "note": "가중치 합=15"
     },
     {
       "id": "32050aa9-577d-8174-826d-c2da8cee4e84",
@@ -235,22 +235,6 @@
       "note": "WBS 5 통합시험 | 가중치 2.5 | 공정관리 시트 기준"
     },
     {
-      "id": "32050aa9-577d-81cb-bd39-d21dd1a2d4c2",
-      "name": "📋 전체 종합",
-      "groupType": "전체",
-      "total": 176,
-      "done": 88,
-      "inProg": 62,
-      "delayed": 10,
-      "waiting": 16,
-      "plannedRate": 95.0,
-      "actualRate": 52.3,
-      "deviation": -42.7,
-      "achieveRate": 50.0,
-      "updatedAt": "2026-04-03",
-      "note": "공정관리시트(공정률)+Slack(n건수) 통합반영 | 2026-03-12"
-    },
-    {
       "id": "32050aa9-577d-81ea-bf51-d1e92e901d50",
       "name": "운영(3년)",
       "groupType": "대분류별",
@@ -265,6 +249,22 @@
       "achieveRate": 0.0,
       "updatedAt": "2026-04-03",
       "note": "WBS 9 운영(3년) | 가중치 2.5 | 3년 운영 예산수립중"
+    },
+    {
+      "id": "33750aa9-577d-81b6-afd0-e9031076033f",
+      "name": "📋 전체 종합",
+      "groupType": "전체",
+      "total": 175,
+      "done": 89,
+      "inProg": 61,
+      "delayed": 10,
+      "waiting": 15,
+      "plannedRate": 95.0,
+      "actualRate": 52.3,
+      "deviation": -42.7,
+      "achieveRate": 50.9,
+      "updatedAt": "2026-04-03",
+      "note": ""
     }
   ]
 }
