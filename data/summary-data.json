@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generatedAt": "2026-04-07T10:54:19.762612+09:00",
-    "generatedAtKst": "2026-04-07 10:54 KST",
+    "generatedAt": "2026-04-07T14:07:47.500660+09:00",
+    "generatedAtKst": "2026-04-07 14:07 KST",
     "source": "Notion 총괄표 DB (공정률) + WBS DB (건수)",
     "dbId": "ba6685cb0690464ea8da4d5cd04cc167",
-    "totalRecords": 13
+    "totalRecords": 8
   },
   "total": {
     "id": "33750aa9-577d-81b6-afd0-e9031076033f",
@@ -264,86 +264,6 @@
       "deviation": -42.7,
       "achieveRate": 50.9,
       "updatedAt": "2026-04-07",
-      "note": ""
-    },
-    {
-      "id": "33a50aa9-577d-81cf-b1a6-fc73065d8ff3",
-      "name": "AI 시티관제 플랫폼(ACP)",
-      "groupType": "",
-      "total": 0,
-      "done": 0,
-      "inProg": 0,
-      "delayed": 0,
-      "waiting": 0,
-      "plannedRate": 100,
-      "actualRate": 66.7,
-      "deviation": -33.3,
-      "achieveRate": 66.7,
-      "updatedAt": "2026-04-07",
-      "note": ""
-    },
-    {
-      "id": "33a50aa9-577d-81de-b7e3-da8b4e9c0a62",
-      "name": "모바일 전자시민증(ECC)",
-      "groupType": "",
-      "total": 0,
-      "done": 0,
-      "inProg": 0,
-      "delayed": 0,
-      "waiting": 0,
-      "plannedRate": 100,
-      "actualRate": 66.7,
-      "deviation": -33.3,
-      "achieveRate": 66.7,
-      "updatedAt": "2026-04-07",
-      "note": ""
-    },
-    {
-      "id": "33a50aa9-577d-81e4-946d-ffd0546100d4",
-      "name": "데이터 허브·정보관리 서비스(OIM)",
-      "groupType": "",
-      "total": 0,
-      "done": 0,
-      "inProg": 0,
-      "delayed": 0,
-      "waiting": 0,
-      "plannedRate": 80.0,
-      "actualRate": 62.5,
-      "deviation": -17.5,
-      "achieveRate": 78.1,
-      "updatedAt": "2026-04-07",
-      "note": ""
-    },
-    {
-      "id": "33a50aa9-577d-81f0-a6a4-ebd02bf91161",
-      "name": "유무선 네트워크 구축(공공WiFi/네트워크 구축 등)",
-      "groupType": "",
-      "total": 0,
-      "done": 0,
-      "inProg": 0,
-      "delayed": 0,
-      "waiting": 0,
-      "plannedRate": 66.7,
-      "actualRate": 66.7,
-      "deviation": 0.0,
-      "achieveRate": 100,
-      "updatedAt": "2026-04-07",
-      "note": ""
-    },
-    {
-      "id": "33b50aa9-577d-8133-92ec-ec42fe7365fc",
-      "name": "스마트시티 통합 포털 데이터 동기화 및 현행화 - Claude",
-      "groupType": "",
-      "total": 0,
-      "done": 0,
-      "inProg": 0,
-      "delayed": 0,
-      "waiting": 0,
-      "plannedRate": 0.0,
-      "actualRate": 0.0,
-      "deviation": 0.0,
-      "achieveRate": 0.0,
-      "updatedAt": "",
       "note": ""
     }
   ]
