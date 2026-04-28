@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-04-28T00:07:29.218776+09:00",
-    "generatedAtKst": "2026-04-28 00:07 KST",
+    "generatedAt": "2026-04-28T09:06:07.164074+09:00",
+    "generatedAtKst": "2026-04-28 09:06 KST",
     "source": "Notion 총괄표 DB (공정률) + WBS DB (건수)",
     "dbId": "ba6685cb0690464ea8da4d5cd04cc167",
     "totalRecords": 8
@@ -19,7 +19,7 @@
     "actualRate": 57.6,
     "deviation": -37.4,
     "achieveRate": 53.7,
-    "updatedAt": "2026-04-27",
+    "updatedAt": "2026-04-28",
     "note": ""
   },
   "byCategory": [
@@ -36,7 +36,7 @@
       "actualRate": 48.7,
       "deviation": -51.3,
       "achieveRate": 46.9,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "가중치 합=15"
     },
     {
@@ -52,7 +52,7 @@
       "actualRate": 88.7,
       "deviation": -11.3,
       "achieveRate": 70.2,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": ""
     },
     {
@@ -68,7 +68,7 @@
       "actualRate": 74.9,
       "deviation": -25.1,
       "achieveRate": 51.9,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 1 사업총괄 | 가중치 10 | 공정관리 시트 기준"
     },
     {
@@ -84,7 +84,7 @@
       "actualRate": 98.0,
       "deviation": -2.0,
       "achieveRate": 54.5,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": ""
     },
     {
@@ -100,7 +100,7 @@
       "actualRate": 0.0,
       "deviation": -100,
       "achieveRate": 0.0,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 5 통합시험 | 가중치 2.5 | 공정관리 시트 기준"
     },
     {
@@ -116,7 +116,7 @@
       "actualRate": 0.0,
       "deviation": 0.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 6 준공검수 | 가중치 2.5 | 공정관리 시트 기준"
     },
     {
@@ -132,7 +132,7 @@
       "actualRate": 40.0,
       "deviation": 40.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 9 운영(3년) | 가중치 2.5 | 3년 운영 예산수립중"
     }
   ],
@@ -151,7 +151,7 @@
       "actualRate": 0.0,
       "deviation": 0.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 6 준공검수 | 가중치 2.5 | 공정관리 시트 기준"
     },
     {
@@ -167,7 +167,7 @@
       "actualRate": 74.9,
       "deviation": -25.1,
       "achieveRate": 51.9,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 1 사업총괄 | 가중치 10 | 공정관리 시트 기준"
     },
     {
@@ -183,7 +183,7 @@
       "actualRate": 0.0,
       "deviation": -100,
       "achieveRate": 0.0,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 5 통합시험 | 가중치 2.5 | 공정관리 시트 기준"
     },
     {
@@ -199,7 +199,7 @@
       "actualRate": 40.0,
       "deviation": 40.0,
       "achieveRate": 0.0,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "WBS 9 운영(3년) | 가중치 2.5 | 3년 운영 예산수립중"
     },
     {
@@ -215,7 +215,7 @@
       "actualRate": 57.6,
       "deviation": -37.4,
       "achieveRate": 53.7,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": ""
     },
     {
@@ -231,7 +231,7 @@
       "actualRate": 88.7,
       "deviation": -11.3,
       "achieveRate": 70.2,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": ""
     },
     {
@@ -247,7 +247,7 @@
       "actualRate": 98.0,
       "deviation": -2.0,
       "achieveRate": 54.5,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": ""
     },
     {
@@ -263,7 +263,7 @@
       "actualRate": 48.7,
       "deviation": -51.3,
       "achieveRate": 46.9,
-      "updatedAt": "2026-04-27",
+      "updatedAt": "2026-04-28",
       "note": "가중치 합=15"
     }
   ]
