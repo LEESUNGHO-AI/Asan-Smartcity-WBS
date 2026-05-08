@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-05-08T00:27:41.028455+09:00",
-    "generatedAtKst": "2026-05-08 00:27 KST",
+    "generatedAt": "2026-05-08T09:06:34.492136+09:00",
+    "generatedAtKst": "2026-05-08 09:06 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
     "totalRecords": 178
@@ -12,9 +12,9 @@
     "inProg": 57,
     "delayed": 9,
     "waiting": 15,
-    "avgPlan": 79.0,
-    "avgActual": 65.6,
-    "avgDev": -13.4,
+    "avgPlan": 78.7,
+    "avgActual": 65.5,
+    "avgDev": -13.2,
     "byCategory": {
       "기타": {
         "total": 1,
@@ -49,8 +49,8 @@
         "inProg": 30,
         "delayed": 3,
         "waiting": 1,
-        "avgPlan": 59.0,
-        "avgActual": 55.3
+        "avgPlan": 58.0,
+        "avgActual": 55.0
       },
       "프로젝트 관리/거버넌스": {
         "total": 11,
@@ -159,8 +159,8 @@
         "inProg": 54,
         "delayed": 9,
         "waiting": 15,
-        "avgPlan": 78.5,
-        "avgActual": 65.4
+        "avgPlan": 78.2,
+        "avgActual": 65.3
       },
       "Thu Jan 01 2026 17:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
@@ -628,27 +628,27 @@
     },
     {
       "id": "31b50aa9-577d-8113-bf60-c2f4c132b2c3",
-      "name": "[4.1] 디지털 OASIS SPOT 구축",
+      "name": "[4.1] 메타버스 플랫폼",
       "wbsId": "4.1",
       "level": "2",
       "category": "서비스 구축",
-      "subCategory": "디지털 OASIS SPOT 구축 / 디지털 OASIS SPOT 대상지 선정, 법률 인허가 검토 및 실구축",
+      "subCategory": "메타버스 플랫폼 / 요구사항 정합화→설계→개발/구축→연계→단위/통합 테스트",
       "organization": "제일엔지니어링",
-      "manager": "담당 PL(NOP)",
+      "manager": "담당 PL(메타버스)",
       "collaborator": "플랫폼/보안",
       "approver": "",
-      "startDate": "2024-01-01",
-      "endDate": "2026-09-30",
-      "duration": 1004,
+      "startDate": "2026-04-01",
+      "endDate": "2026-08-31",
+      "duration": 153,
       "weight": 1,
-      "plannedRate": 67.0,
-      "actualRate": 17.0,
-      "deviation": -50.0,
+      "plannedRate": 3.0,
+      "actualRate": 0.0,
+      "deviation": -3.0,
       "budget": 0,
       "predecessor": "5.2",
-      "deliverable": "기술협상결과서, 준공 산출물 등",
+      "deliverable": "메타버스 플랫폼",
       "evidence": "",
-      "note": "진행 중 | 국토부 실시계획 변경 승인 절차 진행간 인허가 진행 중",
+      "note": "진행 중",
       "status": "진행중"
     },
     {
