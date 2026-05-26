@@ -1,20 +1,20 @@
 {
   "meta": {
-    "generatedAt": "2026-05-26T17:24:41.623676+09:00",
-    "generatedAtKst": "2026-05-26 17:24 KST",
+    "generatedAt": "2026-05-26T18:09:05.953879+09:00",
+    "generatedAtKst": "2026-05-26 18:09 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
     "totalRecords": 178
   },
   "summary": {
     "total": 175,
-    "done": 95,
-    "inProg": 56,
-    "delayed": 10,
-    "waiting": 14,
+    "done": 98,
+    "inProg": 57,
+    "delayed": 11,
+    "waiting": 9,
     "avgPlan": 76.1,
-    "avgActual": 67.1,
-    "avgDev": -9.0,
+    "avgActual": 70.1,
+    "avgDev": -6.0,
     "byCategory": {
       "준공/검수/이관": {
         "total": 3,
@@ -63,12 +63,12 @@
       },
       "나라장터 발주 지원": {
         "total": 47,
-        "done": 35,
-        "inProg": 7,
-        "delayed": 0,
-        "waiting": 5,
+        "done": 38,
+        "inProg": 8,
+        "delayed": 1,
+        "waiting": 0,
         "avgPlan": 99.8,
-        "avgActual": 81.5
+        "avgActual": 92.4
       },
       "디지털 OASIS SPOT 및 이노베이션 센터 각 1개소 구축\n 판매 데이터·CCTV 연계·디지털 노마드 접수/운영/거래": {
         "total": 1,
@@ -77,7 +77,7 @@
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 100.0,
-        "avgActual": 89.0
+        "avgActual": 97.0
       },
       "프로젝트 관리/거버넌스": {
         "total": 11,
@@ -146,12 +146,12 @@
     "byOrg": {
       "제일엔지니어링": {
         "total": 171,
-        "done": 94,
-        "inProg": 53,
-        "delayed": 10,
-        "waiting": 14,
+        "done": 97,
+        "inProg": 54,
+        "delayed": 11,
+        "waiting": 9,
         "avgPlan": 75.9,
-        "avgActual": 66.8
+        "avgActual": 69.8
       },
       "Mon Mar 16 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
@@ -169,7 +169,7 @@
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 100.0,
-        "avgActual": 89.0
+        "avgActual": 97.0
       },
       "Thu Dec 10 2026 17:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
@@ -2058,14 +2058,14 @@
       "duration": 46,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 70.0,
+      "deviation": -30.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
       "evidence": "",
       "note": "",
-      "status": "대기"
+      "status": "진행중"
     },
     {
       "id": "31b50aa9-577d-815e-9241-e8ab91f866ed",
@@ -2233,8 +2233,8 @@
       "duration": 570,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 86.0,
-      "deviation": -14.0,
+      "actualRate": 96.0,
+      "deviation": -4.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
@@ -2258,14 +2258,14 @@
       "duration": 46,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 100,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
       "evidence": "",
       "note": "",
-      "status": "대기"
+      "status": "완료"
     },
     {
       "id": "31b50aa9-577d-81e5-b155-c822fb418031",
@@ -2308,14 +2308,14 @@
       "duration": 246,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 50.0,
-      "deviation": -50.0,
+      "actualRate": 100,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
       "evidence": "",
       "note": "",
-      "status": "진행중"
+      "status": "완료"
     },
     {
       "id": "31b50aa9-577d-812a-83e7-e676db6ea8d3",
@@ -2433,14 +2433,14 @@
       "duration": 46,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 30.0,
+      "deviation": -70.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
       "evidence": "",
       "note": "",
-      "status": "대기"
+      "status": "진행중"
     },
     {
       "id": "31b50aa9-577d-8123-9396-cf5103a8c362",
@@ -2458,14 +2458,14 @@
       "duration": 46,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 80.0,
+      "deviation": -20.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
       "evidence": "",
       "note": "",
-      "status": "대기"
+      "status": "진행중"
     },
     {
       "id": "31b50aa9-577d-8179-af36-e335b80b18c9",
@@ -2483,14 +2483,14 @@
       "duration": 46,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 20.0,
+      "deviation": -80.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
       "evidence": "",
-      "note": "사업초기부터 요구사항 정의 진행 함(게획 공정률 100% 사유)",
-      "status": "진행중"
+      "note": "사업초기부터 요구사항 정의 진행 함(게획 공정률 100% 사유)\n 지연 사유는 운수사업자 민원 발생 소지가 있는 사업으로 지방선거 이후로 진행 예정임",
+      "status": "지연"
     },
     {
       "id": "31b50aa9-577d-81b2-8bd7-cb8387bdfc3f",
@@ -2558,14 +2558,14 @@
       "duration": 46,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 100,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
       "evidence": "",
       "note": "",
-      "status": "대기"
+      "status": "완료"
     },
     {
       "id": "31b50aa9-577d-81d9-a5f6-e021da4a6ad7",
@@ -2583,8 +2583,8 @@
       "duration": 12,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 50.0,
-      "deviation": -50.0,
+      "actualRate": 79.0,
+      "deviation": -21.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "나라장터 공고 이력",
@@ -2608,8 +2608,8 @@
       "duration": 760,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 71.0,
-      "deviation": -29.0,
+      "actualRate": 94.0,
+      "deviation": -6.0,
       "budget": 0,
       "predecessor": "2",
       "deliverable": "나라장터 입찰공고 이력",
@@ -3208,8 +3208,8 @@
       "duration": 730,
       "weight": 10,
       "plannedRate": 100,
-      "actualRate": 89.0,
-      "deviation": -11.0,
+      "actualRate": 97.0,
+      "deviation": -3.0,
       "budget": 0,
       "predecessor": "2.5",
       "deliverable": "설계보고서(사업개요/일정)",
