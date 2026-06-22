@@ -1,21 +1,30 @@
 {
   "meta": {
-    "generatedAt": "2026-06-22T14:21:40.928083+09:00",
-    "generatedAtKst": "2026-06-22 14:21 KST",
+    "generatedAt": "2026-06-22T15:17:27.164579+09:00",
+    "generatedAtKst": "2026-06-22 15:17 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
-    "totalRecords": 175
+    "totalRecords": 176
   },
   "summary": {
-    "total": 172,
+    "total": 173,
     "done": 98,
     "inProg": 55,
     "delayed": 11,
-    "waiting": 8,
+    "waiting": 9,
     "avgPlan": 77.3,
-    "avgActual": 72.8,
-    "avgDev": -4.5,
+    "avgActual": 72.4,
+    "avgDev": -4.9,
     "byCategory": {
+      "기타": {
+        "total": 2,
+        "done": 0,
+        "inProg": 0,
+        "delayed": 0,
+        "waiting": 2,
+        "avgPlan": 0.0,
+        "avgActual": 0.0
+      },
       "서비스 구축": {
         "total": 61,
         "done": 24,
@@ -70,13 +79,13 @@
         "avgPlan": 100.0,
         "avgActual": 93.9
       },
-      "SDDC 서버·ToR/백본·스토리지 구성·관리 플랫폼 구성": {
+      "시설물 구축·WiFi 연동·관련 인허가 등\n 센서 데이터·CCTV 연동": {
         "total": 1,
         "done": 0,
         "inProg": 1,
         "delayed": 0,
         "waiting": 0,
-        "avgPlan": 1.2,
+        "avgPlan": 92.0,
         "avgActual": 97.0
       },
       "프로젝트 관리/거버넌스": {
@@ -106,13 +115,13 @@
         "avgPlan": 100.0,
         "avgActual": 99.0
       },
-      "SDDC 서버/스토리지/스위치/VDI/보안솔루션/망연계 구축": {
+      "요구사항 정합화→설계→개발/구축→연계→단위/통합 테스트": {
         "total": 1,
         "done": 0,
         "inProg": 1,
         "delayed": 0,
         "waiting": 0,
-        "avgPlan": 5.2,
+        "avgPlan": 1.5,
         "avgActual": 99.0
       },
       "사업총괄": {
@@ -132,26 +141,17 @@
         "waiting": 0,
         "avgPlan": 7.3,
         "avgActual": 63.0
-      },
-      "기타": {
-        "total": 1,
-        "done": 0,
-        "inProg": 0,
-        "delayed": 0,
-        "waiting": 1,
-        "avgPlan": 0.0,
-        "avgActual": 0.0
       }
     },
     "byOrg": {
       "제일엔지니어링": {
-        "total": 168,
+        "total": 169,
         "done": 98,
         "inProg": 51,
         "delayed": 11,
-        "waiting": 8,
-        "avgPlan": 78.8,
-        "avgActual": 72.7
+        "waiting": 9,
+        "avgPlan": 78.3,
+        "avgActual": 72.2
       },
       "Mon Mar 16 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
@@ -162,22 +162,22 @@
         "avgPlan": 46.0,
         "avgActual": 54.0
       },
+      "Mon Jun 01 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
+        "total": 1,
+        "done": 0,
+        "inProg": 1,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 92.0,
+        "avgActual": 97.0
+      },
       "Wed Apr 01 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
         "done": 0,
         "inProg": 1,
         "delayed": 0,
         "waiting": 0,
-        "avgPlan": 1.2,
-        "avgActual": 97.0
-      },
-      "Thu Aug 01 2024 16:00:00 GMT+0900 (Korean Standard Time)": {
-        "total": 1,
-        "done": 0,
-        "inProg": 1,
-        "delayed": 0,
-        "waiting": 0,
-        "avgPlan": 5.2,
+        "avgPlan": 1.5,
         "avgActual": 99.0
       },
       "Mon Jan 01 2024 17:00:00 GMT+0900 (Korean Standard Time)": {
@@ -192,6 +192,31 @@
     }
   },
   "items": [
+    {
+      "id": "38750aa9-577d-81c1-ba70-d38910e90a01",
+      "name": "범례",
+      "wbsId": "노란색 행 = 마일스톤",
+      "level": "1",
+      "category": "",
+      "subCategory": "",
+      "organization": "제일엔지니어링",
+      "manager": "",
+      "collaborator": "",
+      "approver": "",
+      "startDate": "",
+      "endDate": "",
+      "duration": 0,
+      "weight": 0.0,
+      "plannedRate": 0.0,
+      "actualRate": 0.0,
+      "deviation": 0.0,
+      "budget": 0,
+      "predecessor": "",
+      "deliverable": "",
+      "evidence": "",
+      "note": "",
+      "status": "대기"
+    },
     {
       "id": "38750aa9-577d-81eb-94c1-c2ec3195be47",
       "name": "[4.13] 스마트폴&디스플레이",
@@ -3119,27 +3144,27 @@
     },
     {
       "id": "31b50aa9-577d-815d-9f4c-dbcd8ff51d31",
-      "name": "4.6.3",
+      "name": "4.13.3",
       "wbsId": "3",
       "level": "1",
-      "category": "SDDC 서버·ToR/백본·스토리지 구성·관리 플랫폼 구성",
-      "subCategory": "납품확인서, 기술지원 확약서, 선정업체 협의 회의록, 최종 관련 보고서",
-      "organization": "Wed Apr 01 2026 16:00:00 GMT+0900 (Korean Standard Time)",
-      "manager": "Fri Jul 31 2026 16:00:00 GMT+0900 (Korean Standard Time)",
+      "category": "시설물 구축·WiFi 연동·관련 인허가 등\n 센서 데이터·CCTV 연동",
+      "subCategory": "준공도서",
+      "organization": "Mon Jun 01 2026 16:00:00 GMT+0900 (Korean Standard Time)",
+      "manager": "Mon Aug 31 2026 16:00:00 GMT+0900 (Korean Standard Time)",
       "collaborator": "제일엔지니어링 컨소시엄",
       "approver": "",
       "startDate": "1970-01-01",
       "endDate": "2026-03-31",
       "duration": 730,
-      "weight": 85,
-      "plannedRate": 1.2,
+      "weight": 0.0,
+      "plannedRate": 92.0,
       "actualRate": 97.0,
-      "deviation": 90.0,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "2.5",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "기술총괄",
+      "note": "담당 PL(편의시설)",
       "status": "진행중"
     },
     {
@@ -3769,27 +3794,27 @@
     },
     {
       "id": "31b50aa9-577d-81bf-bada-c464157be121",
-      "name": "4.6",
+      "name": "4.14",
       "wbsId": "2",
       "level": "1",
-      "category": "SDDC 서버/스토리지/스위치/VDI/보안솔루션/망연계 구축",
-      "subCategory": "요구사항: SDDC IT 인프라(SDC)",
-      "organization": "Thu Aug 01 2024 16:00:00 GMT+0900 (Korean Standard Time)",
-      "manager": "Wed Dec 31 2025 17:00:00 GMT+0900 (Korean Standard Time)",
+      "category": "요구사항 정합화→설계→개발/구축→연계→단위/통합 테스트",
+      "subCategory": "네트워크 구축 용역",
+      "organization": "Wed Apr 01 2026 16:00:00 GMT+0900 (Korean Standard Time)",
+      "manager": "Mon Aug 31 2026 16:00:00 GMT+0900 (Korean Standard Time)",
       "collaborator": "각 단위사업 분야별",
       "approver": "",
       "startDate": "1970-01-01",
       "endDate": "2025-11-30",
       "duration": 700,
-      "weight": 87.5,
-      "plannedRate": 5.2,
+      "weight": 0.0,
+      "plannedRate": 1.5,
       "actualRate": 99.0,
-      "deviation": 88.3,
+      "deviation": 3.3,
       "budget": 0,
       "predecessor": "1.1",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "담당PL(ACP)",
+      "note": "담당 PL(편의시설)",
       "status": "진행중"
     },
     {
@@ -4506,10 +4531,10 @@
       "startDate": "1970-01-01",
       "endDate": "2026-12-31",
       "duration": 1127,
-      "weight": 54.8,
+      "weight": 54.1,
       "plannedRate": 7.3,
       "actualRate": 63.0,
-      "deviation": 80.9,
+      "deviation": 75.2,
       "budget": 0,
       "predecessor": "",
       "deliverable": "설계보고서(사업개요/일정)",
