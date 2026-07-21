@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-07-21T16:25:24.324335+09:00",
-    "generatedAtKst": "2026-07-21 16:25 KST",
+    "generatedAt": "2026-07-21T18:10:44.410987+09:00",
+    "generatedAtKst": "2026-07-21 18:10 KST",
     "source": "Notion 총괄표 DB (공정률) + WBS DB (건수)",
     "dbId": "ba6685cb0690464ea8da4d5cd04cc167",
     "totalRecords": 7
@@ -16,8 +16,8 @@
     "delayed": 11,
     "waiting": 9,
     "plannedRate": 80.4,
-    "actualRate": 65.5,
-    "deviation": -14.9,
+    "actualRate": 67.2,
+    "deviation": -13.2,
     "achieveRate": 60.6,
     "updatedAt": "2026-07-21",
     "note": ""
@@ -33,8 +33,8 @@
       "delayed": 4,
       "waiting": 1,
       "plannedRate": 83.8,
-      "actualRate": 58.6,
-      "deviation": -25.2,
+      "actualRate": 61.3,
+      "deviation": -22.5,
       "achieveRate": 42.2,
       "updatedAt": "2026-07-21",
       "note": "가중치 합=15"
@@ -49,8 +49,8 @@
       "delayed": 1,
       "waiting": 0,
       "plannedRate": 100,
-      "actualRate": 98.3,
-      "deviation": -1.7,
+      "actualRate": 99.0,
+      "deviation": -1.0,
       "achieveRate": 91.5,
       "updatedAt": "2026-07-21",
       "note": ""
@@ -132,8 +132,8 @@
       "delayed": 4,
       "waiting": 1,
       "plannedRate": 83.8,
-      "actualRate": 58.6,
-      "deviation": -25.2,
+      "actualRate": 61.3,
+      "deviation": -22.5,
       "achieveRate": 42.2,
       "updatedAt": "2026-07-21",
       "note": "가중치 합=15"
@@ -148,8 +148,8 @@
       "delayed": 1,
       "waiting": 0,
       "plannedRate": 100,
-      "actualRate": 98.3,
-      "deviation": -1.7,
+      "actualRate": 99.0,
+      "deviation": -1.0,
       "achieveRate": 91.5,
       "updatedAt": "2026-07-21",
       "note": ""
@@ -180,8 +180,8 @@
       "delayed": 11,
       "waiting": 9,
       "plannedRate": 80.4,
-      "actualRate": 65.5,
-      "deviation": -14.9,
+      "actualRate": 67.2,
+      "deviation": -13.2,
       "achieveRate": 60.6,
       "updatedAt": "2026-07-21",
       "note": ""

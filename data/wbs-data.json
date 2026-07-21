@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-07-21T16:25:23.980552+09:00",
-    "generatedAtKst": "2026-07-21 16:25 KST",
+    "generatedAt": "2026-07-21T18:10:44.158229+09:00",
+    "generatedAtKst": "2026-07-21 18:10 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
     "totalRecords": 178
@@ -13,8 +13,8 @@
     "delayed": 11,
     "waiting": 9,
     "avgPlan": 85.2,
-    "avgActual": 74.6,
-    "avgDev": -10.6,
+    "avgActual": 75.7,
+    "avgDev": -9.5,
     "byCategory": {
       "서비스 구축": {
         "total": 64,
@@ -23,7 +23,7 @@
         "delayed": 4,
         "waiting": 1,
         "avgPlan": 85.6,
-        "avgActual": 64.1
+        "avgActual": 66.2
       },
       "준공/검수/이관": {
         "total": 3,
@@ -59,7 +59,7 @@
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 84.0,
-        "avgActual": 59.0
+        "avgActual": 61.0
       },
       "나라장터 발주 지원": {
         "total": 47,
@@ -68,7 +68,7 @@
         "delayed": 1,
         "waiting": 0,
         "avgPlan": 100.0,
-        "avgActual": 96.1
+        "avgActual": 97.6
       },
       "디지털 OASIS SPOT 및 이노베이션 센터 각 1개소 구축\n 판매 데이터·CCTV 연계·디지털 노마드 접수/운영/거래": {
         "total": 1,
@@ -77,7 +77,7 @@
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 100.0,
-        "avgActual": 98.0
+        "avgActual": 99.0
       },
       "프로젝트 관리/거버넌스": {
         "total": 11,
@@ -151,7 +151,7 @@
         "delayed": 11,
         "waiting": 9,
         "avgPlan": 85.0,
-        "avgActual": 74.3
+        "avgActual": 75.5
       },
       "Mon Mar 16 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
@@ -160,7 +160,7 @@
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 84.0,
-        "avgActual": 59.0
+        "avgActual": 61.0
       },
       "Fri May 01 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
@@ -169,7 +169,7 @@
         "delayed": 0,
         "waiting": 0,
         "avgPlan": 100.0,
-        "avgActual": 98.0
+        "avgActual": 99.0
       },
       "Thu Dec 10 2026 17:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
@@ -233,8 +233,8 @@
       "duration": 30,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 20.0,
-      "deviation": -80.0,
+      "actualRate": 50.0,
+      "deviation": -50.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "기술협상 결과 보고서",
@@ -283,8 +283,8 @@
       "duration": 153,
       "weight": 0.0,
       "plannedRate": 93.0,
-      "actualRate": 17.0,
-      "deviation": -77.0,
+      "actualRate": 43.0,
+      "deviation": -50.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "네트워크 구축 용역",
@@ -533,8 +533,8 @@
       "duration": 17,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 0.0,
-      "deviation": -100,
+      "actualRate": 30.0,
+      "deviation": -70.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "구축 계획서",
@@ -558,8 +558,8 @@
       "duration": 45,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 50.0,
-      "deviation": -50.0,
+      "actualRate": 100,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "기술협상 결과 보고서",
@@ -2008,8 +2008,8 @@
       "duration": 731,
       "weight": 63,
       "plannedRate": 84.0,
-      "actualRate": 59.0,
-      "deviation": -25.0,
+      "actualRate": 61.0,
+      "deviation": -22.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "구축업체 협의 자료(회의록, 최종 설계문서 등) 및 WBS",
@@ -3008,8 +3008,8 @@
       "duration": 365,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 60.0,
-      "deviation": -40.0,
+      "actualRate": 100,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "제안요청서(RFP), 규격서 등",
@@ -3033,8 +3033,8 @@
       "duration": 365,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 80.0,
-      "deviation": -20.0,
+      "actualRate": 100,
+      "deviation": 0.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "제안요청서(RFP), 규격서 등",
@@ -3158,8 +3158,8 @@
       "duration": 455,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 90.0,
-      "deviation": -10.0,
+      "actualRate": 98.0,
+      "deviation": -2.0,
       "budget": 0,
       "predecessor": "",
       "deliverable": "제안요청서, 규격서, 과업지시서",
@@ -3183,8 +3183,8 @@
       "duration": 730,
       "weight": 0.0,
       "plannedRate": 100,
-      "actualRate": 98.0,
-      "deviation": -2.0,
+      "actualRate": 99.0,
+      "deviation": -60.0,
       "budget": 0,
       "predecessor": "2.5",
       "deliverable": "제안요청서, 규격서, 과업지시서, 공고문",
@@ -3208,8 +3208,8 @@
       "duration": 730,
       "weight": 10,
       "plannedRate": 100,
-      "actualRate": 98.0,
-      "deviation": -2.0,
+      "actualRate": 99.0,
+      "deviation": -100,
       "budget": 0,
       "predecessor": "2.5",
       "deliverable": "설계보고서(사업개요/일정)",
