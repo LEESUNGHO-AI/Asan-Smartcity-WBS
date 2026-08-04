@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-04T00:42:33.447749+09:00",
-    "generatedAtKst": "2026-08-04 00:42 KST",
+    "generatedAt": "2026-08-04T09:04:52.022766+09:00",
+    "generatedAtKst": "2026-08-04 09:04 KST",
     "source": "Notion API v4.3",
     "dbId": "559654aed9404d9f88225ea0adc7d746",
     "totalRecords": 178
@@ -70,7 +70,7 @@
         "avgPlan": 100.0,
         "avgActual": 97.6
       },
-      "서비스 인프라 구축 용역사업으로 통합하여 나라장터를 통해 사업발주": {
+      "디지털 OASIS SPOT 및 이노베이션 센터 각 1개소 구축\n 판매 데이터·CCTV 연계·디지털 노마드 접수/운영/거래": {
         "total": 1,
         "done": 0,
         "inProg": 1,
@@ -106,7 +106,7 @@
         "avgPlan": 100.0,
         "avgActual": 100.0
       },
-      "단위사업 나라장터를 통한 입찰공고": {
+      "최종 산출물 제출(설계·구축·운영계획)·성과보고서": {
         "total": 1,
         "done": 1,
         "inProg": 0,
@@ -124,7 +124,7 @@
         "avgPlan": 72.6,
         "avgActual": 72.6
       },
-      "구축 사업 발주 패키지 구성 및 기술지원": {
+      "운영·유지관리·SLA·모니터링·기능개선/고도화(계약 범위에 따라)": {
         "total": 1,
         "done": 1,
         "inProg": 0,
@@ -153,7 +153,7 @@
         "avgPlan": 85.0,
         "avgActual": 77.5
       },
-      "Wed Jan 01 2025 17:00:00 GMT+0900 (Korean Standard Time)": {
+      "Mon Mar 16 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
         "done": 0,
         "inProg": 1,
@@ -162,7 +162,7 @@
         "avgPlan": 84.0,
         "avgActual": 67.0
       },
-      "Thu Aug 28 2025 16:00:00 GMT+0900 (Korean Standard Time)": {
+      "Fri May 01 2026 16:00:00 GMT+0900 (Korean Standard Time)": {
         "total": 1,
         "done": 0,
         "inProg": 1,
@@ -171,14 +171,23 @@
         "avgPlan": 100.0,
         "avgActual": 99.0
       },
-      "Mon Apr 01 2024 16:00:00 GMT+0900 (Korean Standard Time)": {
-        "total": 2,
-        "done": 2,
+      "Thu Dec 10 2026 17:00:00 GMT+0900 (Korean Standard Time)": {
+        "total": 1,
+        "done": 1,
         "inProg": 0,
         "delayed": 0,
         "waiting": 0,
-        "avgPlan": 90.5,
-        "avgActual": 90.5
+        "avgPlan": 100.0,
+        "avgActual": 100.0
+      },
+      "Thu Jan 01 2026 17:00:00 GMT+0900 (Korean Standard Time)": {
+        "total": 1,
+        "done": 1,
+        "inProg": 0,
+        "delayed": 0,
+        "waiting": 0,
+        "avgPlan": 81.0,
+        "avgActual": 81.0
       }
     }
   },
@@ -1990,8 +1999,8 @@
       "level": "1",
       "category": "요구사항 정의서 및 제안요청서 작성",
       "subCategory": "서비스 구축(앱/웹/플랫폼) 구축 / 각 서비스별 개발·구축·요구사항 추적",
-      "organization": "Wed Jan 01 2025 17:00:00 GMT+0900 (Korean Standard Time)",
-      "manager": "Sat Feb 28 2026 17:00:00 GMT+0900 (Korean Standard Time)",
+      "organization": "Mon Mar 16 2026 16:00:00 GMT+0900 (Korean Standard Time)",
+      "manager": "Thu Apr 30 2026 16:00:00 GMT+0900 (Korean Standard Time)",
       "collaborator": "",
       "approver": "",
       "startDate": "2024-01-01",
@@ -3188,9 +3197,9 @@
       "name": "[3] 나라장터 발주 지원",
       "wbsId": "3",
       "level": "1",
-      "category": "서비스 인프라 구축 용역사업으로 통합하여 나라장터를 통해 사업발주",
+      "category": "디지털 OASIS SPOT 및 이노베이션 센터 각 1개소 구축\n 판매 데이터·CCTV 연계·디지털 노마드 접수/운영/거래",
       "subCategory": "나라장터 발주 지원 / 구축 사업 발주 패키지 구성 및 기술지원",
-      "organization": "Thu Aug 28 2025 16:00:00 GMT+0900 (Korean Standard Time)",
+      "organization": "Fri May 01 2026 16:00:00 GMT+0900 (Korean Standard Time)",
       "manager": "나라장터 입찰공고",
       "collaborator": "제일엔지니어링 컨소시엄",
       "approver": "",
@@ -3205,7 +3214,7 @@
       "predecessor": "2.5",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "PM, PMO, 기술총괄",
+      "note": "담당 PL(편의시설)",
       "status": "진행중"
     },
     {
@@ -3838,9 +3847,9 @@
       "name": "[2] 실시설계",
       "wbsId": "2",
       "level": "1",
-      "category": "단위사업 나라장터를 통한 입찰공고",
+      "category": "최종 산출물 제출(설계·구축·운영계획)·성과보고서",
       "subCategory": "실시설계 / 현황분 요구사항 상세화, 실시설계 및 관련 문서 작성",
-      "organization": "Mon Apr 01 2024 16:00:00 GMT+0900 (Korean Standard Time)",
+      "organization": "Thu Dec 10 2026 17:00:00 GMT+0900 (Korean Standard Time)",
       "manager": "설계총괄",
       "collaborator": "각 단위사업 분야별",
       "approver": "",
@@ -3855,7 +3864,7 @@
       "predecessor": "1.1",
       "deliverable": "설계보고서(사업개요/일정)",
       "evidence": "",
-      "note": "나라장터 입찰공고",
+      "note": "PM, PMO, 기술총괄, 행정/전산 관리",
       "status": "완료"
     },
     {
@@ -4563,9 +4572,9 @@
       "name": "[1] 프로젝트 관리/거버넌스",
       "wbsId": "1",
       "level": "1",
-      "category": "구축 사업 발주 패키지 구성 및 기술지원",
+      "category": "운영·유지관리·SLA·모니터링·기능개선/고도화(계약 범위에 따라)",
       "subCategory": "프로젝트 관리/거버넌스 / 착수~준공까지 PMO 운영, 품질/보안/형상/변경 관리",
-      "organization": "Mon Apr 01 2024 16:00:00 GMT+0900 (Korean Standard Time)",
+      "organization": "Thu Jan 01 2026 17:00:00 GMT+0900 (Korean Standard Time)",
       "manager": "PMO",
       "collaborator": "각 분야 리더",
       "approver": "",
